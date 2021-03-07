@@ -16,6 +16,7 @@ public final class Main {
      */
 	//new commit
 	//third commit
+	//Shimon commit
     public static void main(String[] args) {
 
         try { // test zero vector
