@@ -4,7 +4,7 @@ import static primitives.Util.*;
 
 /**
  * Test program for the 1st stage
- *
+ *mendy&shimon
  * @author Dan Zilberstein
  */
 public final class Main {
@@ -14,9 +14,7 @@ public final class Main {
      * 
      * @param args irrelevant here
      */
-	//new commit
-	//third commit
-	//Shimon commit
+
     public static void main(String[] args) {
 
         try { // test zero vector
