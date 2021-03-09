@@ -8,14 +8,14 @@ public class Vector {
 
 	public Vector(Coordinate p1, Coordinate p2, Coordinate p3) {
 		Point3D p = new Point3D(p1, p2, p3);
-		if (p.equals(p.ZERO))
+		if (p.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("The coordiates cannot be  zeroes.");
 		head = p;
 	}
 
 	public Vector(double p1, double p2, double p3) {
 		Point3D p = new Point3D(p1, p2, p3);
-		if (p.equals(p.ZERO))
+		if (p.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("The numbers cannot be zeroes.");
 		head = p;
 	}
@@ -48,6 +48,15 @@ public class Vector {
 								this.head.z.coord * vec.head.x.coord - this.head.x.coord * vec.head.z.coord,
 								this.head.x.coord * vec.head.y.coord - this.head.y.coord * vec.head.x.coord);				Vector temp = new Vector(vec.head.x.coord + this.head.x.coord, vec.head.y.coord + this.head.y.coord, vec.head.z.coord + this.head.z.coord);
 		return temp;
+	}
+	
+	double lengthSquared() {
+		return this.head.x.coord * this.head.x.coord + this.head.y.coord * this.head.y.coord +
+				this.head.z.coord * this.head.z.coord;
+	}
+	
+	double length() {
+		return Math.sqrt(lengthSquared());
 	}
 	
 	/*************** Admin *****************/
