@@ -20,23 +20,25 @@ public class Vector {
 		head = p;
 	}
 
-	public Vector(Point3D p1) {
-		head = p1;
+	public Vector(Point3D p) {
+		if (p.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("The numbers cannot be zeroes.");
+		head = p;
 	}
 
 	public Vector subtract(Vector vec) {
-		Vector temp = new Vector(this.head.x.coord - vec.head.x.coord, this.head.y.coord - vec.head.y.coord, this.head.z.coord - vec.head.z.coord);
-		return temp;
+		return new Vector(this.head.x.coord - vec.head.x.coord, this.head.y.coord - vec.head.y.coord, this.head.z.coord - vec.head.z.coord);
+		
 	}
 
 	public Vector add(Vector vec) {
-		Vector temp = new Vector(this.head.x.coord + vec.head.x.coord, this.head.y.coord + vec.head.y.coord, this.head.z.coord + vec.head.z.coord);		Vector temp = new Vector(vec.head.x.coord + this.head.x.coord, vec.head.y.coord + this.head.y.coord, vec.head.z.coord + this.head.z.coord);
-		return temp;
+		return new Vector(this.head.x.coord + vec.head.x.coord, this.head.y.coord + vec.head.y.coord, this.head.z.coord + vec.head.z.coord);
+	
 	}
 	
 	public Vector scale(double scale) {
-		Vector temp = new Vector(scale * this.head.x.coord, scale * this.head.y.coord, scale * this.head.z.coord);
-		return temp;
+		return new Vector(scale * this.head.x.coord, scale * this.head.y.coord, scale * this.head.z.coord);
+
 	}
 	
 	public double dotProduct(Vector vec) {
@@ -44,19 +46,29 @@ public class Vector {
 	}
 
 	public Vector crossProduct(Vector vec) {
-		Vector temp = new Vector(this.head.y.coord * vec.head.z.coord - this.head.z.coord * vec.head.y.coord,
+		return new Vector(this.head.y.coord * vec.head.z.coord - this.head.z.coord * vec.head.y.coord,
 								this.head.z.coord * vec.head.x.coord - this.head.x.coord * vec.head.z.coord,
-								this.head.x.coord * vec.head.y.coord - this.head.y.coord * vec.head.x.coord);				Vector temp = new Vector(vec.head.x.coord + this.head.x.coord, vec.head.y.coord + this.head.y.coord, vec.head.z.coord + this.head.z.coord);
-		return temp;
+								this.head.x.coord * vec.head.y.coord - this.head.y.coord * vec.head.x.coord);
+
 	}
 	
-	double lengthSquared() {
+	public double lengthSquared() {
 		return this.head.x.coord * this.head.x.coord + this.head.y.coord * this.head.y.coord +
 				this.head.z.coord * this.head.z.coord;
 	}
 	
-	double length() {
+	public double length() {
 		return Math.sqrt(lengthSquared());
+	}
+	
+	public Vector normalize() {
+		this.head = this.scale(1 / this.length()).head;
+		return this;
+	} 
+	
+	public Vector normalized() {
+		Vector v = new Vector(this.head);
+		return v.normalize();
 	}
 	
 	/*************** Admin *****************/
