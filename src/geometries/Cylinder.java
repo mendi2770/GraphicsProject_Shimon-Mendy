@@ -11,7 +11,7 @@ public class Cylinder extends Tube implements Geometry {
 	
 	
 	/**
-	 * @return the height
+	 * @return the height =
 	 */
 	public double getHeight() {
 		return height;

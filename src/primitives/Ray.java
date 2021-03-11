@@ -32,7 +32,7 @@ public class Ray {
 
 
 
-	/*************** Admin *****************/
+	/*************** Admin ******************/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

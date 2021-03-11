@@ -11,7 +11,7 @@ public class Tube implements Geometry {
 	
 	
 	/**
-	 * @return the axisRay
+	 * @return the axisRay=
 	 */
 	public Ray getAxisRay() {
 		return axisRay;

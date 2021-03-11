@@ -23,7 +23,7 @@ public class Plane implements Geometry {
 	}
 
 	public Plane() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub=
 	}
 
 	@Override

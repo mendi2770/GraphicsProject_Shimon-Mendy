@@ -66,7 +66,7 @@ public class Point3D {
 		return Math.sqrt(distanceSquared(p));
 	}
 
-	/*************** Admin *****************/
+	/*************** Admin ******************/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

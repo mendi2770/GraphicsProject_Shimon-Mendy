@@ -26,7 +26,7 @@ public class Sphere implements Geometry {
 	}
 
 	public Sphere() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub=
 	}
 
 	@Override

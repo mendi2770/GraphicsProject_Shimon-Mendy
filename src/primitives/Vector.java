@@ -78,7 +78,7 @@ public class Vector {
 		return v.normalize();
 	}
 	
-	/*************** Admin *****************/
+	/*************** Admin ******************/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
