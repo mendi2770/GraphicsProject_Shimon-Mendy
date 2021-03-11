@@ -1,9 +1,28 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
+import static primitives.Util.*;
 
 public class Tube implements Geometry {
+
+	protected Ray axisRay;
+	protected double radius;
+	
+	
+	
+	/**
+	 * @return the axisRay
+	 */
+	public Ray getAxisRay() {
+		return axisRay;
+	}
+
+	/**
+	 * @return the radius
+	 */
+	public double getRadius() {
+		return radius;
+	}
 
 	public Tube() {
 		// TODO Auto-generated constructor stub
@@ -15,4 +34,10 @@ public class Tube implements Geometry {
 		return null;
 	}
 
+	/*************** Admin *****************/
+
+	@Override
+	public String toString() {
+		return "axisRay: " +  axisRay.toString() + " radius: " + String.valueOf(this.radius);
+	}
 }

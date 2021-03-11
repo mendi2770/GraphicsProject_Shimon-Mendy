@@ -1,9 +1,21 @@
 package geometries;
 
-import primitives.Point3D;
+import primitives.*;
+import static primitives.Util.*;
 import primitives.Vector;
 
-public class Cylinder implements Geometry {
+public class Cylinder extends Tube implements Geometry {
+
+	private double height;
+	
+	
+	
+	/**
+	 * @return the height
+	 */
+	public double getHeight() {
+		return height;
+	}
 
 	public Cylinder() {
 		// TODO Auto-generated constructor stub
@@ -15,4 +27,10 @@ public class Cylinder implements Geometry {
 		return null;
 	}
 
+	/*************** Admin *****************/
+
+	@Override
+	public String toString() {
+		return "Height: " + String.valueOf(this.height);
+	}
 }

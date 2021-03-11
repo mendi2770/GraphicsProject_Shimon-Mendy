@@ -1,6 +1,7 @@
 package geometries;
 
-import primitives.Point3D;
+import primitives.*;
+import static primitives.Util.*;
 
 public class Triangle extends Polygon {
 
@@ -8,5 +9,4 @@ public class Triangle extends Polygon {
 		super(vertices);
 		// TODO Auto-generated constructor stub
 	}
-
 }

@@ -6,9 +6,34 @@ public class Point3D {
 
 	final static Point3D ZERO = new Point3D(0, 0, 0);
 
-	Coordinate x;
-	Coordinate y;
-	Coordinate z;
+	private Coordinate x;
+	private Coordinate y;
+	private Coordinate z;
+	
+	
+
+	/**
+	 * @return the x
+	 */
+	public Double getX() {
+		return x.coord;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public Double getY() {
+		return y.coord;
+	}
+	
+
+	/**
+	 * @return the z
+	 */
+	public Double getZ() {
+		return z.coord;
+	}
+
 
 	public Point3D(Coordinate p1, Coordinate p2, Coordinate p3) {
 		x = p1;
@@ -27,8 +52,8 @@ public class Point3D {
 	}
 
 	public Point3D add(Vector vec) {
-		return new Point3D(vec.head.x.coord + this.x.coord, vec.head.y.coord + this.y.coord,
-				vec.head.z.coord + this.z.coord);
+		return new Point3D(vec.getHead().x.coord + this.x.coord, vec.getHead().y.coord + this.y.coord,
+				vec.getHead().z.coord + this.z.coord);
 	}
 
 	double distanceSquared(Point3D p) {
