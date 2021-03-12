@@ -7,7 +7,27 @@ public class Plane implements Geometry {
 
 	private Point3D q0;
 	private Vector normal;
+	
+	/**
+	 * @param x ,y ,z
+	 */
+	public Plane(Point3D x, Point3D y, Point3D z) {
+
+		normal = null;
+		q0 = x;
+	}
 		
+
+	/**
+	 * @param q0
+	 * @param normal
+	 */
+	public Plane(Point3D q0, Vector normal) {
+		this.q0 = q0;
+		this.normal = normal;
+	}
+
+
 	/**
 	 * @return the q0
 	 */
@@ -15,6 +35,7 @@ public class Plane implements Geometry {
 		return q0;
 	}
 
+	
 	/**
 	 * @return the normal
 	 */

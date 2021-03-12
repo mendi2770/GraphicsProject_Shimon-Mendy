@@ -49,13 +49,13 @@ public class Vector {
 	}
 	
 	public double dotProduct(Vector vec) {
-		return (this.head.getX() * this.head.getX() + this.head.getY() * this.head.getY() + this.head.getZ() * this.head.getZ());
+		return (vec.head.getX() * this.head.getX() + vec.head.getY() * this.head.getY() + vec.head.getZ() * this.head.getZ());
 	}
 
 	public Vector crossProduct(Vector vec) {
-		return new Vector(this.head.getY() * vec.head.getZ() - this.head.getZ() * vec.head.getY(),
-								this.head.getZ() * vec.head.getX() - this.head.getX() * vec.head.getZ(),
-								this.head.getX() * vec.head.getY() - this.head.getY() * vec.head.getX());
+		return new Vector(vec.head.getY() * this.head.getZ() - vec.head.getZ() * this.head.getY(),
+								vec.head.getZ() * this.head.getX() - vec.head.getX() * this.head.getZ(),
+								vec.head.getX() * this.head.getY() - vec.head.getY() * this.head.getX());
 
 	}
 	

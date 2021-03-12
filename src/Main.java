@@ -47,7 +47,7 @@ public final class Main {
         if (!isZero(vr.length() - v1.length() * v3.length()))
             out.println("ERROR: crossProduct() wrong result length");
         if (!isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)))
-            out.println("ERROR: crossProduct() result is not orthogonal to its operands");
+            out.println("ERROR: crossProduct() result is not orthogonal to its operands"+ vr.toString());
 
         // test vector normalization vs vector length and cross-product
         Vector v = new Vector(1, 2, 3);

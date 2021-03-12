@@ -4,7 +4,7 @@ import static primitives.Util.isZero;
 
 public class Point3D {
 
-	final static Point3D ZERO = new Point3D(0, 0, 0);
+	final static public Point3D ZERO = new Point3D(0, 0, 0);
 
 	private Coordinate x;
 	private Coordinate y;
@@ -48,7 +48,7 @@ public class Point3D {
 	}
 
 	public Vector subtract(Point3D p) {
-		return new Vector(p.x.coord - this.x.coord, p.y.coord - this.y.coord, p.z.coord - this.z.coord);
+		return new Vector(this.x.coord - p.x.coord, this.y.coord - p.y.coord, this.z.coord - p.z.coord);
 	}
 
 	public Point3D add(Vector vec) {
