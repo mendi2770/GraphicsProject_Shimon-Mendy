@@ -8,10 +8,8 @@ public class Tube implements Geometry {
 	protected Ray axisRay;
 	protected double radius;
 	
-	
-	
 	/**
-	 * @return the axisRay=
+	 * @return the axisRay
 	 */
 	public Ray getAxisRay() {
 		return axisRay;
@@ -22,10 +20,6 @@ public class Tube implements Geometry {
 	 */
 	public double getRadius() {
 		return radius;
-	}
-
-	public Tube() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

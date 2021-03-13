@@ -4,15 +4,26 @@ import static primitives.Util.isZero;
 
 public class Ray {
 
+	/**
+	 * Point on the ray
+	 */
 	private Point3D p0;
+	
+	/**
+	 * Direction of the ray
+	 */
 	private Vector dir;
 	
+	/**
+	 * Constructor of ray by vector and point
+	 * @param vec
+	 * @param p
+	 */
 	public Ray(Vector vec,Point3D p) {
-		dir = vec.normalized();
+		dir = vec.normalized(); // The given vector is normalized
 		p0 = new Point3D(p.getX(), p.getY(), p.getZ());
 	}
 
-	
 	
 	/**
 	 * @return the p0

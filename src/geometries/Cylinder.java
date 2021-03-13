@@ -8,17 +8,11 @@ public class Cylinder extends Tube implements Geometry {
 
 	private double height;
 	
-	
-	
 	/**
-	 * @return the height =
+	 * @return the height
 	 */
 	public double getHeight() {
 		return height;
-	}
-
-	public Cylinder() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
