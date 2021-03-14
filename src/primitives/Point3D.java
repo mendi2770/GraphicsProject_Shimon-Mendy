@@ -108,8 +108,8 @@ public class Point3D {
 		if (!(obj instanceof Point3D))
 			return false;
 		Point3D other = (Point3D) obj;
-		return isZero(other.x.coord - this.x.coord) && isZero(other.y.coord - this.y.coord)
-				&& isZero(other.z.coord - this.z.coord);
+		return other.x.equals(this.x) && other.y.equals(this.y)
+				&& other.z.equals(this.z);
 	}
 
 	@Override
