@@ -21,7 +21,7 @@ public class Ray {
 	 */
 	public Ray(Vector vec,Point3D p) {
 		dir = vec.normalized(); // The given vector is normalized
-		p0 = new Point3D(p.getX(), p.getY(), p.getZ());
+		p0 = new Point3D(p.x.coord, p.y.coord, p.z.coord);
 	}
 
 	

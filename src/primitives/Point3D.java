@@ -9,30 +9,11 @@ public class Point3D {
 	 */
 	final static public Point3D ZERO = new Point3D(0, 0, 0);
 
-	private Coordinate x;
-	private Coordinate y;
-	private Coordinate z;
+	final Coordinate x;
+	final Coordinate y;
+	final Coordinate z;
 
-	/**
-	 * @return X coordinate
-	 */
-	public Double getX() {
-		return x.coord;
-	}
 
-	/**
-	 * @return Y coordinate
-	 */
-	public Double getY() {
-		return y.coord;
-	}
-
-	/**
-	 * @return Z coordinate
-	 */
-	public Double getZ() {
-		return z.coord;
-	}
 
 	/**
 	 * Constructor of Point3D by three coordinates
@@ -75,7 +56,8 @@ public class Point3D {
 	 * @return the point created by the addition
 	 */
 	public Point3D add(Vector vec) {
-		return new Point3D(vec.getHead().x.coord + this.x.coord, vec.getHead().y.coord + this.y.coord, vec.getHead().z.coord + this.z.coord);
+		Point3D head = vec.getHead();
+		return new Point3D(head.x.coord + this.x.coord, head.y.coord + this.y.coord, head.z.coord + this.z.coord);
 	}
 
 	/**
