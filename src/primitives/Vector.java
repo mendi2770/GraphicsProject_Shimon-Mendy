@@ -137,8 +137,8 @@ public class Vector {
 	 * @return a new normalized vector based on the current vector
 	 */
 	public Vector normalized() {
-		Vector v = new Vector(this.head);
-		return v.normalize();
+		
+		return new Vector(this.head).normalize();
 	}
 	
 	/*************** Admin ******************/

@@ -12,7 +12,7 @@ import static primitives.Util.*;
  */
 public class Polygon implements Geometry {
 	/**
-	 * List of polygon's vertices=
+	 * List of polygon's vertices
 	 */
 	protected List<Point3D> vertices;
 	/**

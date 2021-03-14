@@ -83,7 +83,7 @@ public class Point3D {
 	 * @param p
 	 * @return the squared distance between two points
 	 */
-	double distanceSquared(Point3D p) {
+	double distanceSquared(Point3D p){
 		return (this.x.coord - p.x.coord)*(this.x.coord - p.x.coord) 
 				+ (this.y.coord - p.y.coord)*(this.y.coord - p.y.coord) 
 				+ (this.z.coord - p.z.coord)*(this.z.coord - p.z.coord);

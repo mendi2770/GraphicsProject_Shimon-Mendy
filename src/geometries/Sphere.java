@@ -27,7 +27,7 @@ public class Sphere implements Geometry {
 
 	@Override
 	public Vector getNormal(Point3D point) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

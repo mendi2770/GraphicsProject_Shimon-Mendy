@@ -1,3 +1,9 @@
+/**
+ *				 Partners:
+ * Shimon Dyskin - 310468558 - shimond111@gmail.com
+ * Mendy Ben Ezra - 311140933 - mbembe770@gmail.com
+ */
+
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
