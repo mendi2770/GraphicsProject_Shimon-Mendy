@@ -34,6 +34,7 @@ public class Plane implements Geometry {
 	 */
 	public Point3D getQ0() {
 		return q0;
+		
 	}
 
 	/**
