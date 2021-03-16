@@ -132,8 +132,13 @@ public class VectorTests {
 	 */
 	@Test
 	public void testNormalize() {
+
+		Vector v = new Vector(1, 2, 3);
+		Vector vCopy = new Vector(v.getHead());
+		Vector vCopyNormalize = vCopy.normalize();
 		// ============ Equivalence Partitions Tests ==============
-		// =============== Boundary Values Tests ==================
+		assertTrue("normalize() function creates a new vector", vCopy == vCopyNormalize);
+		assertTrue("normalize() result is not a unit vector", isZero(vCopyNormalize.length() - 1));
 	}
 
 	/**
@@ -141,8 +146,11 @@ public class VectorTests {
 	 */
 	@Test
 	public void testNormalized() {
+		Vector v = new Vector(1, 2, 3);
+		Vector u = v.normalized();
+
 		// ============ Equivalence Partitions Tests ==============
-		// =============== Boundary Values Tests ==================
+		assertFalse("normalizated() function does not create a new vector", u == v);
 	}
 
 }
