@@ -14,20 +14,6 @@ public class Point3D {
 	final Coordinate z;
 
 
-
-	/**
-	 * Constructor of Point3D by three coordinates
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param p3
-	 */
-	public Point3D(Coordinate p1, Coordinate p2, Coordinate p3) {
-		x = p1;
-		y = p2;
-		z = p3;
-	}
-
 	/**
 	 * Constructor of Point3D by three numbers
 	 * 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package unittests;
+package unittests.primitives;
 
 import static org.junit.Assert.*;
 
@@ -26,14 +26,11 @@ public class VectorTests {
 	public void testConstructors() {
 
 		// =============== Boundary Values Tests ==================
-		Coordinate coord = new Coordinate(0);
 		try {
 			Vector v1 = new Vector(0, 0, 0);
 			fail("Vector(double, double, double) for Vector zero does not throw an exception");
 			v1 = new Vector(Point3D.ZERO);
 			fail("Vector(Point3D) for Vector zero does not throw an exception");
-			v1 = new Vector(coord, coord, coord);
-			fail("Vector(Coordinate, Coordinate, Coordinate) for Vector zero does not throw an exception");
 		} catch (Exception e) {
 		}
 	}

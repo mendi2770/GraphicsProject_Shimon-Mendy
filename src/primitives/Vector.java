@@ -9,20 +9,6 @@ public class Vector {
 	 */
 	private Point3D head;
 
-	/**
-	 * Constructor of the vector by three points
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param p3
-	 */
-	public Vector(Coordinate p1, Coordinate p2, Coordinate p3) {
-		Point3D p = new Point3D(p1, p2, p3);
-		// Throws exception in case the point equals zero:
-		if (p.equals(Point3D.ZERO))
-			throw new IllegalArgumentException("The coordiates cannot be  zeroes.");
-		head = p;
-	}
 
 	/**
 	 * Constructor of a vector by three numbers
@@ -67,7 +53,6 @@ public class Vector {
 	public Vector subtract(Vector vec) {
 		return new Vector(this.head.x.coord - vec.head.x.coord, this.head.y.coord - vec.head.y.coord,
 				this.head.z.coord - vec.head.z.coord);
-
 	}
 
 	/**
