@@ -8,6 +8,17 @@ public class Tube implements Geometry {
 	protected Ray axisRay;
 	protected double radius;
 	
+	
+	
+	/**
+	 * @param axisRay
+	 * @param radius
+	 */
+	public Tube(Ray axisRay, double radius) {
+		this.axisRay = axisRay;
+		this.radius = radius;
+	}
+
 	/**
 	 * @return the axisRay
 	 */

@@ -2,7 +2,6 @@ package geometries;
 
 import primitives.*;
 import static primitives.Util.*;
-import primitives.Vector;
 
 public class Sphere implements Geometry {
 
@@ -11,6 +10,15 @@ public class Sphere implements Geometry {
 	
 	
 	
+	/**
+	 * @param center
+	 * @param radius
+	 */
+	public Sphere(Point3D center, double radius) {
+		this.center = center;
+		this.radius = radius;
+	}
+
 	/**
 	 * @return the center
 	 */
