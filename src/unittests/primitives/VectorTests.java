@@ -41,9 +41,7 @@ public class VectorTests {
 	 */
 	@Test
 	public void testSubtract() {
-		// ============ Equivalence Partitions Tests ==============
-		Point3D p1 = new Point3D(1, 2, 3);
-		assertEquals("subtract() wrong vectors subtraction", new Vector(1, 1, 1), new Point3D(2, 3, 4).subtract(p1));
+		assertEquals("Vectros subtraction doesn't work" , new Vector(2,3,-2) , new Vector(3,5,7).subtract(new Vector(1, 2, 9)));
 	}
 
 	/**
@@ -51,10 +49,7 @@ public class VectorTests {
 	 */
 	@Test
 	public void testAdd() {
-
-		// ============ Equivalence Partitions Tests ==============
-		Point3D p1 = new Point3D(1, 2, 3);
-		assertEquals("add() wrong vectors addition", Point3D.ZERO, p1.add(new Vector(-1, -2, -3)));
+		assertEquals("Vectros addition doesn't work" , new Vector(4,7,16) , new Vector(3,5,7).add(new Vector(1, 2, 9)));
 	}
 
 	/**

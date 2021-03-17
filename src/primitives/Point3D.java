@@ -51,7 +51,7 @@ public class Point3D {
 	 * @param p
 	 * @return the squared distance between two points
 	 */
-	double distanceSquared(Point3D p){
+	public double distanceSquared(Point3D p){
 		return (this.x.coord - p.x.coord)*(this.x.coord - p.x.coord) 
 				+ (this.y.coord - p.y.coord)*(this.y.coord - p.y.coord) 
 				+ (this.z.coord - p.z.coord)*(this.z.coord - p.z.coord);
@@ -62,7 +62,7 @@ public class Point3D {
 	 * @param p
 	 * @return the root of the squared distance
 	 */
-	double distance(Point3D p) {
+	public double distance(Point3D p) {
 		return Math.sqrt(distanceSquared(p)); // Calculates the square root of the distance 
 	}
 
