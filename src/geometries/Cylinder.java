@@ -8,7 +8,6 @@ public class Cylinder extends Tube implements Geometry {
 	private double height;
 	
 	
-	
 	/**
 	 * @param axisRay
 	 * @param radius
@@ -27,8 +26,8 @@ public class Cylinder extends Tube implements Geometry {
 	}
 	
 	@Override
-	public Vector getNormal(Point3D point) {
-	
+	public Vector getNormal(Point3D point) 
+	{	
 		return null;
 	}
 
