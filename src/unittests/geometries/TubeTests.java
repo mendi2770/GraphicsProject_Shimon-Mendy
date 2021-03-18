@@ -23,12 +23,15 @@ public class TubeTests {
 	 */
 	@Test
 	public void testGetNormal() {
-		// ============ Equivalence Partitions Tests ==============
 		Vector vec = new Vector(1, 1, 1);
-		Point3D pt = new Point3D(0, 0, 0);
+		Point3D pt = new Point3D(2, 2, 2);
 		Ray ray = new Ray(vec, pt);
 		Tube tube = new Tube(ray, 5);
-        // =============== Boundary Values Tests ==================
+		// ============ Equivalence Partitions Tests ==============
+		assertEquals("getNormal() - does not work correctly",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(12,2,7)));
+		
+		// =============== Boundary Values Tests ==================
+		assertEquals("getNormal() - does not work correctly",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(7, -3, 2)));
 	}
 
 }
