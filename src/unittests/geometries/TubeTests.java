@@ -31,7 +31,8 @@ public class TubeTests {
 		assertEquals("getNormal() - does not work correctly",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(12,2,7)));
 		
 		// =============== Boundary Values Tests ==================
-		assertEquals("getNormal() - does not work correctly",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(7, -3, 2)));
+		//checks the case if the point is across the ray point
+		assertEquals("getNormal() - does not work correctly (Boundary test)",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(7, -3, 2)));
 	}
 
 }

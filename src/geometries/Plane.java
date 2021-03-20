@@ -10,17 +10,30 @@ public class Plane implements Geometry {
 
 	/**
 	 * Constructor of the plane by three points
+	 * 
 	 * @param x
 	 * @param y
 	 * @param z
 	 */
 	public Plane(Point3D x, Point3D y, Point3D z) {
-		normal = null;
+		
+		if (x.equals(y) || y.equals(z) || z.equals(x))
+			throw new IllegalArgumentException("Two of the points are the same point");
+		
+		Vector v1 = x.subtract(y);
+		Vector v2 = x.subtract(z);
+		Vector cross = v1.crossProduct(v2);
+		
+		if (cross.getHead().equals(Point3D.ZERO))
+			throw new IllegalArgumentException("The points are on the same line");
+		
+		normal = cross.normalize();
 		q0 = x;
 	}
 
 	/**
 	 * Constructor of the plane by a point and a normal
+	 * 
 	 * @param q0
 	 * @param normal
 	 */
@@ -34,7 +47,7 @@ public class Plane implements Geometry {
 	 */
 	public Point3D getQ0() {
 		return q0;
-		
+
 	}
 
 	/**
@@ -46,8 +59,8 @@ public class Plane implements Geometry {
 
 	@Override
 	public Vector getNormal(Point3D point) {
-		
-		return null;
+
+		return normal;
 	}
 
 	/*************** Admin *****************/
