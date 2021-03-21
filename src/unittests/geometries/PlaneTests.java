@@ -26,15 +26,19 @@ public class PlaneTests {
 	 */
 	@Test
 	public void testPlanePoint3DPoint3DPoint3D() {
-		try {
+		// =============== Boundary Values Tests ==================
+		
+		// TC01: First and second points are the same
+		try {			
 			Plane plane = new Plane(new Point3D(1, 2, 3), new Point3D(1, 2, 3), new Point3D(3, 6, 9));
 			fail("ERROR: Two points are the same point, exception was not thrown");
 		} catch (Exception e) {
 		}
 
-		try {
+		// TC02: The three points are on the same line
+		try {			
 			 Plane plane = new Plane(new Point3D(1, 2, 3), new Point3D(2, 4, 6), new Point3D(3, 6, 9));
-				fail("ERROR: Two points are on the same line, exception was not thrown");
+				fail("ERROR: The points are on the same line, exception was not thrown");
 		} catch (Exception e) {
 		}
 	}

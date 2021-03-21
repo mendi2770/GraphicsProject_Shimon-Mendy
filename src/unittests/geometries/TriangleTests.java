@@ -19,14 +19,6 @@ import primitives.Vector;
 public class TriangleTests {
 
 	/**
-	 * Test method for {@link geometries.Triangle#Triangle(primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
-	 */
-	@Test
-	public void testTriangle() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
 	 */
 	@Test

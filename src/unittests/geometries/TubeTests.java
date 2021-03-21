@@ -28,10 +28,11 @@ public class TubeTests {
 		Ray ray = new Ray(vec, pt);
 		Tube tube = new Tube(ray, 5);
 		// ============ Equivalence Partitions Tests ==============
+        // TC01: Wrong normal calculation (in case the point is not across the ray.p0)
 		assertEquals("getNormal() - does not work correctly",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(12,2,7)));
 		
 		// =============== Boundary Values Tests ==================
-		//checks the case if the point is across the ray point
+		// TC01: Wrong normal calculation (in case the point is across the ray.p0)
 		assertEquals("getNormal() - does not work correctly (Boundary test)",new Vector(Math.sqrt(1/2d),-1 * Math.sqrt(1/2d),0), tube.getNormal(new Point3D(7, -3, 2)));
 	}
 

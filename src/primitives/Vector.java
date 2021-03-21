@@ -97,6 +97,7 @@ public class Vector {
 	 * @return a vector created by the cross product made between two vectors
 	 */
 	public Vector crossProduct(Vector vec) {
+	
 		return new Vector(vec.head.y.coord * this.head.z.coord - vec.head.z.coord * this.head.y.coord,
 				vec.head.z.coord * this.head.x.coord - vec.head.x.coord * this.head.z.coord,
 				vec.head.x.coord* this.head.y.coord - vec.head.y.coord * this.head.x.coord);
