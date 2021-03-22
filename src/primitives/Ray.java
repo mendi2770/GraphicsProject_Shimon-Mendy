@@ -19,7 +19,7 @@ public class Ray {
 	 * @param vec
 	 * @param p
 	 */
-	public Ray(Vector vec,Point3D p) {
+	public Ray(Vector vec, Point3D p) {
 		dir = vec.normalized(); // The given vector is normalized
 		p0 = new Point3D(p.x.coord, p.y.coord, p.z.coord);
 	}

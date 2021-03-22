@@ -15,6 +15,27 @@ public class Point3D {
 
 
 	/**
+	 * @return the x
+	 */
+	public double getX() {
+		return x.coord;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public double getY() {
+		return y.coord;
+	}
+
+	/**
+	 * @return the z
+	 */
+	public double getZ() {
+		return z.coord;
+	}
+
+	/**
 	 * Constructor of Point3D by three numbers
 	 * 
 	 * @param p1

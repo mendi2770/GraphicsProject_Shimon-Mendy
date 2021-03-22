@@ -3,7 +3,7 @@ import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
 
-public interface Geometry {
+public interface Geometry extends Intersectable {
 	/**
 	 * Calculates the normal of the geometry shape
 	 * @param point
