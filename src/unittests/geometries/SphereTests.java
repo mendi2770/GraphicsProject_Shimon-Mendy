@@ -64,7 +64,9 @@ public class SphereTests {
 		// =============== Boundary Values Tests ==================
 		// **** Group: Ray's line crosses the sphere (but not the center)
 		// TC11: Ray starts at sphere and goes inside (1 points)
-		
+		result = sphere.findIntersections(new Ray(
+				new Vector(3, 1, 0), new Point3D(1, -1, 0)));
+		assertEquals("Ray crosses sphere once", p2, result.get(0));
 		// TC12: Ray starts at sphere and goes outside (0 points)
 		
 		// **** Group: Ray's line goes through the center
