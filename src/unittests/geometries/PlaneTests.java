@@ -5,12 +5,11 @@ package unittests.geometries;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import geometries.Polygon;
-import primitives.Point3D;
-import primitives.Vector;
-
 import geometries.*;
 import primitives.*;
 
@@ -56,5 +55,47 @@ public class PlaneTests {
 		assertTrue("Bad normal to plane", new Vector(sqrt3, sqrt3, sqrt3).equals(pl.getNormal(new Point3D(0, 0, 1)))
 				|| new Vector(-1 * sqrt3, -1 * sqrt3, -1 * sqrt3).equals(pl.getNormal(new Point3D(0, 0, 1))));
 	}
+	
+	/**
+	 * Test method for {@link geometries.Plane#findIntersections}.
+	 */
+	@Test
+	public void testFindIntersections() {
+		
+		Plane plane = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 1));
+		// ============ Equivalence Partitions Tests ==============
+		//**** Group:The Ray must be neither orthogonal nor parallel to the plane
+		
+		//TC01: Ray intersects the plane(1 point)
+		List<Point3D> result = plane.findIntersections(new Ray(new Vector(-3, -1, 0), new Point3D(2, 4, 0)));
+		assertEquals("Wrong number of points", 1, result.size());
+		assertEquals("Ray crosses plane once", new Point3D(-1.75, 2.75, 0), result.get(0));
+		
+		//TC02: Ray does not intersect the plane(0 point)
+		assertNull("Ray's line out of plane",
+				plane.findIntersections(new Ray(new Vector(3, 4, 0), new Point3D(2, 4, 0))));
 
+		// =============== Boundary Values Tests ==================
+		
+		//**** Group: Ray is parallel to the plane
+		
+		//TC10: The ray included in the plane
+		assertNull("Ray's line out of plane",
+				plane.findIntersections(new Ray(new Vector(-1, 1, 0), new Point3D(-1, -1, 0))));
+		
+		//TC11: The ray is not included in the plane	
+		assertNull("Ray's line out of plane",
+				plane.findIntersections(new Ray(new Vector(-1, 1, 0), new Point3D(1, 0, 0))));
+		
+		//**** Group: Ray is orthogonal to the plane
+		
+		//TC12: The ray starts is in the plane
+		
+		//TC13: The ray starts is before the plane
+		
+		//TC14: The ray starts is after the plane
+		
+		
+		
+	}
 }
