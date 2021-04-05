@@ -63,10 +63,17 @@ public class TriangleTests {
 		
 		// ***** (the ray begins "before" the plane)
 
-		// TC21: On edge
 
-		// TC22: In vertex
-
+		// TC21: In vertex
+		assertNull("Ray's crosses the triangle's vertices",
+				 tr.findIntersections(new Ray(new Vector(1, 2, 2), new Point3D(-1, -2, -1))));
+		
+		// TC22: On edge
+		assertNull("Ray's crosses the triangle's edge",
+				 tr.findIntersections(new Ray(new Vector(1.5, 2, 1.5), new Point3D(-1, -2, -1))));
+		
 		// TC23: On edge's continuation
+		assertNull("Ray's crosses the triangle's edge",
+				 tr.findIntersections(new Ray(new Vector(0, 2, 3), new Point3D(-1, -2, -1))));
 	}
 }
