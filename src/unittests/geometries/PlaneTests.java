@@ -47,7 +47,9 @@ public class PlaneTests {
 	 */
 	@Test
 	public void testGetNormalPoint3D() {
+		
 		// ============ Equivalence Partitions Tests ==============
+		
 		// TC01: There is a simple single test here
 		Plane pl = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 1));
 		double sqrt3 = Math.sqrt(1d / 3); // Normalizing the vector components
