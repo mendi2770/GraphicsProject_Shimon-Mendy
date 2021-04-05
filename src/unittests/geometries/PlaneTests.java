@@ -47,9 +47,9 @@ public class PlaneTests {
 	 */
 	@Test
 	public void testGetNormalPoint3D() {
-		
+
 		// ============ Equivalence Partitions Tests ==============
-		
+
 		// TC01: There is a simple single test here
 		Plane pl = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 1));
 		double sqrt3 = Math.sqrt(1d / 3); // Normalizing the vector components
@@ -92,17 +92,17 @@ public class PlaneTests {
 		// **** Group: Ray is orthogonal to the plane
 
 		// TC12: The ray starts is before the plane
-		result = plane.findIntersections(new Ray(new Vector(1, 0, 1), new Point3D(-1, -1, 0)));
+		result = plane.findIntersections(new Ray(new Vector(1, 1, 1), new Point3D(-1, -1, 0)));
 		assertEquals("Wrong number of points", 1, result.size());
-		assertEquals("Ray crosses plane once", new Point3D(0.5, -1, 1.5), result.get(0));
+		assertEquals("Ray crosses plane once", new Point3D(0, 0, 1), result.get(0));
 
 		// TC13: The ray starts is in the plane
 		assertNull("Ray's crosses the plane",
-				plane.findIntersections(new Ray(new Vector(1, 0, 1), new Point3D(1, -1, 1))));
+				plane.findIntersections(new Ray(new Vector(1, 1, 1), new Point3D(1, -1, 1))));
 
 		// TC14: The ray starts is after the plane
 		assertNull("Ray's crosses the plane",
-				plane.findIntersections(new Ray(new Vector(1, 0, 1), new Point3D(2, 0, 0))));
+				plane.findIntersections(new Ray(new Vector(1, 1, 1), new Point3D(2, 0, 0))));
 
 		// ***********
 
