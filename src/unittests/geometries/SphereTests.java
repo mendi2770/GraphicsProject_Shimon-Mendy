@@ -34,7 +34,7 @@ public class SphereTests {
 		// 0)
 		assertEquals("Bad normal to Sphere", new Vector(3d / 5, 4d / 5, 0), sph.getNormal(new Point3D(4, 5, 1)));
 	}
-
+	@Test
 	public void testFindIntersections() {
 		Sphere sphere = new Sphere(new Point3D(1, 0, 0), 1d);
 

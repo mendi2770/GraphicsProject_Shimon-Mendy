@@ -3,6 +3,8 @@ package geometries;
 import primitives.*;
 import static primitives.Util.*;
 
+import java.time.Year;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Plane implements Geometry {
@@ -18,17 +20,17 @@ public class Plane implements Geometry {
 	 * @param z
 	 */
 	public Plane(Point3D x, Point3D y, Point3D z) {
-		
+
 		if (x.equals(y) || y.equals(z) || z.equals(x))
 			throw new IllegalArgumentException("Two of the points are the same point");
-		
+
 		Vector v1 = x.subtract(y);
 		Vector v2 = x.subtract(z);
 		Vector cross = v1.crossProduct(v2);
-		
+
 		if (cross.getHead().equals(Point3D.ZERO))
 			throw new IllegalArgumentException("The points are on the same line");
-		
+
 		normal = cross.normalize();
 		q0 = x;
 	}
@@ -74,7 +76,12 @@ public class Plane implements Geometry {
 
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
-		// TODO Auto-generated method stub
-		return null;
+		double t = (this.normal.dotProduct(q0.subtract(ray.getP0()))) / (this.normal.dotProduct(ray.getDir()));
+		if (t < 0)
+			return null;
+		Point3D p = ray.getP0().add(ray.getDir().scale(t));
+		LinkedList<Point3D> result = new LinkedList<Point3D>();
+		result.add(p);
+		return result;
 	}
 }
