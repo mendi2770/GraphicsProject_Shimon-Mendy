@@ -51,6 +51,12 @@ public class Sphere implements Geometry {
 	public List<Point3D> findIntersections(Ray ray) {
 
 		double r = this.radius;
+		if(center.equals(ray.getP0())) {
+			Point3D p1 = ray.getP0().add(ray.getDir().scale(r));
+			LinkedList<Point3D> result = new LinkedList<Point3D>();
+			result.add(p1);
+			return result;
+		}
 		Vector u = center.subtract(ray.getP0());
 		double tm = u.dotProduct(ray.getDir());
 		double d = Math.sqrt(alignZero(u.lengthSquared() - tm * tm));
