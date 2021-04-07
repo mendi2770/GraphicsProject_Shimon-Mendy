@@ -2,7 +2,6 @@ package geometries;
 
 import primitives.*;
 import static primitives.Util.*;
-
 import java.time.Year;
 import java.util.LinkedList;
 import java.util.List;
@@ -76,6 +75,9 @@ public class Plane implements Geometry {
 
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
+		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
+				|| isZero(this.normal.dotProduct(q0.subtract(ray.getP0()))))
+			return null;
 		double t = (this.normal.dotProduct(q0.subtract(ray.getP0()))) / (this.normal.dotProduct(ray.getDir()));
 		if (t < 0)
 			return null;
