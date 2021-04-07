@@ -51,7 +51,9 @@ public class Sphere implements Geometry {
 	public List<Point3D> findIntersections(Ray ray) {
 
 		double r = this.radius;
-		if(center.equals(ray.getP0())) {
+		// special case: if point q0 == center, that mean that all we need to calculate is 
+		//the radios mult scalar with the direction, and add p0
+		if(center.equals(ray.getP0())) { 
 			Point3D p1 = ray.getP0().add(ray.getDir().scale(r));
 			LinkedList<Point3D> result = new LinkedList<Point3D>();
 			result.add(p1);
