@@ -55,27 +55,28 @@ public class GeometriesTests {
 		Geometries collection = new Geometries(sph, plane, tr);
 		
 		// ============ Equivalence Partitions Tests ==============
-		// TC10: Some of the Geometries are intersected 
+		// TC01: Some of the Geometries are intersected 
 		Ray ray = new Ray(new Vector(1, 1, 1), new Point3D(-1, 0, 0));
 		assertEquals("Wrong number of intersection points", 3, collection.findIntersections(ray).size()); // Intersects only plane and sphere
 		
 		// =============== Boundary Values Tests ==================
-		// TC20: Empty Geometries collection
+		// TC11: Empty Geometries collection
 		collection = new Geometries();
 		assertNull("No geometry shapes in the collection",
 				collection.findIntersections(new Ray(new Vector(1, 1, 0), new Point3D(-1, 0, 0))));
 		
-		// TC21: No Geometries are intersected
+		// TC12: No Geometries are intersected
 		ray = new Ray(new Vector(-1, -1, -1), new Point3D(-1, 0, 0));
 		assertNull("No intersection points", collection.findIntersections(ray)); 
-		
-		// TC22: Only one Geometry shape is intersected
+				
+		// TC13: Only one Geometry shape is intersected
 		ray = new Ray(new Vector(-1, -1, -1), new Point3D(2, 0, 2));
 		assertEquals("Wrong number of intersection points", 1, collection.findIntersections(ray).size());  // Intersects only plane
 		
-		// TC23: All the Geometries are intersected
+		// TC14: All the Geometries are intersected
 		ray = new Ray(new Vector(-1, -1, -1), new Point3D(2, 2, 2.5));
 		assertEquals("Wrong number of intersection points", 4, collection.findIntersections(ray).size()); 
+	
 	}
 	
 

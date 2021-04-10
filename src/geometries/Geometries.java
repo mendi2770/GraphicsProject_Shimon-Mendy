@@ -38,7 +38,21 @@ public class Geometries implements Intersectable {
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		// TODO Auto-generated method stub
-		return null;
+		if (intersectables.isEmpty())
+			return null;
+		LinkedList<Point3D> result = new LinkedList<Point3D>();
+		
+		for (Intersectable geom : intersectables)
+		{
+			List<Point3D> geomResult = geom.findIntersections(ray);
+			if (geomResult != null)
+				result.addAll(geomResult);
+		}
+		
+		if (result.isEmpty())
+			return null;
+		else 
+			return result;
 	}
 
 }
