@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import primitives.*;
@@ -88,8 +89,41 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
-	public  LinkedList<Point3D> findIntersections(Ray ray) {
-		// TODO Auto-generated method stub
+	public LinkedList<Point3D> findIntersections(Ray ray) {
+
+		Vector v1;
+		Vector v2;
+		Vector n;
+		double t;
+		List<Point3D> resultPoint = plane.findIntersections(ray);
+		if (resultPoint == null) // In case there is no intersection with the plane return null
+			return null;
+		boolean positive = true;
+		boolean negtive = true;
+		for (int i = 0; i < vertices.size() ; i++) {
+			if (i == vertices.size() - 1) {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(0).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			} else {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(i + 1).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			}
+			if (t == 0)
+				return null;
+			if (t * 1 < 0)
+				positive = false;
+			else if (t * -1 < 0)
+				negtive = false;
+		}
+		if (negtive || positive) {
+			LinkedList<Point3D> result = new LinkedList<Point3D>();
+			result.add(resultPoint.get(0));
+			return result;
+		}
 		return null;
 	}
 }
