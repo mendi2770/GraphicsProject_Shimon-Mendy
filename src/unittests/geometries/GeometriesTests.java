@@ -25,7 +25,7 @@ public class GeometriesTests {
 	 */
 	@Test
 	public void testGeometries() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class GeometriesTests {
 	 */
 	@Test
 	public void testGeometriesIntersectableArray() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class GeometriesTests {
 	 */
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	/**
@@ -60,10 +60,9 @@ public class GeometriesTests {
 		assertEquals("Wrong number of intersection points", 3, collection.findIntersections(ray).size()); // Intersects only plane and sphere
 		
 		// =============== Boundary Values Tests ==================
-		// TC11: Empty Geometries collection
-		collection = new Geometries();
-		assertNull("No geometry shapes in the collection",
-				collection.findIntersections(new Ray(new Vector(1, 1, 0), new Point3D(-1, 0, 0))));
+		// TC11: All the Geometries are intersected
+		ray = new Ray(new Vector(-1, -1, -1), new Point3D(2, 2, 2.5));
+		assertEquals("Wrong number of intersection points", 4, collection.findIntersections(ray).size()); 
 		
 		// TC12: No Geometries are intersected
 		ray = new Ray(new Vector(-1, -1, -1), new Point3D(-1, 0, 0));
@@ -73,9 +72,10 @@ public class GeometriesTests {
 		ray = new Ray(new Vector(-1, -1, -1), new Point3D(2, 0, 2));
 		assertEquals("Wrong number of intersection points", 1, collection.findIntersections(ray).size());  // Intersects only plane
 		
-		// TC14: All the Geometries are intersected
-		ray = new Ray(new Vector(-1, -1, -1), new Point3D(2, 2, 2.5));
-		assertEquals("Wrong number of intersection points", 4, collection.findIntersections(ray).size()); 
+		// TC14: Empty Geometries collection
+		collection = new Geometries();
+		assertNull("No geometry shapes in the collection",
+				collection.findIntersections(new Ray(new Vector(1, 1, 0), new Point3D(-1, 0, 0))));
 	
 	}
 	

@@ -75,13 +75,14 @@ public class Plane implements Geometry {
 
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
+		// In case there are zeroes in denominator and numerator
 		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
 				|| isZero(this.normal.dotProduct(q0.subtract(ray.getP0()))))
 			return null;
 		double t = (this.normal.dotProduct(q0.subtract(ray.getP0()))) / (this.normal.dotProduct(ray.getDir()));
-		if (t < 0)
+		if (t < 0) // In case there is no intersection with the plane return null
 			return null;
-		Point3D p = ray.getP0().add(ray.getDir().scale(t));
+		Point3D p = ray.getPoint(t);
 		LinkedList<Point3D> result = new LinkedList<Point3D>();
 		result.add(p);
 		return result;

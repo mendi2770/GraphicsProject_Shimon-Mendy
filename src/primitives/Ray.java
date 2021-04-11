@@ -8,14 +8,15 @@ public class Ray {
 	 * Point on the ray
 	 */
 	private Point3D p0;
-	
+
 	/**
 	 * Direction of the ray
 	 */
 	private Vector dir;
-	
+
 	/**
 	 * Constructor of ray by vector and point
+	 * 
 	 * @param vec
 	 * @param p
 	 */
@@ -24,15 +25,12 @@ public class Ray {
 		p0 = new Point3D(p.x.coord, p.y.coord, p.z.coord);
 	}
 
-	
 	/**
 	 * @return the p0
 	 */
 	public Point3D getP0() {
 		return p0;
 	}
-
-
 
 	/**
 	 * @return the dir
@@ -41,7 +39,10 @@ public class Ray {
 		return dir;
 	}
 
-
+	public Point3D getPoint(double t) { // Function calculate - P = P0 + v * t
+		Point3D p = p0.add(dir.scale(t));
+		return p;
+	}
 
 	/*************** Admin ******************/
 	@Override
