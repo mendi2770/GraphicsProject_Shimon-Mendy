@@ -5,6 +5,7 @@ import primitives.*;
 import static org.junit.Assert.assertThat;
 import static primitives.Util.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.DoubleToIntFunction;
 
@@ -48,17 +49,17 @@ public class Tube implements Geometry {
 		else // in case the point is across the ray point
 			return point.subtract(axisRay.getP0()).normalize();
 	}
+	
+	@Override
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	/*************** Admin *****************/
 
 	@Override
 	public String toString() {
 		return "axisRay: " + axisRay.toString() + " radius: " + String.valueOf(this.radius);
-	}
-
-	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

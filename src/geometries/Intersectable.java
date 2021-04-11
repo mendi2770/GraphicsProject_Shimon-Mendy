@@ -5,6 +5,7 @@ package geometries;
 import primitives.*;
 import static primitives.Util.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,5 +19,5 @@ public interface Intersectable {
 	 * @param ray
 	 * @return List<Point3D> - list of intersections
 	 */
-	List<Point3D> findIntersections(Ray ray);
+	LinkedList<Point3D> findIntersections(Ray ray);
 }

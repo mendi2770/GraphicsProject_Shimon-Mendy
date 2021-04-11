@@ -16,7 +16,7 @@ public class Triangle extends Polygon {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
 
 		List<Point3D> resultPoint = plane.findIntersections(ray);
 		if (resultPoint == null) // In case there is no intersection with the plane return null

@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.LinkedList;
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -87,7 +88,7 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -78,6 +78,4 @@ public class GeometriesTests {
 				collection.findIntersections(new Ray(new Vector(1, 1, 0), new Point3D(-1, 0, 0))));
 	
 	}
-	
-
 }

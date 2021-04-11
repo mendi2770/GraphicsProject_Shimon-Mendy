@@ -74,7 +74,7 @@ public class Plane implements Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
 		// In case there are zeroes in denominator and numerator
 		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
 				|| isZero(this.normal.dotProduct(q0.subtract(ray.getP0()))))

@@ -48,7 +48,7 @@ public class Sphere implements Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
 
 		// We used "alignZero" in this function to make the calculation accurate
 		double r = this.radius;

@@ -3,6 +3,8 @@ package geometries;
 import primitives.*;
 import static primitives.Util.*;
 
+import java.util.LinkedList;
+
 public class Cylinder extends Tube implements Geometry {
 
 	private double height;
@@ -28,6 +30,12 @@ public class Cylinder extends Tube implements Geometry {
 	@Override
 	public Vector getNormal(Point3D point) 
 	{	
+		return null;
+	}
+	
+	@Override
+	public  LinkedList<Point3D> findIntersections(Ray ray) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
