@@ -34,15 +34,12 @@ public class Triangle extends Polygon {
 		if (t1 == 0 || t2 == 0 || t3 == 0) // In case one or more of the scalars equals zero
 			return null; // that mean the point is not inside the triangle
 
-		if (t1 > 0 && t2 > 0 && t3 > 0) { // In case the all scalars are in the same sign, the point is in the triangle
+		if (t1 > 0 && t2 > 0 && t3 > 0 || t1 < 0 && t2 < 0 && t3 < 0) { // In case the all scalars are in the same sign, the point is in the triangle
 			LinkedList<Point3D> result = new LinkedList<Point3D>();
 			result.add(resultPoint.get(0));
 			return result;
-		} else if (t1 < 0 && t2 < 0 && t3 < 0) { // In case the all scalars are in the same sign, the point is in the triangle
-			LinkedList<Point3D> result = new LinkedList<Point3D>();
-			result.add(resultPoint.get(0));
-			return result;
-		} else
+		} 
+		else
 			return null;	//If the scalars are in a different sign
 	}
 }

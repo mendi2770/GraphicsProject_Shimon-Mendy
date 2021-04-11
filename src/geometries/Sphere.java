@@ -48,7 +48,7 @@ public class Sphere implements Geometry {
 	}
 
 	@Override
-	public  LinkedList<Point3D> findIntersections(Ray ray) {
+	public LinkedList<Point3D> findIntersections(Ray ray) {
 
 		// We used "alignZero" in this function to make the calculation accurate
 		double r = this.radius;
@@ -60,6 +60,7 @@ public class Sphere implements Geometry {
 			result.add(p1);
 			return result;
 		}
+		
 		Vector u = center.subtract(ray.getP0());
 		double tm = u.dotProduct(ray.getDir());
 		double d = Math.sqrt(alignZero(u.lengthSquared() - tm * tm));
@@ -68,6 +69,7 @@ public class Sphere implements Geometry {
 		double th = Math.sqrt(r * r - d * d);
 		double t1 = tm + th;
 		double t2 = tm - th;
+		
 		if (alignZero(t1) > 0 && alignZero(t2) > 0) { // In case there are two intersection points
 			Point3D p1 = ray.getPoint(t1);
 			Point3D p2 = ray.getPoint(t2);
@@ -75,12 +77,14 @@ public class Sphere implements Geometry {
 			result.add(p1);
 			result.add(p2);
 			return result;
-		} else if (alignZero(t1) > 0 && alignZero(t2) <= 0) { // In case there is only one intersection point
+		} 
+		else if (alignZero(t1) > 0 && alignZero(t2) <= 0) { // In case there is only one intersection point
 			Point3D p1 = ray.getPoint(t1);
 			LinkedList<Point3D> result = new LinkedList<Point3D>();
 			result.add(p1);
 			return result;
-		} else if (alignZero(t1) <= 0 && alignZero(t2) > 0) { // In case there is only one intersection point
+		} 
+		else if (alignZero(t1) <= 0 && alignZero(t2) > 0) { // In case there is only one intersection point
 			Point3D p2 = ray.getPoint(t2);
 			LinkedList<Point3D> result = new LinkedList<Point3D>();
 			result.add(p2);
