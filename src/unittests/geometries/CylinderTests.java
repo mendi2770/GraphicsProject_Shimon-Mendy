@@ -15,7 +15,7 @@ import primitives.Vector;
 
 /**
  * @author 97253
- *
+ * Testing Cylinder Class
  */
 public class CylinderTests {
 

@@ -18,6 +18,7 @@ public class Plane implements Geometry {
 	 * @param y
 	 * @param z
 	 */
+	
 	public Plane(Point3D x, Point3D y, Point3D z) {
 
 		if (x.equals(y) || y.equals(z) || z.equals(x))

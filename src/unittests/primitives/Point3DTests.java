@@ -11,6 +11,11 @@ import org.junit.Test;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * Testing Point3D Class
+ * @author shimo
+ *
+ */
 public class Point3DTests {
 
 	@Test

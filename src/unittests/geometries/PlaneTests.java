@@ -15,7 +15,7 @@ import primitives.*;
 
 /**
  * @author 97253
- *
+ * Testing Plane Class
  */
 public class PlaneTests {
 

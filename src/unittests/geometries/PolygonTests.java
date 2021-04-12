@@ -14,7 +14,6 @@ import primitives.*;
 
 /**
  * Testing Polygons
- * 
  * @author Dan
  *
  */

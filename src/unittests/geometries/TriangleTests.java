@@ -17,7 +17,7 @@ import primitives.Vector;
 
 /**
  * @author 97253
- *
+ * Testing Triangle Class
  */
 public class TriangleTests {
 

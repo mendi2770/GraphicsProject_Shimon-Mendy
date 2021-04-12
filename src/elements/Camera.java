@@ -1,6 +1,13 @@
 package elements;
 import static primitives.Util.*;
+
 import primitives.*;
+
+/**
+ * The camera is the element which absorbs and processes the picture
+ * @author shimo
+ *
+ */
 public class Camera {
 	
 	private Point3D p0;
@@ -8,9 +15,10 @@ public class Camera {
 	private Vector vTo;
 	private Vector vRight;
 	private double width;
-	private double heigth;
+	private double height;
 	private double distance;
 
+	
 	/**
 	 * @return the p0
 	 */
@@ -52,10 +60,10 @@ public class Camera {
 
 
 	/**
-	 * @return the heigth
+	 * @return the  height
 	 */
 	public double getHeigth() {
-		return heigth;
+		return height;
 	}
 
 
@@ -80,8 +88,44 @@ public class Camera {
 		this.vTo = vTo.normalize();
 		this.vRight = vUp.crossProduct(vTo).normalize();
 	}
-		
-
-
+	
+	/**
+	 *  A setter for the size of the view plane
+	 * @param width
+	 * @param height
+	 * @return the camera itself
+	 */
+	public Camera setVpSize(double width, double height) {
+		if (width <= 0 || height <= 0)
+			throw new IllegalArgumentException("Width or height cannot be negative!");
+		this.width = width;
+		this.height = height;
+		return this;
+	}
+	
+	/**
+	 * A setter for the distance of the camera from the view plane
+	 * @param distance
+	 * @return the camera itself
+	 */
+	public Camera setVpDistance(double distance) {
+		if (distance <= 0)
+			throw new IllegalArgumentException("Distance cannot be negative!");
+		this.distance = distance;
+		return this;
+	}
+	
+	/**
+	 * Calculates the ray that goes through the middle of a pixel i,j on the view plane
+	 * @param nX
+	 * @param nY
+	 * @param j
+	 * @param i
+	 * @return The ray that goes through the middle of a pixel i,j on the view plane
+	 */
+	public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
+	{
+		return null;
+	}
 
 }

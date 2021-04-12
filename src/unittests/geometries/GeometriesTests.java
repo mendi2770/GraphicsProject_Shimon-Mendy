@@ -16,7 +16,7 @@ import org.junit.Test;
 
 /**
  * @author shimo
- *
+ * Testing Geometries Class
  */
 public class GeometriesTests {
 
