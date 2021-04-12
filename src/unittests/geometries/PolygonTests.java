@@ -106,14 +106,14 @@ public class PolygonTests {
 		List<Point3D> result = polygon
 				.findIntersections(new Ray(new Vector(new Point3D(1, 2, 1)), new Point3D(-1, -2, -1)));
 		assertEquals("Wrong number of points", 1, result.size());
-		assertEquals("Ray crosses triangle once", new Point3D(0.25, 0.5, 0.25), result.get(0));
+		assertEquals("Ray crosses polygon once", new Point3D(0.25, 0.5, 0.25), result.get(0));
 
 		// TC12: Outside against edge
-		assertNull("Ray's crosses outside the triangle",
+		assertNull("Ray's crosses outside the polygon",
 				polygon.findIntersections(new Ray(new Vector(1, 3, 3), new Point3D(-1, -2, -1))));
 
 		// TC13: Outside against vertex
-		assertNull("Ray's crosses outside the triangle",
+		assertNull("Ray's crosses outside the polygon",
 				polygon.findIntersections(new Ray(new Vector(1, 2, 4), new Point3D(-1, -2, -1))));
 
 		// =============== Boundary Values Tests ==================
@@ -121,15 +121,15 @@ public class PolygonTests {
 		// ***** (the ray begins "before" the plane)
 
 		// TC21: In vertex
-		assertNull("Ray's crosses the triangle's vertices",
+		assertNull("Ray's crosses the polygon's vertices",
 				polygon.findIntersections(new Ray(new Vector(1, 2, 2), new Point3D(-1, -2, -1))));
 
 		// TC22: On edge
-		assertNull("Ray's crosses the triangle's edge",
+		assertNull("Ray's crosses the polygon's edge",
 				polygon.findIntersections(new Ray(new Vector(1.5, 2, 1.5), new Point3D(-1, -2, -1))));
 
 		// TC23: On edge's continuation
-		assertNull("Ray's crosses the triangle's edge",
+		assertNull("Ray's crosses the polygon's edge",
 				polygon.findIntersections(new Ray(new Vector(0, 2, 3), new Point3D(-1, -2, -1))));
 	}
 

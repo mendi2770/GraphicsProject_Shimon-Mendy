@@ -95,7 +95,7 @@ public class Camera {
 	 * @param height
 	 * @return the camera itself
 	 */
-	public Camera setVpSize(double width, double height) {
+	public Camera setViewPlaneSize(double width, double height) {
 		if (width <= 0 || height <= 0)
 			throw new IllegalArgumentException("Width or height cannot be negative!");
 		this.width = width;
@@ -108,7 +108,7 @@ public class Camera {
 	 * @param distance
 	 * @return the camera itself
 	 */
-	public Camera setVpDistance(double distance) {
+	public Camera setDistance(double distance) {
 		if (distance <= 0)
 			throw new IllegalArgumentException("Distance cannot be negative!");
 		this.distance = distance;
