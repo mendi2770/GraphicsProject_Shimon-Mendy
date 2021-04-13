@@ -24,7 +24,7 @@ public class CameraTests {
 		try {
 			Camera camera = new Camera(Point3D.ZERO, new Vector(1, 0, 1), new Vector(2, 0, 0));
 			fail("two vectors are orthogonal");
-		} catch (Exception e) {		
+		} catch (Exception e) {
 		}
 	}
 
@@ -42,16 +42,16 @@ public class CameraTests {
 				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 0, 0));
 
 		// TC02: 4X4 Corner (0,0)
-		assertEquals("Bad ray", new Ray(new Vector(-3, -3, 10), Point3D.ZERO),
-				camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 0, 0));
+		 assertEquals("Bad ray", new Ray(new Vector(-3, -3, 10), Point3D.ZERO),
+		camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 0, 0));
 
 		// TC03: 4X4 Side (0,1)
-		assertEquals("Bad ray", new Ray(new Vector(-1, -3, 10), Point3D.ZERO),
-				camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 1, 0));
+		 assertEquals("Bad ray", new Ray(new Vector(-1, -3, 10), Point3D.ZERO),
+		 camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 1, 0));
 
-		// TC04: 4X4 Inside (1,1)
-		assertEquals("Bad ray", new Ray(new Vector(-1, -1, 10), Point3D.ZERO),
-				camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 1, 1));
+		 //TC04: 4X4 Inside (1,1)
+		 assertEquals("Bad ray", new Ray(new Vector(-1, -1, 10), Point3D.ZERO),
+		 camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 1, 1));
 
 		// =============== Boundary Values Tests ==================
 		// TC11: 3X3 Center (1,1)
