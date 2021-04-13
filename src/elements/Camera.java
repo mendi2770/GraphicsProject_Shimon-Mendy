@@ -125,7 +125,23 @@ public class Camera {
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
 	{
-		return null;
+		// Image center:
+		Point3D pCenter = this.p0.add(vTo.scale(this.distance));
+		
+		// Ratio:
+		double Ry = this.height / nY;
+		double Rx = this.width / nX;
+		
+		// Pixel[i,j] center
+		double yi = alignZero(-(i - (nY - 1)/2) * Ry);
+		double xj = alignZero((j - (nX - 1)/2) * Rx);
+		Point3D pIJ = pCenter;
+		if (xj != 0)
+			pIJ = pIJ.add(vRight.scale(xj));
+		if (yi != 0)
+			pIJ = pIJ.add(vUp.scale(yi));
+		Vector vIJ = pIJ.subtract(this.p0);
+		return new Ray(vIJ, p0);
 	}
 
 }
