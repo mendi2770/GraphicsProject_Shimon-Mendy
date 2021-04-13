@@ -80,7 +80,7 @@ public class Camera {
 	 * @param vUp
 	 * @param vTo
 	 */
-	public Camera(Point3D p0, Vector vUp, Vector vTo) {
+	public Camera(Point3D p0, Vector vTo, Vector vUp) {
 		if (!isZero(vUp.dotProduct(vTo)))
 			throw  new IllegalArgumentException("The given vectors are not vertical.");
 		this.p0 = p0;
