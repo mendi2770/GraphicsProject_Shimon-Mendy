@@ -38,7 +38,7 @@ public class IntegrationTests {
 		sph = new Sphere(new Point3D(0, 0, -2), 2);
 		assertEquals("Wrong number of intersections", 10, countIntersections(rayList, sph));
 
-		// #4 ????:
+		// #4:
 		sph = new Sphere(new Point3D(0, 0, -2), 4);
 		assertEquals("Wrong number of intersections", 9, countIntersections(rayList, sph));
 
@@ -60,9 +60,9 @@ public class IntegrationTests {
 		assertEquals("Wrong number of intersections", 9, countIntersections(rayList, plane));
 
 		// #13:
-		camera = new Camera(new Point3D(0, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
+		camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
 		rayList = findRaysThroughVpPixles(camera.setViewPlaneSize(3, 3), 3, 3);
-		plane = new Plane(new Point3D(0, 0, -6), new Vector(new Point3D(-7, 0, 2)));
+		plane = new Plane(new Point3D(0, 0, -4), new Vector(new Point3D(7, 0, 2)));
 		assertEquals("Wrong number of intersections", 6, countIntersections(rayList, plane));
 
 		// **** Group: Triangle&Camera integration test cases ****//
