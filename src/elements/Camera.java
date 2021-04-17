@@ -129,7 +129,7 @@ public class Camera {
 		double Ry = this.height / nY;
 		double Rx = this.width / nX;
 
-		if (nX % 2 == 0 && nY % 2 == 0) {
+		if (nX % 2 == 0 || nY % 2 == 0) {
 			pCenter = new Point3D(pCenter.getX() - Rx / 2,pCenter.getY() - Ry / 2, pCenter.getZ());
 		}
 		// Pixel[i,j] center
