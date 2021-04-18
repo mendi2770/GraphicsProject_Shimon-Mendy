@@ -144,5 +144,4 @@ public class Camera {
 		Vector vIJ = pIJ.subtract(this.p0);
 		return new Ray(vIJ, p0);
 	}
-
 }
