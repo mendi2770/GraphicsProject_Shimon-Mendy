@@ -29,11 +29,10 @@ public class IntegrationTests {
 	}
 
 
-
-	@Test
 	/**
 	 * Tests the camera rays and sphere intersections
 	 */
+	@Test
 	public void testCameraAndSphere() {
 		// **** Group: Sphere&Camera integration test cases ****//
 		// #1: Camera rays intersects 2 points with sphere
@@ -61,10 +60,10 @@ public class IntegrationTests {
 		assertEquals("Wrong number of intersections of camera rays with sphere - expected 0", 0, countIntersections(rayList, sph));
 	}
 
-	@Test
 	/**
 	 * Tests the camera rays and plane intersections
 	 */
+	@Test
 	public void testCameraAndPlane() {
 		// **** Group: Plane&Camera integration test cases ****//
 		Camera  camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
@@ -81,13 +80,12 @@ public class IntegrationTests {
 		// #13: Camera rays intersects 6 points with plan
 		plane = new Plane(new Point3D(0, 0, -4), new Vector(new Point3D(0, -1.5, 1)));
 		assertEquals("Wrong number of intersections of camera rays with plane - expected 6", 6, countIntersections(rayList, plane));
-
 	}
 
-	@Test
 	/**
 	 * Tests the camera rays and triangle intersections
 	 */
+	@Test
 	public void testCameraAndTriangle() {
 		// **** Group: Triangle&Camera integration test cases ****//
 		Camera  camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
