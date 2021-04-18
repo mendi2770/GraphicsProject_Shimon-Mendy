@@ -129,13 +129,14 @@ public class Camera {
 		double Ry = this.height / nY;
 		double Rx = this.width / nX;
 
-		if (nX % 2 == 0 || nY % 2 == 0) {
+		if (nX % 2 == 0 || nY % 2 == 0) {	// In case the number of columns or rows is even, it moves the Pceneter to the (0,0) pixel
 			pCenter = new Point3D(pCenter.getX() - Rx / 2,pCenter.getY() - Ry / 2, pCenter.getZ());
 		}
 		// Pixel[i,j] center
 		double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
 		double xj = alignZero((j - (nX - 1) / 2) * Rx);
 		Point3D pIJ = pCenter;
+		// To avoid a zero vector exception
 		if (xj != 0)
 			pIJ = pIJ.add(vRight.scale(xj));
 		if (yi != 0)
