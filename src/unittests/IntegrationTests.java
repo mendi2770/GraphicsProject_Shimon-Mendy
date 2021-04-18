@@ -18,17 +18,6 @@ import primitives.*;
  */
 public class IntegrationTests {
 
-
-	/**
-	 * Integration tests of camera rays and shapes
-	 */
-	public void test() {
-		testCameraAndSphere();
-		testCameraAndPlane();
-		testCameraAndTriangle();
-	}
-
-
 	/**
 	 * Tests the camera rays and sphere intersections
 	 */
