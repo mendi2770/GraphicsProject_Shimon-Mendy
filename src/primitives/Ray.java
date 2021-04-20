@@ -2,6 +2,8 @@ package primitives;
 
 import static primitives.Util.isZero;
 
+import java.awt.List;
+
 public class Ray {
 
 	/**
@@ -42,6 +44,14 @@ public class Ray {
 	public Point3D getPoint(double t) { // Function calculate - P = P0 + v * t
 		Point3D p = p0.add(dir.scale(t));
 		return p;
+	}
+	/**
+	 * 
+	 * @param listPoint
+	 * @return the closest point to the began of the ray
+	 */
+	public Point3D findClosestPoint(Point3D...listPoint) {
+		return null;
 	}
 
 	/*************** Admin ******************/

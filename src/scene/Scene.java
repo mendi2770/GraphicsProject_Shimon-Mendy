@@ -3,24 +3,21 @@
  */
 package scene;
 
-
 import primitives.*;
 import elements.*;
 import geometries.*;
-import static primitives.Color.BLACK;
 
-import java.awt.List;
+
 /**
- * @author 97253
- * scene class
+ * @author 97253 scene class
  */
 public class Scene {
 
-	public String name= "";
-	public Color background= new Color(BLACK);
-	public AmbientLight ambientLight = new AmbientLight(BLACK,0);
-	public Geometries geometries = null;
-	
+	public String name = null;
+	public Color background = Color.BLACK;
+	public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
+	public Geometries geometries;
+
 	/**
 	 * @param name
 	 */
@@ -28,37 +25,31 @@ public class Scene {
 		this.name = name;
 		geometries = new Geometries();
 	}
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+
 	/**
 	 * @param background the background to set
 	 */
-	public void setBackground(Color background) {
+	public Scene setBackground(Color background) {
 		this.background = background;
+		return this;
 	}
-	
+
 	/**
 	 * @param ambientLight the ambientLight to set
 	 */
-	public void setAmbientLight(AmbientLight ambientLight) {
-		this.ambientLight = ambientLight;
+	public Scene setAmbientLight(Color color,double Ka) {
+		this.ambientLight = new AmbientLight(color,Ka);
+		return this;
 	}
-	
+
 	/**
 	 * @param geometries the geometries to set
 	 */
-	public void setGeometries(Geometries geometries) {
-		this.geometries = geometries;
+	public Scene setGeometries(Geometries geo) {
+		if (this.geometries == null)
+			this.geometries = new Geometries();
+		geometries.add(geo);
+		return this;
 	}
-
-
-	
-	
 
 }
