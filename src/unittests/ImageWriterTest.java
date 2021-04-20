@@ -21,12 +21,15 @@ public class ImageWriterTest {
 	 */
 	@Test
 	public void testWriteToImage() {
-		Color color = new Color(java.awt.Color.blue);
-		ImageWriter image = new ImageWriter("imageTest", 16, 10);
-		for (int i = 0; i < 10; i++)
-			for (int j = 0; j < 16; j++) {
-				image.writePixel(j, i, color);
-			}
+		ImageWriter image = new ImageWriter("imageTestNew", 800, 500);
+		for (int i = 0; i < 800; i++)
+			for (int j = 0; j < 500; j++)
+				if (i % 50 == 0 && i != 0 || j % 50 == 0 && j != 0)
+					image.writePixel(i, j, new Color(125,0,70));
+				else
+					image.writePixel(i, j, new Color(0,80,100));
+
+		image.writeToImage();
 	}
 
 	/**
