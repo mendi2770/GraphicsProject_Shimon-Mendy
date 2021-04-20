@@ -45,13 +45,22 @@ public class Ray {
 		Point3D p = p0.add(dir.scale(t));
 		return p;
 	}
+
 	/**
 	 * 
 	 * @param listPoint
 	 * @return the closest point to the began of the ray
 	 */
 	public Point3D findClosestPoint(Point3D...listPoint) {
-		return null;
+		
+		if(listPoint == null)
+			return null;
+		Point3D closePoint = listPoint[0];
+		for(int i = 1 ; i< listPoint.length ; i++) {
+			if(closePoint.distance(p0) > listPoint[i].distance(p0))
+				closePoint = listPoint[i];
+		}
+		return closePoint;
 	}
 
 	/*************** Admin ******************/

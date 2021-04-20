@@ -19,7 +19,7 @@ import primitives.Vector;
 public class RayTests {
 
 	/**
-	 * Test method for
+	 * Test method for closest point to ray point
 	 * {@link primitives.Ray#findClosestPoint(primitives.Point3D[])}.
 	 */
 	@Test
@@ -35,7 +35,7 @@ public class RayTests {
 		// =============== Boundary Values Tests ==================
 
 		// TC11: No point was found (empty list)
-		assertNotNull("The list should return null", ray.findClosestPoint(null));
+		assertNull("The list should return null", ray.findClosestPoint(null));
 
 		// TC12: The point that was found is in the head of the list
 		assertEquals("The point is not close to the ray (head test)", new Point3D(2, 0, 0),
@@ -43,8 +43,7 @@ public class RayTests {
 
 		// TC13: The point that was found is in the tail of the list
 		assertEquals("The point is not close to the ray (tail test)", new Point3D(2, 0, 0),
-				ray.findClosestPoint(new Point3D(8, 0, 0), new Point3D(5, 0, 0), new Point3D(2, 0, 0)));
-		fail("Not yet implemented");
+				ray.findClosestPoint(new Point3D(8, 0, 0), new Point3D(5, 0, 0), new Point3D(2, 0, 0)));	
 	}
 
 }
