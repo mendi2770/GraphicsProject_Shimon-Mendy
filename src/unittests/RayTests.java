@@ -14,13 +14,15 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * @author 97253 ray tests unit
+ * @author 97253
+ *  Ray tests unit
  */
 public class RayTests {
 
 	/**
-	 * Test method for closest point to ray point
-	 * {@link primitives.Ray#findClosestPoint(primitives.Point3D[])}.
+	 * Test method for {@link primitives.Ray#findClosestPoint(primitives.Point3D[])}.
+	 * 
+	 * Test method for getting the closest point to ray point
 	 */
 	@Test
 	public void testFindClosestPoint() {

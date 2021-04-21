@@ -12,12 +12,13 @@ import renderer.ImageWriter;
 
 /**
  * @author shimo
- *
+ * Image Writer Test unit
  */
 public class ImageWriterTest {
 
 	/**
 	 * Test method for {@link renderer.ImageWriter#writeToImage()}.
+	 * Test for creating a simple image with pixel
 	 */
 	@Test
 	public void testWriteToImage() {
@@ -31,12 +32,4 @@ public class ImageWriterTest {
 
 		image.writeToImage();
 	}
-
-	/**
-	 * Test method for
-	 * {@link renderer.ImageWriter#writePixel(int, int, primitives.Color)}.
-	 */
-	/*
-	 * @Test public void testWritePixel() { fail("Not yet implemented"); }
-	 */
 }

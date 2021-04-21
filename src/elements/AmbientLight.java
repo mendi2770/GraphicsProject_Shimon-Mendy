@@ -12,9 +12,9 @@ public class AmbientLight {
 	 * @param Ka 
 	 *  ctor build the ambient light intensity
 	 */
-	public AmbientLight(Color Ia, double Ka) {
+	public AmbientLight(Color iA, double kA) {
 
-		this.intensity = Ia.scale(Ka);
+		this.intensity = iA.scale(kA);
 	}
 
 	public Color getIntensity() {

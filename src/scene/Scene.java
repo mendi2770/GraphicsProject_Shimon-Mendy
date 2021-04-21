@@ -20,6 +20,7 @@ public class Scene {
 
 	/**
 	 * @param name
+	 * Ctor set up the name an create an empty collection of geometries
 	 */
 	public Scene(String name) {
 		this.name = name;
@@ -27,7 +28,8 @@ public class Scene {
 	}
 
 	/**
-	 * @param background the background to set
+	 * @param background
+	 * @return The scene object (this)
 	 */
 	public Scene setBackground(Color background) {
 		this.background = background;
@@ -35,7 +37,10 @@ public class Scene {
 	}
 
 	/**
-	 * @param ambientLight the ambientLight to set
+	 * 
+	 * @param color
+	 * @param Ka
+	 * @return The scene object (this)
 	 */
 	public Scene setAmbientLight(Color color,double Ka) {
 		this.ambientLight = new AmbientLight(color,Ka);
@@ -43,7 +48,9 @@ public class Scene {
 	}
 
 	/**
-	 * @param geometries the geometries to set
+	 * 
+	 * @param geo
+	 * @return The scene object (this)
 	 */
 	public Scene setGeometries(Geometries geo) {
 		if (this.geometries == null)
