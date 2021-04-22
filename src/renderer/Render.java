@@ -21,35 +21,41 @@ public class Render {
 	private Camera camera;
 	private RayTracerBasic rayTracerBasic;
 
+	
+
 	/**
-	 * @return the imageWriter
+	 * @param imageWriter the imageWriter to set
 	 */
-	public ImageWriter getImageWriter() {
-		return imageWriter;
+	public Render setImageWriter(ImageWriter imageWriter) {
+		this.imageWriter = imageWriter;
+		return this;
 	}
 
 	/**
-	 * @return the scene
+	 * @param scene the scene to set
 	 */
-	public Scene getScene() {
-		return scene;
+	public Render setScene(Scene scene) {
+		this.scene = scene;
+		return this;
 	}
 
 	/**
-	 * @return the camera
+	 * @param camera the camera to set
 	 */
-	public Camera getCamera() {
-		return camera;
+	public Render setCamera(Camera camera) {
+		this.camera = camera;
+		return this;
 	}
 
 	/**
-	 * @return the rayTracerBasic
+	 * @param rayTracerBasic the rayTracerBasic to set
 	 */
-	public RayTracerBasic getRayTracerBasic() {
-		return rayTracerBasic;
+	public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
+		this.rayTracerBasic = rayTracerBasic;
+		return this;
 	}
 
-	// Method for creating rays and foe every rey gets the color
+	// Method for creating rays and for every ray gets the color
 	public void renderImage() {
 		// In case that not all of the fields are filled
 		if (imageWriter == null || scene == null || camera == null || rayTracerBasic == null)

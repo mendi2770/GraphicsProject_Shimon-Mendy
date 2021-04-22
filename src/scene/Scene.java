@@ -53,9 +53,7 @@ public class Scene {
 	 * @return The scene object (this)
 	 */
 	public Scene setGeometries(Geometries geo) {
-		if (this.geometries == null)
-			this.geometries = new Geometries();
-		geometries.add(geo);
+		this.geometries = geo;
 		return this;
 	}
 
