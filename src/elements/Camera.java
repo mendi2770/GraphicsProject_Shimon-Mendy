@@ -132,7 +132,7 @@ public class Camera {
 		if (nX % 2 == 0 || nY % 2 == 0) {	// In case the number of columns or rows is even, it moves the Pceneter to the (0,0) pixel
 			pCenter = new Point3D(pCenter.getX() - Rx / 2,pCenter.getY() - Ry / 2, pCenter.getZ());
 		}
-		// Pixel[i,j] center
+		//Pixel[i,j] center
 		double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
 		double xj = alignZero((j - (nX - 1) / 2) * Rx);
 		Point3D pIJ = pCenter;
