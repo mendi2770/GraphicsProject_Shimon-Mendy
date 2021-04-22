@@ -3,7 +3,6 @@
  */
 package renderer;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Color;
@@ -25,10 +24,12 @@ public class RayTracerBasic extends RayTracerBase {
 		super(sc);
 	}
 
-
+	/**
+	 * Implementation for the abstract method trayceRay
+	 */
 	@Override
-	public Color traceRay(Ray ray) {      //Implementation for the abstract method trayceRay
-		LinkedList<Point3D> intersectionsPoints = scene.geometries.findIntersections(ray);
+	public Color traceRay(Ray ray) {   
+		List<Point3D> intersectionsPoints = scene.geometries.findIntersections(ray);
 		if (intersectionsPoints == null)
 			return scene.background;
 		else 
@@ -36,9 +37,9 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 	
 	/**
-	 * 
+	 * Calculate the color of a certain point
 	 * @param point
-	 * @return
+	 * @return The ambient light of the scene 
 	 */
 	public Color calcColor(Point3D point)
 	{

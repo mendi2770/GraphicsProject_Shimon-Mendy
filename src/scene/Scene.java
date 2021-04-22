@@ -9,7 +9,8 @@ import geometries.*;
 
 
 /**
- * @author 97253 scene class
+ * @author 97253
+ * Class that create the scene
  */
 public class Scene {
 

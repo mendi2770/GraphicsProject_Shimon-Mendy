@@ -23,8 +23,6 @@ public class Render {
 	private Camera camera;
 	private RayTracerBasic rayTracerBasic;
 
-	
-
 	/**
 	 * @param imageWriter the imageWriter to set
 	 */
@@ -57,36 +55,48 @@ public class Render {
 		return this;
 	}
 
-	// Method for creating rays and for every ray gets the color
+	/**
+	 * Method for creating rays and for every ray gets the color for the pixel
+	 */
 	public void renderImage() {
 		// In case that not all of the fields are filled
 		if (imageWriter == null || scene == null || camera == null || rayTracerBasic == null)
 			throw new MissingResourceException("Missing", "resource", "exception");
-		
-		// The nested loop finds and creates a ray for each pixels, finds its color and writes it to the image pixles
+
+		// The nested loop finds and creates a ray for each pixels, finds its color and
+		// writes it to the image pixles
 		int nY = this.imageWriter.getNy();
 		int nX = this.imageWriter.getNx();
 		Ray ray;
 		for (int j = 0; j < nY; j++) {
-			for (int i = 0; i <  nX; i++) { 
-				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls "constructRayThroughPixel" function
-				imageWriter.writePixel(i, j, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it to the image		
+			for (int i = 0; i < nX; i++) {
+				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
+																		// "constructRayThroughPixel" function
+				imageWriter.writePixel(i, j, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it
+																			// to the image
 			}
 		}
 
 	}
 
-	// Method for coloring only the grid lines
+	/**
+	 * \ Method for coloring only the grid lines
+	 * 
+	 * @param interval
+	 * @param color
+	 */
 	public void printGrid(int interval, Color color) {
 		if (imageWriter == null) // In case the image writer is empty
 			throw new MissingResourceException("Missing", "resource", "for an imageWriter");
-		for (int i = 0; i < imageWriter.getNx(); i++)
+		for (int i = 0; i < imageWriter.getNx(); i++)	//loop go through all the pixels
 			for (int j = 0; j < imageWriter.getNy(); j++)
-				if (i % interval != 0 && i == 0 || j % interval != 0 && j == 0) // In case we are in a grid lines
+				if (i % interval == 0 && i != 0 || j % interval == 0 && j != 0) // In case we are in a grid lines
 					imageWriter.writePixel(i, j, color);
 	}
 
-	// Method for start the "writeToImage()" in imageWriter object
+	/**
+	 * Method for start the "writeToImage()" in imageWriter object
+	 */
 	public void writeToImage() {
 		if (imageWriter == null)
 			throw new MissingResourceException("Missing", "resource", "for an imageWriter");

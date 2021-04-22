@@ -10,13 +10,17 @@ public class AmbientLight {
 	 * 
 	 * @param Ia 
 	 * @param Ka 
-	 *  ctor build the ambient light intensity
+	 *  constructor build the ambient light intensity
 	 */
 	public AmbientLight(Color iA, double kA) {
 
 		this.intensity = iA.scale(kA);
 	}
-
+	
+	/**
+	 * 
+	 * @return The ambient light intensity
+	 */
 	public Color getIntensity() {
 
 		return intensity;
