@@ -23,5 +23,10 @@ public abstract class RayTracerBase {
 		scene = sc;
 	}
 	
+	/**
+	 * Traces the ray and returns the Color
+	 * @param ray
+	 * @return Color
+	 */
 	public abstract Color traceRay(Ray ray);	//abstract method for trace ray
 }

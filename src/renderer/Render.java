@@ -3,10 +3,12 @@
  */
 package renderer;
 
+import java.util.LinkedList;
 import java.util.MissingResourceException;
 
 import elements.Camera;
 import primitives.Color;
+import primitives.Ray;
 import scene.Scene;
 //import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -60,7 +62,18 @@ public class Render {
 		// In case that not all of the fields are filled
 		if (imageWriter == null || scene == null || camera == null || rayTracerBasic == null)
 			throw new MissingResourceException("Missing", "resource", "exception");
-		throw new UnsupportedOperationException();
+		
+		// The nested loop finds and creates a ray for each pixels, finds its color and writes it to the image pixles
+		int nY = this.imageWriter.getNy();
+		int nX = this.imageWriter.getNx();
+		Ray ray;
+		for (int j = 0; j < nY; j++) {
+			for (int i = 0; i <  nX; i++) { 
+				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls "constructRayThroughPixel" function
+				imageWriter.writePixel(i, j, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it to the image		
+			}
+		}
+
 	}
 
 	// Method for coloring only the grid lines
