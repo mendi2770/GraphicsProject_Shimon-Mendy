@@ -32,7 +32,7 @@ public class Render {
 	}
 
 	/**
-	 * @param scene the scene to set
+	 * @param The scene to set
 	 */
 	public Render setScene(Scene scene) {
 		this.scene = scene;
@@ -40,7 +40,7 @@ public class Render {
 	}
 
 	/**
-	 * @param camera the camera to set
+	 * @param The camera to set
 	 */
 	public Render setCamera(Camera camera) {
 		this.camera = camera;
@@ -48,7 +48,7 @@ public class Render {
 	}
 
 	/**
-	 * @param rayTracerBasic the rayTracerBasic to set
+	 * @param The rayTracerBasic to set
 	 */
 	public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
 		this.rayTracerBasic = rayTracerBasic;
@@ -80,7 +80,7 @@ public class Render {
 	}
 
 	/**
-	 * \ Method for coloring only the grid lines
+	 * Method for coloring only the grid lines
 	 * 
 	 * @param interval
 	 * @param color
@@ -88,9 +88,9 @@ public class Render {
 	public void printGrid(int interval, Color color) {
 		if (imageWriter == null) // In case the image writer is empty
 			throw new MissingResourceException("Missing", "resource", "for an imageWriter");
-		for (int i = 0; i < imageWriter.getNx(); i++)	//loop go through all the pixels
+		for (int i = 0; i < imageWriter.getNx(); i++)	// The loop goes through all the pixels
 			for (int j = 0; j < imageWriter.getNy(); j++)
-				if (i % interval == 0 && i != 0 || j % interval == 0 && j != 0) // In case we are in a grid lines
+				if (i % interval == 0 && i != 0 || j % interval == 0 && j != 0) // In case we are in the grid lines
 					imageWriter.writePixel(i, j, color);
 	}
 

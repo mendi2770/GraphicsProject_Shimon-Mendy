@@ -1,7 +1,7 @@
 /**
  * 
  */
-package unittests;
+package unittests.primitives;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +31,7 @@ public class RayTests {
 		// ============ Equivalence Partitions Tests ==============
 		// TC01: The point that was found is in the middle of the list
 
-		assertEquals("The point is not close to the ray (middle test)", new Point3D(2, 0, 0),
+		assertEquals("The point is not the closeset to the ray (middle test)", new Point3D(2, 0, 0),
 				ray.findClosestPoint(List.of(new Point3D(5, 0, 0), new Point3D(2, 0, 0), new Point3D(8, 0, 0))));
 
 		// =============== Boundary Values Tests ==================

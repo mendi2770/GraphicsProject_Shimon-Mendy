@@ -21,7 +21,7 @@ public class Scene {
 
 	/**
 	 * @param name
-	 * Ctor set up the name an create an empty collection of geometries
+	 * Ctor sets up the name and creates an empty collection of geometries
 	 */
 	public Scene(String name) {
 		this.name = name;

@@ -25,7 +25,7 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
-	 * Implementation for the abstract method trayceRay
+	 * Implementation for the abstract method traceRay
 	 */
 	@Override
 	public Color traceRay(Ray ray) {   

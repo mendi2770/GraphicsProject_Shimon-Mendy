@@ -23,6 +23,7 @@ public class ImageWriterTest {
 	@Test
 	public void testWriteToImage() {
 		ImageWriter image = new ImageWriter("imageTestNew", 800, 500);
+		// The nested loop colors each pixel
 		for (int i = 0; i < 800; i++)
 			for (int j = 0; j < 500; j++)
 				if (i % 50 == 0 && i != 0 || j % 50 == 0 && j != 0)
