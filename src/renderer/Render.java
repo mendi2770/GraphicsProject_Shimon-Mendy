@@ -60,6 +60,7 @@ public class Render {
 	 */
 	public void renderImage() {
 		// In case that not all of the fields are filled
+		//fix Exception
 		if (imageWriter == null || scene == null || camera == null || rayTracerBasic == null)
 			throw new MissingResourceException("Missing", "resource", "exception");
 
