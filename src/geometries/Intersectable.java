@@ -13,6 +13,7 @@ import java.util.List;
  *
  */
 public interface Intersectable {
+	public static class GeoPoint { public Geometry geometry; public Point3D point; }
 	
 	/**
 	 * Finds intersections of a ray with geometric object and returns them as list of 3d points

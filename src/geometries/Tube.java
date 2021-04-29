@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.DoubleToIntFunction;
 
-public class Tube implements Geometry {
+public class Tube extends Geometry {
 
 	protected Ray axisRay;
 	protected double radius;

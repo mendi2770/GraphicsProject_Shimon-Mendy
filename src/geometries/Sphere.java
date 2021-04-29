@@ -6,7 +6,7 @@ import static primitives.Util.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
 
 	private Point3D center;
 	private double radius;

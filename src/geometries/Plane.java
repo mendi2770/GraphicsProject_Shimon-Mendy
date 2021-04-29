@@ -6,7 +6,7 @@ import java.time.Year;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
 	private Point3D q0;
 	private Vector normal;

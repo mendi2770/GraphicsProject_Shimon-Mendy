@@ -5,7 +5,7 @@ import static primitives.Util.*;
 
 import java.util.LinkedList;
 
-public class Cylinder extends Tube implements Geometry {
+public class Cylinder extends Tube {
 
 	private double height;
 	
