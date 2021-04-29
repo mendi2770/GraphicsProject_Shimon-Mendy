@@ -73,7 +73,7 @@ public class Render {
 			for (int i = 0; i < nX; i++) {
 				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
 																		// "constructRayThroughPixel" function
-				imageWriter.writePixel(i, j, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it
+				imageWriter.writePixel(j, i, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it
 																			// to the image
 			}
 		}

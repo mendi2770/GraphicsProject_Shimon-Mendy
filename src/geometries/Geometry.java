@@ -6,22 +6,22 @@ import primitives.*;
 import static primitives.Util.*;
 
 public abstract class Geometry implements Intersectable {
-	protected Color emmission = Color.BLACK;
+	protected Color emission = Color.BLACK;
 	
 	
 	/**
 	 * @return the emmission
 	 */
-	public Color getEmmission() {
-		return emmission;
+	public Color getEmission() {
+		return emission;
 	}
 
 
 	/**
 	 * @param emmission the emmission to set
 	 */
-	public Geometry setEmmission(Color emmission) {
-		this.emmission = emmission;
+	public Geometry setEmission(Color emmission) {
+		this.emission = emmission;
 		return this;
 	}
 
