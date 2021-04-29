@@ -84,7 +84,7 @@ public class Geometries implements Intersectable {
 				if (result == null)  		    // If we only now start to add shape intersections - assigns the points to result
 				{
 					result = points;					
-				}
+				} 
 				else
 					result.addAll(points);
 			}				
