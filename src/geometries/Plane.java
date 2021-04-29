@@ -76,8 +76,9 @@ public class Plane extends Geometry {
 		return "q0: " + q0.toString() + " normal: " + normal.toString();
 	}
 
+	
 	@Override
-	public  LinkedList<Point3D> findIntersections(Ray ray) {
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		// In case there are zeroes in denominator and numerator
 		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
 				|| isZero(this.normal.dotProduct(q0.subtract(ray.getP0()))))
@@ -85,23 +86,9 @@ public class Plane extends Geometry {
 		double t = (this.normal.dotProduct(q0.subtract(ray.getP0()))) / (this.normal.dotProduct(ray.getDir()));
 		if (t < 0) // In case there is no intersection with the plane return null
 			return null;
-		Point3D p = ray.getPoint(t);
-		LinkedList<Point3D> result = new LinkedList<Point3D>();
+		GeoPoint p = new GeoPoint(this, ray.getPoint(t));
+		LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
 		result.add(p);
 		return result;
-	}
-	
-	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) {
-		LinkedList<Point3D> intersections = findIntersections(ray);
-		if (intersections == null)
-			return null;
-		LinkedList<GeoPoint> gpIntersections = new LinkedList<GeoPoint>();
-		for (Point3D p : intersections)
-		{
-			GeoPoint gPoint = new GeoPoint(this, p);
-			gpIntersections.add(gPoint);
-		}
-		return gpIntersections;
 	}
 }

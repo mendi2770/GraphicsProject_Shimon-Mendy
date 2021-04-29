@@ -53,7 +53,9 @@ public interface Intersectable {
 	 * @param ray
 	 * @return List<Point3D> - list of intersections
 	 */
-	LinkedList<Point3D> findIntersections(Ray ray);
+	default List<Point3D> findIntersections(Ray ray) { 
+		var geoList = findGeoIntersections(ray); 
+		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList()); }
 	
 	List<GeoPoint> findGeoIntersections(Ray ray);
 }

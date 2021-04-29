@@ -41,34 +41,6 @@ public class Geometries implements Intersectable {
 	}
 	
 	@Override
-	public LinkedList<Point3D> findIntersections(Ray ray) {
-		if (intersectables.isEmpty())		// In case the collection is empty
-			return null;
-		LinkedList<Point3D> result = null,  points;
-		
-		for (Intersectable geom : intersectables)	// The loop checks intersections for each shape
-		{
-			points = geom.findIntersections(ray);
-			
-			if (points != null) 				// In case there are intersections
-			{
-				if (result == null)  		    // If we only now start to add shape intersections - assigns the points to result
-				{
-					result = points;					
-				}
-				else
-					result.addAll(points);
-			}
-				
-		}
-		
-		if (result == null)				  // In case there are no intersections
-			return null;
-		else 		                     // Else, returns the result of all the intersection points
-			return result;					
-	}
-	
-	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		if (intersectables.isEmpty())		// In case the collection is empty
 			return null;
