@@ -7,6 +7,7 @@ import static primitives.Util.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author shimo
@@ -54,7 +55,7 @@ public interface Intersectable {
 	 * @return List<Point3D> - list of intersections
 	 */
 	default List<Point3D> findIntersections(Ray ray) { 
-		var geoList = findGeoIntersections(ray); 
+		List<GeoPoint> geoList = findGeoIntersections(ray); 
 		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList()); }
 	
 	List<GeoPoint> findGeoIntersections(Ray ray);
