@@ -8,6 +8,8 @@ import static primitives.Util.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
+
 public class Triangle extends Polygon {
 
 	public Triangle(Point3D a, Point3D b, Point3D c) {
@@ -41,5 +43,19 @@ public class Triangle extends Polygon {
 		} 
 		else
 			return null;	//If the scalars are in a different sign
+	}
+	
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		LinkedList<Point3D> intersections = findIntersections(ray);
+		if (intersections == null)
+			return null;
+		LinkedList<GeoPoint> gpIntersections = new LinkedList<GeoPoint>();
+		for (Point3D p : intersections)
+		{
+			GeoPoint gPoint = new GeoPoint(this, p);
+			gpIntersections.add(gPoint);
+		}
+		return gpIntersections;
 	}
 }

@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.DoubleToIntFunction;
 
+import geometries.Intersectable.GeoPoint;
+
 public class Tube extends Geometry {
 
 	protected Ray axisRay;
@@ -56,6 +58,12 @@ public class Tube extends Geometry {
 		return null;
 	}
 
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	/*************** Admin *****************/
 
 	@Override

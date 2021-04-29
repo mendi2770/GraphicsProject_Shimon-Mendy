@@ -4,6 +4,9 @@ import primitives.*;
 import static primitives.Util.*;
 
 import java.util.LinkedList;
+import java.util.List;
+
+import geometries.Intersectable.GeoPoint;
 
 public class Cylinder extends Tube {
 
@@ -35,6 +38,12 @@ public class Cylinder extends Tube {
 	
 	@Override
 	public  LinkedList<Point3D> findIntersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		// TODO Auto-generated method stub
 		return null;
 	}

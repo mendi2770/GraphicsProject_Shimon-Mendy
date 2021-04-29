@@ -6,6 +6,8 @@ import java.time.Year;
 import java.util.LinkedList;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
+
 public class Plane extends Geometry {
 
 	private Point3D q0;
@@ -87,5 +89,19 @@ public class Plane extends Geometry {
 		LinkedList<Point3D> result = new LinkedList<Point3D>();
 		result.add(p);
 		return result;
+	}
+	
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		LinkedList<Point3D> intersections = findIntersections(ray);
+		if (intersections == null)
+			return null;
+		LinkedList<GeoPoint> gpIntersections = new LinkedList<GeoPoint>();
+		for (Point3D p : intersections)
+		{
+			GeoPoint gPoint = new GeoPoint(this, p);
+			gpIntersections.add(gPoint);
+		}
+		return gpIntersections;
 	}
 }
