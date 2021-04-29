@@ -119,7 +119,7 @@ public class IntegrationTests {
 		int counter = 0;
 		for (Ray ray : rayList) // The loop checks intersections for each ray with the given shape
 		{
-			LinkedList<Point3D> pointsList = shape.findIntersections(ray);
+			List<Point3D> pointsList = shape.findIntersections(ray);
 			if (pointsList != null)
 				counter += pointsList.size();
 		}
