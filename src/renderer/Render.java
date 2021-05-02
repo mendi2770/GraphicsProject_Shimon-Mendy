@@ -60,9 +60,14 @@ public class Render {
 	 */
 	public void renderImage() {
 		// In case that not all of the fields are filled
-		//fix Exception
-		if (imageWriter == null || scene == null || camera == null || rayTracerBasic == null)
-			throw new MissingResourceException("Missing", "resource", "exception");
+		if (imageWriter == null)
+			throw new MissingResourceException("Missing", "imageWriter resource", "exception");
+		else if (scene == null)
+			throw new MissingResourceException("Missing", "scene resource", "exception");
+		else if (camera == null)
+			throw new MissingResourceException("Missing", "camera resource", "exception");
+		else if (rayTracerBasic == null)
+			throw new MissingResourceException("Missing", "rayTracerBasic resource", "exception");
 
 		// The nested loop finds and creates a ray for each pixels, finds its color and
 		// writes it to the image pixles
