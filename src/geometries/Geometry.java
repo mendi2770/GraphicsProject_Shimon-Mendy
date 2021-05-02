@@ -6,16 +6,33 @@ import primitives.*;
 import static primitives.Util.*;
 
 public abstract class Geometry implements Intersectable {
+	
 	protected Color emission = Color.BLACK;
+	private Material material = new Material();
 	
 	
+	/**
+	 * @return the material
+	 */
+	public Material getMaterial() {
+		return material;
+	}
+
+
+	/**
+	 * @param material the material to set
+	 */
+	public Geometry setMaterial(Material material) {
+		this.material = material;
+		return this;
+	}
+
 	/**
 	 * @return the emmission
 	 */
 	public Color getEmission() {
 		return emission;
 	}
-
 
 	/**
 	 * @param emmission the emmission to set
@@ -24,7 +41,6 @@ public abstract class Geometry implements Intersectable {
 		this.emission = emmission;
 		return this;
 	}
-
 
 	/**
 	 * Calculates the normal of the geometry shape

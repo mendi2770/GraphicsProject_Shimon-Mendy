@@ -2,28 +2,15 @@ package elements;
 
 import primitives.*;
 
-public class AmbientLight {
-
-	private Color intensity;
+public class AmbientLight extends Light {
 
 	/**
 	 * 
 	 * @param Ia 
 	 * @param Ka 
-	 *  constructor build the ambient light intensity
+	 *  constructor build the ambient light intensity using super class "Light"
 	 */
 	public AmbientLight(Color iA, double kA) {
-
-		this.intensity = iA.scale(kA);
+		super(iA.scale(kA));
 	}
-	
-	/**
-	 * 
-	 * @return The ambient light intensity
-	 */
-	public Color getIntensity() {
-
-		return intensity;
-	}
-
 }
