@@ -17,7 +17,7 @@ public class Material {
 	 * @param kD
 	 * @return The object material (this)
 	 */
-	public Material setkD(double kD) {
+	public Material setKd(double kD) {
 		this.kD = kD;
 		return this;
 	}
@@ -27,7 +27,7 @@ public class Material {
 	 * @param kS
 	 * @return The object material (this)
 	 */
-	public Material setkS(double kS) {
+	public Material setKs(double kS) {
 		this.kS = kS;
 		return this;
 	}
@@ -40,6 +40,27 @@ public class Material {
 	public Material setnShininess(int nShininess) {
 		this.nShininess = nShininess;
 		return this;
+	}
+
+	/**
+	 * @return the kD
+	 */
+	public double getkD() {
+		return kD;
+	}
+
+	/**
+	 * @return the kS
+	 */
+	public double getkS() {
+		return kS;
+	}
+
+	/**
+	 * @return the nShininess
+	 */
+	public int getnShininess() {
+		return nShininess;
 	}
 
 
