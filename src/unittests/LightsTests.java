@@ -145,6 +145,53 @@ public class LightsTests {
 		render.writeToImage();
 	}
 	
+
+	/**
+	 * Produce a picture of a sphere lighted by all three light source types
+	 */
+	@Test
+	public void sphereDirectionalPointSpot() {
+		scene1.geometries.add(sphere);
+		scene1.lights.add(new DirectionalLight(new Color(500, 400, 50), new Vector(1, -4, -1))); // Above the sphere
+		scene1.lights.add(new PointLight(new Color(400, 100, 0), new Point3D(100, 0, 0), 1, 0.00005, 0.000003)); // Right of the sphere
+		scene1.lights.add(new SpotLight(new Color(700, 300, 100), new Point3D(-100, -50, 50), new Vector(1, 1, -3), 2,
+				0.00002, 0.00000005)); // Left of the sphere
+
+
+		ImageWriter imageWriter = new ImageWriter("sphereAllLights", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setScene(scene1) //
+				.setCamera(camera1) //
+				.setRayTracerBasic(new RayTracerBasic(scene1));
+		render.renderImage();
+		render.writeToImage();
+	}
+	
+
+	/**
+	 * Produce a picture of a two triangles lighted by all three light source types
+	 */
+	@Test
+	public void trianglesDirectionalPointSpot() {
+		scene2.geometries.add(triangle1.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(300)),
+				triangle2.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(300)));
+		scene2.lights.add(new DirectionalLight(new Color(30, 150, 90), new Vector(0, 20, -10))); // Effects the both triangles
+		scene2.lights.add(new PointLight(new Color(400, 100, 0), new Point3D(50, -20, -90), 1, 0.00005, 0.000003)); //  Orange - hits up and right sides
+		scene2.lights.add(new SpotLight(new Color(20, 70, 300), new Point3D(10, -10, -50), new Vector(1, -1, -1), 1,
+				0.0001, 0.000005)); // The blue - hits the center
+		
+		ImageWriter imageWriter = new ImageWriter("trianglesAllLights", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setScene(scene2) //
+				.setCamera(camera2) //
+				.setRayTracerBasic(new RayTracerBasic(scene2));
+		render.renderImage();
+		render.writeToImage();
+	}
+	
+
 //
 //	/**
 //	 * Produce a picture of a sphere lighted by a narrow spot light
