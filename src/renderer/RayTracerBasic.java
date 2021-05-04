@@ -46,6 +46,36 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
+	 * Calculate the effects of lights
+	 * 
+	 * @param intersection
+	 * @param ray
+	 * @return The color resulted by local effecrs calculation
+	 */
+	private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
+		Vector v = ray.getDir();
+		Vector n = intersection.geometry.getNormal(intersection.point);
+		double nv = alignZero(n.dotProduct(v));
+		if (nv == 0)
+			return Color.BLACK;
+		int nShininess = intersection.geometry.getMaterial().getnShininess();
+
+		double kd = intersection.geometry.getMaterial().getkD(), ks = intersection.geometry.getMaterial().getkS();
+		Color color = Color.BLACK;
+		for (LightSource lightSource : scene.lights) {
+			Vector l = lightSource.getL(intersection.point);
+			double nl = alignZero(n.dotProduct(l));
+			if (nl * nv > 0) { // checks if nl == nv
+				Color lightIntensity = lightSource.getIntensity(intersection.point);
+				color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+			}
+		}
+		return color;
+	}
+	
+
+	/**
 	 * Calculate diffusive light
 	 * 
 	 * @param kd
@@ -81,33 +111,5 @@ public class RayTracerBasic extends RayTracerBase {
 		return lightIntensity.scale(ks * vr);
 	}
 
-	/**
-	 * Calculate the effects of lights
-	 * 
-	 * @param intersection
-	 * @param ray
-	 * @return The color resulted by local effecrs calculation
-	 */
-	private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
-		Vector v = ray.getDir();
-		Vector n = intersection.geometry.getNormal(intersection.point);
-		double nv = alignZero(n.dotProduct(v));
-		if (nv == 0)
-			return Color.BLACK;
-		int nShininess = intersection.geometry.getMaterial().getnShininess();
-
-		double kd = intersection.geometry.getMaterial().getkD(), ks = intersection.geometry.getMaterial().getkS();
-		Color color = Color.BLACK;
-		for (LightSource lightSource : scene.lights) {
-			Vector l = lightSource.getL(intersection.point);
-			double nl = alignZero(n.dotProduct(l));
-			if (nl * nv > 0) { // nl ) == nv )
-				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
-			}
-		}
-		return color;
-	}
 
 }
