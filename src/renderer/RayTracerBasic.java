@@ -39,7 +39,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * Calculate the color of a certain point
 	 * 
 	 * @param point
-	 * @return The ambient light of the scene
+	 * @return The color of the point (calculated with local effects)
 	 */
 	public Color calcColor(GeoPoint point, Ray ray) {
 		return scene.ambientLight.getIntensity().add(point.geometry.getEmission()).add(calcLocalEffects(point, ray));
@@ -52,7 +52,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param l
 	 * @param n
 	 * @param lightIntensity
-	 * @return The color of diffusive
+	 * @return The color of diffusive effects
 	 */
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
 		double ln = alignZero(l.dotProduct(n));
@@ -70,7 +70,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param v
 	 * @param nShininess
 	 * @param lightIntensity
-	 * @return The color of specular
+	 * @return The color of specular reflection
 	 */
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
 		Vector r = l.subtract(n.scale(l.dotProduct(n) * 2));
@@ -86,7 +86,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * 
 	 * @param intersection
 	 * @param ray
-	 * @return
+	 * @return The color resulted by local effecrs calculation
 	 */
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
 		Vector v = ray.getDir();
