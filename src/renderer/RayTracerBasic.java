@@ -76,7 +76,7 @@ public class RayTracerBasic extends RayTracerBase {
 	
 
 	/**
-	 * Calculate diffusive light
+	 * Calculates diffusive light
 	 * @param kd
 	 * @param l
 	 * @param n
