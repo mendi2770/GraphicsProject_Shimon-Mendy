@@ -77,7 +77,6 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculate diffusive light
-	 * 
 	 * @param kd
 	 * @param l
 	 * @param n
@@ -93,7 +92,6 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculate specular light
-	 * 
 	 * @param ks
 	 * @param l
 	 * @param n

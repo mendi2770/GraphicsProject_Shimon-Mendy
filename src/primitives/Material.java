@@ -43,21 +43,21 @@ public class Material {
 	}
 
 	/**
-	 * @return the kD
+	 * @return The kD
 	 */
 	public double getkD() {
 		return kD;
 	}
 
 	/**
-	 * @return the kS
+	 * @return The kS
 	 */
 	public double getkS() {
 		return kS;
 	}
 
 	/**
-	 * @return the nShininess
+	 * @return The nShininess
 	 */
 	public int getnShininess() {
 		return nShininess;

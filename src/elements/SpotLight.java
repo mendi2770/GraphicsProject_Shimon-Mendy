@@ -35,10 +35,10 @@ public class SpotLight extends PointLight {
 
 		Vector l = super.getL(p);
 
-		if (alignZero(direction.dotProduct(l)) <= 0)
+		if (alignZero(direction.dotProduct(l)) <= 0) //In case the dir * l return zero or negative number
 			return Color.BLACK;
 
-		return super.getIntensity(p).scale(direction.dotProduct(l));
+		return super.getIntensity(p).scale(direction.dotProduct(l)); 
 	}
 
 	@Override

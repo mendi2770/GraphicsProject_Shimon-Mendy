@@ -20,7 +20,9 @@ public abstract class Geometry implements Intersectable {
 
 
 	/**
-	 * @param material the material to set
+	 * 
+	 * @param material
+	 * @return This (of geometry)
 	 */
 	public Geometry setMaterial(Material material) {
 		this.material = material;
@@ -35,7 +37,9 @@ public abstract class Geometry implements Intersectable {
 	}
 
 	/**
-	 * @param emmission the emission to set
+	 * 
+	 * @param emmission
+	 * @return This (of geometry)
 	 */
 	public Geometry setEmission(Color emmission) {
 		this.emission = emmission;

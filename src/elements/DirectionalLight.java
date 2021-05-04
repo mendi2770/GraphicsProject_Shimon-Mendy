@@ -9,7 +9,7 @@ import primitives.Vector;
 
 /**
  * @author 97253
- *
+ *	Class for the directional light
  */
 public class DirectionalLight extends Light implements LightSource{
 

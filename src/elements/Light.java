@@ -7,15 +7,15 @@ import primitives.Color;
 
 /**
  * @author 97253
- *
+ * Abstract class for light
  */
 abstract class Light {
 
 	private Color intensity;
 
 	/**
-	 * 
-	 * @param intesns
+	 * Protected constructor for intensity
+	 * @param intensity
 	 */
 	protected Light(Color intensity) {
 		this.intensity = intensity;
