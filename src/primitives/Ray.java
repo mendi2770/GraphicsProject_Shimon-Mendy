@@ -48,8 +48,7 @@ public class Ray {
 		return p;
 	}
 	
-	/**
-	 * 
+	/** 
 	 * @param geoPoints
 	 * @return The closest point to the began of the ray
 	 */
