@@ -47,23 +47,6 @@ public class Ray {
 		Point3D p = p0.add(dir.scale(t));
 		return p;
 	}
-
-	/**
-	 * 
-	 * @param listPoint
-	 * @return The closest point to the began of the ray
-	 */
-	public Point3D findClosestPoint(List<Point3D> listPoint) {
-
-		if (listPoint == null) //In case of an empty list
-			return null;
-		Point3D closePoint = listPoint.get(0);	//Save the first point in the list
-		for (Point3D p : listPoint) {
-			if (closePoint.distance(p0) > p.distance(p0))	//In case the distance of closes point is bigger than the p point
-				closePoint = p;
-		}
-		return closePoint;
-	}
 	
 	/**
 	 * 

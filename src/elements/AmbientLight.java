@@ -13,4 +13,12 @@ public class AmbientLight extends Light {
 	public AmbientLight(Color iA, double kA) {
 		super(iA.scale(kA));
 	}
+	
+	/**
+	 * Default constructor sending black color to super class
+	 */
+	public AmbientLight() {
+		super(Color.BLACK);
+	}
+	
 }
