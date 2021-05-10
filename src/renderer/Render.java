@@ -19,7 +19,6 @@ import scene.Scene;
 public class Render {
 
 	private ImageWriter imageWriter;
-	private Scene scene;
 	private Camera camera;
 	private RayTracerBasic rayTracerBasic;
 
@@ -31,13 +30,6 @@ public class Render {
 		return this;
 	}
 
-	/**
-	 * @param The scene to set
-	 */
-	public Render setScene(Scene scene) {
-		this.scene = scene;
-		return this;
-	}
 
 	/**
 	 * @param The camera to set
@@ -62,8 +54,6 @@ public class Render {
 		// In case that not all of the fields are filled
 		if (imageWriter == null)
 			throw new MissingResourceException("Missing", "imageWriter resource", "exception");
-		else if (scene == null)
-			throw new MissingResourceException("Missing", "scene resource", "exception");
 		else if (camera == null)
 			throw new MissingResourceException("Missing", "camera resource", "exception");
 		else if (rayTracerBasic == null)
