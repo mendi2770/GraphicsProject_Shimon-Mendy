@@ -17,6 +17,28 @@ import static primitives.Util.*;
 public class RayTracerBasic extends RayTracerBase {
 
 	/**
+	 * Head of rays movement const
+	 */
+	private static final double DELTA = 0.1;
+
+	/**
+	 * Checks if there is no shade between a point and a light source
+	 * 
+	 * @param l
+	 * @param n
+	 * @param gp
+	 * @return Boolean value if the unshaded check was successful
+	 */
+	private boolean unshaded(Vector l, Vector n, GeoPoint gp) {
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
+		Point3D point = gp.point.add(delta);
+		Ray lightRay = new Ray(lightDirection, point);
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+		return intersections == null;
+	}
+
+	/**
 	 * @param sc Ctor using super class constructor
 	 */
 	public RayTracerBasic(Scene sc) {
@@ -66,17 +88,19 @@ public class RayTracerBasic extends RayTracerBase {
 			Vector l = lightSource.getL(intersection.point);
 			double nl = alignZero(n.dotProduct(l));
 			if (nl * nv > 0) { // checks if nl == nv
-				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				if (unshaded(l, n, intersection)) {
+					Color lightIntensity = lightSource.getIntensity(intersection.point);
+					color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+							calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				}
 			}
 		}
 		return color;
 	}
-	
 
 	/**
 	 * Calculates diffusive light
+	 * 
 	 * @param kd
 	 * @param l
 	 * @param n
@@ -92,6 +116,7 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculate specular light
+	 * 
 	 * @param ks
 	 * @param l
 	 * @param n
@@ -108,6 +133,5 @@ public class RayTracerBasic extends RayTracerBase {
 		vr = Math.pow(vr, nShininess);
 		return lightIntensity.scale(ks * vr);
 	}
-
 
 }
