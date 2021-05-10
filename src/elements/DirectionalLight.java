@@ -36,4 +36,10 @@ public class DirectionalLight extends Light implements LightSource{
 		return direction.normalized();
 	}
 
+	@Override
+	public double getDistance(Point3D point) {
+		// TODO Auto-generated method stub
+		return Double.POSITIVE_INFINITY;
+	}
+
 }

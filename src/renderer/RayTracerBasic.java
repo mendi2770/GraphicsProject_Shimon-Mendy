@@ -29,7 +29,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param gp
 	 * @return Boolean value if the unshaded check was successful
 	 */
-	private boolean unshaded(Vector l, Vector n, GeoPoint gp) {
+	private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint gp) {
 		Vector lightDirection = l.scale(-1); // from point to light source
 		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
 		Point3D point = gp.point.add(delta);
@@ -88,7 +88,7 @@ public class RayTracerBasic extends RayTracerBase {
 			Vector l = lightSource.getL(intersection.point);
 			double nl = alignZero(n.dotProduct(l));
 			if (nl * nv > 0) { // checks if nl == nv
-				if (unshaded(l, n, intersection)) {
+				if (unshaded(lightSource, l, n, intersection)) {
 					Color lightIntensity = lightSource.getIntensity(intersection.point);
 					color = color.add(calcDiffusive(kd, l, n, lightIntensity),
 							calcSpecular(ks, l, n, v, nShininess, lightIntensity));
