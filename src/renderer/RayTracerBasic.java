@@ -35,7 +35,14 @@ public class RayTracerBasic extends RayTracerBase {
 		Point3D point = gp.point.add(delta);
 		Ray lightRay = new Ray(lightDirection, point);
 		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-		return intersections == null;
+		if (intersections == null)
+			return true;
+		double lightDistance = light.getDistance(gp.point);
+		for (GeoPoint geop : intersections) {
+			if (alignZero(geop.point.distance(gp.point) - lightDistance) <= 0)
+				return false;
+		}
+		return true;
 	}
 
 	/**
