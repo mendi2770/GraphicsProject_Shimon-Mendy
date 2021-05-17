@@ -10,6 +10,13 @@ package primitives;
 public class Material {
 
 	public double kD = 0, kS = 0;
+	
+	/**
+	 * KT = transparency coefficient
+	 * KR = reflection coefficient
+	 */
+	public double kT = 0.0, kR = 0.0;
+	
 	public int nShininess = 0;
 	
 	/**
@@ -42,26 +49,23 @@ public class Material {
 		return this;
 	}
 
-//	/**
-//	 * @return The kD
-//	 */
-//	public double getkD() {
-//		return kD;
-//	}
-//
-//	/**
-//	 * @return The kS
-//	 */
-//	public double getkS() {
-//		return kS;
-//	}
-//
-//	/**
-//	 * @return The nShininess
-//	 */
-//	public int getnShininess() {
-//		return nShininess;
-//	}
+	/**
+	 * @param kT
+	 * @return This
+	 */
+	public Material setkT(double kT) {
+		this.kT = kT;
+		return this;
+	}
 
+	/**
+	 * 
+	 * @param kR
+	 * @return This
+	 */
+	public Material setkR(double kR) {
+		this.kR = kR;
+		return this;
+	}
 
 }
