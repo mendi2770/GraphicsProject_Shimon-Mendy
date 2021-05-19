@@ -5,6 +5,7 @@ package renderer;
 
 import java.util.List;
 
+import elements.AmbientLight;
 import elements.LightSource;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
@@ -21,9 +22,10 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private static final double DELTA = 0.1;
 
+	private static final double INITIAL_K = 1.0;
 
 	/**
-	 * Consts for stop condition 
+	 * Consts for stop condition
 	 */
 	private static final int MAX_CALC_COLOR_LEVEL = 10;
 	private static final double MIN_CALC_COLOR_K = 0.001;
@@ -64,11 +66,17 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	@Override
 	public Color traceRay(Ray ray) {
-		List<GeoPoint> intersectionsPoints = scene.geometries.findGeoIntersections(ray);
-		if (intersectionsPoints == null)
-			return scene.background;
-		else
-			return calcColor(ray.findClosestGeoPoint(intersectionsPoints), ray);
+		GeoPoint closestPoint = findClosestIntersection(ray);
+		return closestPoint == null ? Color.BLACK : calcColor(closestPoint, ray);
+//		List<GeoPoint> intersectionsPoints = scene.geometries.findGeoIntersections(ray);
+//		if (intersectionsPoints == null)
+//			return scene.background;
+//		else
+//			return calcColor(ray.findClosestGeoPoint(intersectionsPoints), ray);
+	}
+
+	private Color calcColor(GeoPoint geopoint, Ray ray) {
+		return calcColor(geopoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K).add(scene.ambientLight.getIntensity());
 	}
 
 	/**
@@ -77,9 +85,34 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param point
 	 * @return The color of the point (calculated with local effects)
 	 */
-	public Color calcColor(GeoPoint point, Ray ray) {
-		return scene.ambientLight.getIntensity().add(point.geometry.getEmission()).add(calcLocalEffects(point, ray));
+	public Color calcColor(GeoPoint point, Ray ray, int level, double k) {
+		Color color = point.geometry.getEmission();
+		color = color.add(calcLocalEffects(point, ray));
+		return 1 == level ? color : color.add(calcGlobalEffects(point, ray, level, k));
+		// return
+		// scene.ambientLight.getIntensity().add(point.geometry.getEmission()).add(calcLocalEffects(point,
+		// ray));
 	}
+
+	private Color calcGlobalEffects(GeoPoint geopoint, Ray ray, int level, double k) {
+		Color color = Color.BLACK;
+		Material material = geopoint.geometry.getMaterial();
+		double kr = material.getkR(), kkr = k * kr;
+		if (kkr > MIN_CALC_COLOR_K) {
+			Ray reflectedRay = constructReflectedRay(n, geopoint.point, inRay);
+			GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
+			color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+		}
+		double kt = material.getkT(), kkt = k * kt;
+		if (kkt > MIN_CALC_COLOR_K) {
+			Ray refractedRay = constructRefractedRay(n, geopoint.point, inRay);
+			GeoPoint refractedPoint = findClosestIntersection(refractedRay);
+			color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+		}
+		return color;
+	}
+	
+	private GeoPoint findClosestIntersection(Ray ray);
 
 	/**
 	 * Calculate the effects of lights
