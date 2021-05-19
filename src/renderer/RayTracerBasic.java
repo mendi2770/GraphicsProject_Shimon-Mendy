@@ -75,13 +75,18 @@ public class RayTracerBasic extends RayTracerBase {
 //			return calcColor(ray.findClosestGeoPoint(intersectionsPoints), ray);
 	}
 
+	/**
+	 * Help method to original "calcColor" function
+	 * @param geopoint
+	 * @param ray
+	 * @return The color from the original calcColor function
+	 */
 	private Color calcColor(GeoPoint geopoint, Ray ray) {
 		return calcColor(geopoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K).add(scene.ambientLight.getIntensity());
 	}
 
 	/**
 	 * Calculate the color of a certain point
-	 * 
 	 * @param point
 	 * @return The color of the point (calculated with local effects)
 	 */
@@ -94,6 +99,14 @@ public class RayTracerBasic extends RayTracerBase {
 		// ray));
 	}
 
+	/**
+	 * 
+	 * @param geopoint
+	 * @param ray
+	 * @param level
+	 * @param k
+	 * @return The color with the global effects
+	 */
 	private Color calcGlobalEffects(GeoPoint geopoint, Ray ray, int level, double k) {
 		Color color = Color.BLACK;
 		Material material = geopoint.geometry.getMaterial();
@@ -112,7 +125,27 @@ public class RayTracerBasic extends RayTracerBase {
 		return color;
 	}
 	
-	private GeoPoint findClosestIntersection(Ray ray);
+	private Ray constructReflectedRay(Vector n, Point3D point,Ray inRay){
+		Vector v = inRay.getDir();
+		Vector r = v.subtract(n.scale(2 * (n.dotProduct(v)))); 
+		return new Ray(point ,r.normalize(),n);
+	}
+	
+	private Ray constructRefractedRay(Vector n, Point3D point, Ray inRay) {
+		return new Ray(inRay.getDir(), point , n);
+	}
+	
+	
+	/** 
+	 * @param ray
+	 * @return The closest intersection point
+	 */
+	private GeoPoint findClosestIntersection(Ray ray) {
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+		if(intersections == null)
+			return null;
+		return ray.findClosestGeoPoint(intersections);
+	}
 
 	/**
 	 * Calculate the effects of lights
