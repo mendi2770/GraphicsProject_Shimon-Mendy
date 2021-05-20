@@ -1,6 +1,6 @@
 package primitives;
 
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
@@ -8,6 +8,8 @@ import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 
+	private static final double DELTA = 0.1;
+	
 	/**
 	 * Point on the ray
 	 */
@@ -27,6 +29,18 @@ public class Ray {
 	public Ray(Vector vec, Point3D p) {
 		dir = vec.normalized(); // The given vector is normalized
 		p0 = new Point3D(p.x.coord, p.y.coord, p.z.coord);
+	}
+	
+	/**
+	 * Constructor calculate the movement normal by delta
+	 * @param vecDir
+	 * @param p
+	 * @param n
+	 */
+	public Ray(Vector vecDir, Point3D p , Vector n) {	
+		dir = vecDir; 
+		Vector delta = n.scale(alignZero(n.dotProduct(dir) > 0 ? DELTA : -DELTA));
+		p0 = p.add(delta);
 	}
 
 	/**
