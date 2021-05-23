@@ -6,6 +6,7 @@ package unittests;
 import org.junit.Test;
 
 import elements.*;
+import geometries.Plane;
 import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
@@ -134,18 +135,20 @@ public class ReflectionRefractionTests {
 		scene.setAmbientLight(new Color(java.awt.Color.WHITE), 0.15);
 
 		scene.geometries.add( //
+				new Plane(new Point3D(10, 0, -10), new Point3D(0, 10, -10), new Point3D(-10, 0, -10))
+				.setEmission(new Color(190,0,190)),
 				new Polygon(new Point3D(10, 0, -5), new Point3D(0, 10, -5), new Point3D(-10, 0, -5),
 						new Point3D(0, -10, -5))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
 				new Polygon(new Point3D(10, 0, -5), new Point3D(0, -10, -5), new Point3D(0, -10, 0),
 						new Point3D(10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
 				new Polygon(new Point3D(10, 0, -5), new Point3D(0, 10, -5), new Point3D(0, 10, 0),
 						new Point3D(10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
 				new Polygon(new Point3D(-10, 0, -5), new Point3D(0, 10, -5), new Point3D(0, 10, 0),
 						new Point3D(-10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
 				new Polygon(new Point3D(-10, 0, -5), new Point3D(0, -10, -5), new Point3D(0, -10, 0),
 						new Point3D(-10, 0, 0))
 								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
@@ -155,20 +158,20 @@ public class ReflectionRefractionTests {
 				new Triangle(new Point3D(10, 0, 0), new Point3D(0, -10, 0), new Point3D(0, 0, 10)) //
 						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.3)), //
 				new Triangle(new Point3D(10, 0, 0), new Point3D(0, 10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(1)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.8)), //
 				new Triangle(new Point3D(-10, 0, 0), new Point3D(0, 10, 0), new Point3D(0, 0, 10)) //
 						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.3)), //
 				new Triangle(new Point3D(-10, 0, 0), new Point3D(0, -10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(1)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.6)), //
 				new Sphere(new Point3D(0, 0, 3), 2) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(30).setkT(0.6)),
 				new Sphere(new Point3D(3, 0, -4), 2) //
 						.setEmission(new Color(java.awt.Color.RED)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(80).setkT(0)),
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(50).setkT(0.2)),
 				new Sphere(new Point3D(-3, 0, -4), 2) //
 						.setEmission(new Color(java.awt.Color.GREEN)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(80).setkT(0)));
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(50).setkT(0.2)));
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(100, 100, 90), new Vector(0, 0, -1), 1, 0, 0) //
 				.setkL(4E-5).setkQ(2E-7));
