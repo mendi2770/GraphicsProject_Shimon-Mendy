@@ -124,56 +124,55 @@ public class ReflectionRefractionTests {
 	}
 
 	/**
-	 * Produce a picture of a pyramid lighted by a spot light with a partially
-	 * transparent Sphere producing partial shadow
+	 * Produce a picture of a pyramid lighted by a spot light with a mirror effects
 	 */
 	@Test
-	public void pyramideTransparentSphere() {
-		Camera camera = new Camera(new Point3D(-70, -70, 70), new Vector(1, 1, -1), new Vector(1, 1, 2))//
+	public void pyramidTransparentSphere() {
+		Camera camera = new Camera(new Point3D(-140, 20, 35), new Vector(1, -0.15, -0.25), new Vector(1, 0, 4))//
 				.setViewPlaneSize(200, 200).setDistance(1000);
 
 		scene.setAmbientLight(new Color(java.awt.Color.WHITE), 0.15);
 
 		scene.geometries.add( //
-				new Plane(new Point3D(10, 0, -10), new Point3D(0, 10, -10), new Point3D(-10, 0, -10))
-				.setEmission(new Color(190,0,190)),
-				new Polygon(new Point3D(10, 0, -5), new Point3D(0, 10, -5), new Point3D(-10, 0, -5),
-						new Point3D(0, -10, -5))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
-				new Polygon(new Point3D(10, 0, -5), new Point3D(0, -10, -5), new Point3D(0, -10, 0),
+				new Plane(new Point3D(10, 0, -30), new Point3D(0, 10, -30), new Point3D(-10, 0, -30))
+				.setEmission(new Color(190,0,190)).setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0).setkR(1)),
+				new Polygon(new Point3D(10, 0, -10), new Point3D(0, 10, -10), new Point3D(-10, 0, -10),
+						new Point3D(0, -10, -10))
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.2).setkR(0)),
+				new Polygon(new Point3D(10, 0, -10), new Point3D(0, -10, -10), new Point3D(0, -10, 0),
 						new Point3D(10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
-				new Polygon(new Point3D(10, 0, -5), new Point3D(0, 10, -5), new Point3D(0, 10, 0),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0).setkR(1)),
+				new Polygon(new Point3D(10, 0, -10), new Point3D(0, 10, -10), new Point3D(0, 10, 0),
 						new Point3D(10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
-				new Polygon(new Point3D(-10, 0, -5), new Point3D(0, 10, -5), new Point3D(0, 10, 0),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.4)),
+				new Polygon(new Point3D(-10, 0, -10), new Point3D(0, 10, -10), new Point3D(0, 10, 0),
 						new Point3D(-10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0)),
-				new Polygon(new Point3D(-10, 0, -5), new Point3D(0, -10, -5), new Point3D(0, -10, 0),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.8)),
+				new Polygon(new Point3D(-10, 0, -10), new Point3D(0, -10, -10), new Point3D(0, -10, 0),
 						new Point3D(-10, 0, 0))
-								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(1)),
+								.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.4)),
 				new Polygon(new Point3D(10, 0, 0), new Point3D(0, -10, 0), new Point3D(-10, 0, 0),
 					new Point3D(0, 10, 0))
-							.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.2)),
+							.setMaterial(new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.5)),
 				new Triangle(new Point3D(10, 0, 0), new Point3D(0, -10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.3)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.5).setkR(0)), //
 				new Triangle(new Point3D(10, 0, 0), new Point3D(0, 10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.8)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(1)), //
 				new Triangle(new Point3D(-10, 0, 0), new Point3D(0, 10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.3)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.8)), //
 				new Triangle(new Point3D(-10, 0, 0), new Point3D(0, -10, 0), new Point3D(0, 0, 10)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(0.6)), //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(60).setkT(1)), //
 				new Sphere(new Point3D(0, 0, 3), 2) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(30).setkT(0.6)),
-				new Sphere(new Point3D(3, 0, -4), 2) //
+				new Sphere(new Point3D(3, 0, -6), 2) //
 						.setEmission(new Color(java.awt.Color.RED)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(50).setkT(0.2)),
-				new Sphere(new Point3D(-3, 0, -4), 2) //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(30).setkT(0).setkR(1)),
+				new Sphere(new Point3D(-3, 3, -6), 2) //
 						.setEmission(new Color(java.awt.Color.GREEN)) //
-						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(50).setkT(0.2)));
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setnShininess(30).setkT(0.5)));
 
-		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(100, 100, 90), new Vector(0, 0, -1), 1, 0, 0) //
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(30, 30, 100), new Vector(0, 0, -1), 1, 0, 0) //
 				.setkL(4E-5).setkQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadowPyramid", 600, 600);
