@@ -72,12 +72,6 @@ public class RayTracerBasic extends RayTracerBase {
 	public Color traceRay(Ray ray) {
 		GeoPoint closestPoint = findClosestIntersection(ray);
 		return closestPoint == null ? Color.BLACK : calcColor(closestPoint, ray);
-
-//		List<GeoPoint> intersectionsPoints = scene.geometries.findGeoIntersections(ray);
-//		if (intersectionsPoints == null)
-//			return scene.background;
-//		else
-//			return calcColor(ray.findClosestGeoPoint(intersectionsPoints), ray);
 	}
 
 	/**
@@ -101,9 +95,6 @@ public class RayTracerBasic extends RayTracerBase {
 		Color color = point.geometry.getEmission();
 		color = color.add(calcLocalEffects(point, ray));
 		return 1 == level ? color : color.add(calcGlobalEffects(point, ray, level, k));
-		// return
-		// scene.ambientLight.getIntensity().add(point.geometry.getEmission()).add(calcLocalEffects(point,
-		// ray));
 	}
 
 	/**
