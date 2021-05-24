@@ -156,6 +156,7 @@ public class Camera {
 	 * @return Linked List of rays
 	 */
 	public LinkedList<Ray> constructSampledRays(int nX, int nY, int j, int i) {
+		Point3D pCenter = findCenterOfPixel(nX, nY, j, i);
 		return null;
 	}
 
