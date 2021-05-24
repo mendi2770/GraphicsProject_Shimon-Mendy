@@ -2,6 +2,8 @@ package elements;
 
 import static primitives.Util.*;
 
+import java.util.LinkedList;
+
 import primitives.*;
 
 /**
@@ -112,6 +114,52 @@ public class Camera {
 	}
 
 	/**
+	 * Finds the middle of the pixle
+	 * 
+	 * @param nX
+	 * @param nY
+	 * @param j
+	 * @param i
+	 * @return
+	 */
+	private Point3D findCenterOfPixel(int nX, int nY, int j, int i) {
+		// Image center:
+		Point3D pCenter = this.p0.add(vTo.scale(this.distance));
+
+		// Ratio:
+		double Ry = this.height / nY;
+		double Rx = this.width / nX;
+
+		if (nX % 2 == 0 || nY % 2 == 0) { // In case the number of columns or rows is even, it moves the Pceneter to the
+											// (0,0) pixel
+			pCenter = new Point3D(pCenter.getX() - Rx / 2, pCenter.getY() - Ry / 2, pCenter.getZ());
+		}
+		// Pixel[i,j] center
+		double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
+		double xj = alignZero((j - (nX - 1) / 2) * Rx);
+		Point3D pIJ = pCenter;
+		// To avoid a zero vector exception
+		if (xj != 0)
+			pIJ = pIJ.add(vRight.scale(xj));
+		if (yi != 0)
+			pIJ = pIJ.add(vUp.scale(yi));
+		return pIJ;
+	}
+
+	/**
+	 * Calculates the super sampled rays in a pixel
+	 * 
+	 * @param nX
+	 * @param nY
+	 * @param j
+	 * @param i
+	 * @return Linked List of rays
+	 */
+	public LinkedList<Ray> constructSampledRays(int nX, int nY, int j, int i) {
+		return null;
+	}
+
+	/**
 	 * Calculates the ray that goes through the middle of a pixel i,j on the view
 	 * plane
 	 * 
@@ -122,25 +170,7 @@ public class Camera {
 	 * @return The ray that goes through the middle of a pixel i,j on the view plane
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-		// Image center:
-		Point3D pCenter = this.p0.add(vTo.scale(this.distance));
-
-		// Ratio:
-		double Ry = this.height / nY;
-		double Rx = this.width / nX;
-
-		if (nX % 2 == 0 || nY % 2 == 0) {	// In case the number of columns or rows is even, it moves the Pceneter to the (0,0) pixel
-			pCenter = new Point3D(pCenter.getX() - Rx / 2,pCenter.getY() - Ry / 2, pCenter.getZ());
-		}
-		//Pixel[i,j] center
-		double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
-		double xj = alignZero((j - (nX - 1) / 2) * Rx);
-		Point3D pIJ = pCenter;
-		// To avoid a zero vector exception
-		if (xj != 0)
-			pIJ = pIJ.add(vRight.scale(xj));
-		if (yi != 0)
-			pIJ = pIJ.add(vUp.scale(yi));
+		Point3D pIJ = findCenterOfPixel(nX, nY, j, i);
 		Vector vIJ = pIJ.subtract(this.p0);
 		return new Ray(vIJ, p0);
 	}
