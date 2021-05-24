@@ -65,6 +65,7 @@ public class RayTracerBasic extends RayTracerBase {
 		super(sc);
 	}
 
+	
 	/**
 	 * Implementation for the abstract method traceRay
 	 */
