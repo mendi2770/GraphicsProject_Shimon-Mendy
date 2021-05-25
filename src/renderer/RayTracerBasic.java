@@ -3,7 +3,9 @@
  */
 package renderer;
 
+import java.util.LinkedList;
 import java.util.List;
+
 
 import elements.AmbientLight;
 import elements.LightSource;
@@ -28,9 +30,10 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private static final int MAX_CALC_COLOR_LEVEL = 10;
 	private static final double MIN_CALC_COLOR_K = 0.001;
-	
+
 	/**
 	 * Checks if there is no shade between a point and a light source
+	 * 
 	 * @param ls
 	 * @param l
 	 * @param n
@@ -65,7 +68,6 @@ public class RayTracerBasic extends RayTracerBase {
 		super(sc);
 	}
 
-	
 	/**
 	 * Implementation for the abstract method traceRay
 	 */
@@ -129,7 +131,7 @@ public class RayTracerBasic extends RayTracerBase {
 		}
 		return color;
 	}
-	
+
 	/**
 	 * 
 	 * @param geopoint
@@ -160,6 +162,7 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculate the reflection ray
+	 * 
 	 * @param n
 	 * @param point
 	 * @param inRay
@@ -173,6 +176,7 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculate the refracted ray
+	 * 
 	 * @param n
 	 * @param point
 	 * @param inRay
@@ -229,5 +233,16 @@ public class RayTracerBasic extends RayTracerBase {
 		return lightIntensity.scale(ks * vr);
 	}
 
-	
+	/**
+	 * @param sampledRays
+	 * @return The average color
+	 */
+	public Color calcAverageColor(LinkedList<Ray> sampledRays) {
+		Color totalColor = traceRay(sampledRays.get(0));
+		for (Ray ray : sampledRays) {
+			totalColor.add(traceRay(ray));
+		}
+		return totalColor.scale(1 / sampledRays.size());
+	}
+
 }

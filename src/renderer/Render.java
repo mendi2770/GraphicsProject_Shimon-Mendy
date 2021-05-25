@@ -30,7 +30,6 @@ public class Render {
 		return this;
 	}
 
-
 	/**
 	 * @param The camera to set
 	 */
@@ -63,21 +62,24 @@ public class Render {
 		// writes it to the image pixles
 		int nY = this.imageWriter.getNy();
 		int nX = this.imageWriter.getNx();
-		Ray ray;
+		Ray basicRay;
 		LinkedList<Ray> sampledRays = new LinkedList<>();
 		for (int j = 0; j < nY; j++) {
 			for (int i = 0; i < nX; i++) {
-				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls																	
+				basicRay = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
 																			// "constructRayThroughPixel" function
-				sampledRays = camera.constructSampledRays(nX, nY, j, i);
-				imageWriter.writePixel(j, i, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it
-																			// to the image
+				//sampledRays = camera.constructSampledRays(nX, nY, j, i);
+				//sampledRays.add(basicRay);
+				//Color averageColor = rayTracerBasic.calcAverageColor(sampledRays);
+				//imageWriter.writePixel(j, i, averageColor);
+			    imageWriter.writePixel(j, i, rayTracerBasic.traceRay(basicRay)); // Traces
+																					// the color of the ray and writes it
+																					// to the image
 			}
 		}
 
 	}
 
-	
 	/**
 	 * Method for coloring only the grid lines
 	 * 
@@ -87,7 +89,7 @@ public class Render {
 	public void printGrid(int interval, Color color) {
 		if (imageWriter == null) // In case the image writer is empty
 			throw new MissingResourceException("Missing", "resource", "for an imageWriter");
-		for (int i = 0; i < imageWriter.getNx(); i++)	// The loop goes through all the pixels
+		for (int i = 0; i < imageWriter.getNx(); i++) // The loop goes through all the pixels
 			for (int j = 0; j < imageWriter.getNy(); j++)
 				if (i % interval == 0 && i != 0 || j % interval == 0 && j != 0) // In case we are in the grid lines
 					imageWriter.writePixel(i, j, color);
