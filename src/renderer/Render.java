@@ -64,10 +64,12 @@ public class Render {
 		int nY = this.imageWriter.getNy();
 		int nX = this.imageWriter.getNx();
 		Ray ray;
+		LinkedList<Ray> sampledRays = new LinkedList<>();
 		for (int j = 0; j < nY; j++) {
 			for (int i = 0; i < nX; i++) {
-				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
-																		// "constructRayThroughPixel" function
+				ray = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls																	
+																			// "constructRayThroughPixel" function
+				sampledRays = camera.constructSampledRays(nX, nY, j, i);
 				imageWriter.writePixel(j, i, rayTracerBasic.traceRay(ray)); // Traces the color of the ray and writes it
 																			// to the image
 			}
@@ -75,6 +77,7 @@ public class Render {
 
 	}
 
+	
 	/**
 	 * Method for coloring only the grid lines
 	 * 

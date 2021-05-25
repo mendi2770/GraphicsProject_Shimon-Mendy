@@ -2,6 +2,7 @@ package elements;
 
 import static primitives.Util.*;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import primitives.*;
@@ -156,8 +157,18 @@ public class Camera {
 	 * @return Linked List of rays
 	 */
 	public LinkedList<Ray> constructSampledRays(int nX, int nY, int j, int i) {
+		LinkedList<Ray> result = new LinkedList<Ray>();
 		Point3D pCenter = findCenterOfPixel(nX, nY, j, i);
-		return null;
+		double Ry = this.height / nY;
+		double Rx = this.width / nX;
+		for (int k = 0; k < 4; k++) {
+			double randX = random(-Rx / 2, Rx / 2);
+			double randY = random(-Ry / 2, Ry / 2);
+			Point3D sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ());
+			Ray ray = new Ray(sPoint.subtract(this.p0), this.p0);
+			result.add(ray);
+		}
+		return result;
 	}
 
 	/**

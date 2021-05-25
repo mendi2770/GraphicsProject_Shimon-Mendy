@@ -229,4 +229,5 @@ public class RayTracerBasic extends RayTracerBase {
 		return lightIntensity.scale(ks * vr);
 	}
 
+	
 }
