@@ -19,6 +19,14 @@ import static primitives.Util.*;
  */
 public class RayTracerBasic extends RayTracerBase {
 
+
+	/**
+	 * @param sc Ctor using super class constructor
+	 */
+	public RayTracerBasic(Scene sc) {
+		super(sc);
+	}
+	
 	/**
 	 * Head of rays movement const
 	 */
@@ -61,12 +69,6 @@ public class RayTracerBasic extends RayTracerBase {
 		return ktr;
 	}
 
-	/**
-	 * @param sc Ctor using super class constructor
-	 */
-	public RayTracerBasic(Scene sc) {
-		super(sc);
-	}
 
 	/**
 	 * Implementation for the abstract method traceRay
