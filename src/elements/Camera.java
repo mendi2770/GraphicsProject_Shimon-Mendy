@@ -161,7 +161,7 @@ public class Camera {
 		Point3D pCenter = findCenterOfPixel(nX, nY, j, i);
 		double Ry = this.height / nY;
 		double Rx = this.width / nX;
-		for (int k = 0; k < 4; k++) {
+		for (int k = 0; k < 50; k++) {
 			double randX = random(-Rx / 2, Rx / 2);
 			double randY = random(-Ry / 2, Ry / 2);
 			Point3D sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ());

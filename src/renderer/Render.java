@@ -67,14 +67,15 @@ public class Render {
 		for (int j = 0; j < nY; j++) {
 			for (int i = 0; i < nX; i++) {
 				basicRay = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
-																			// "constructRayThroughPixel" function
-				//sampledRays = camera.constructSampledRays(nX, nY, j, i);
-				//sampledRays.add(basicRay);
-				//Color averageColor = rayTracerBasic.calcAverageColor(sampledRays);
-				//imageWriter.writePixel(j, i, averageColor);
-			    imageWriter.writePixel(j, i, rayTracerBasic.traceRay(basicRay)); // Traces
-																					// the color of the ray and writes it
-																					// to the image
+																		// "constructRayThroughPixel" function
+				sampledRays = camera.constructSampledRays(nX, nY, j, i);
+				Color averageColor = rayTracerBasic.calcAverageColor(sampledRays, basicRay);
+				imageWriter.writePixel(j, i, averageColor);
+				//Color temeColor = rayTracerBasic.traceRay(basicRay);
+				//imageWriter.writePixel(j, i, temeColor); // Traces
+				// the color of the ray and writes it
+				// to the image
+				
 			}
 		}
 

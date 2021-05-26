@@ -239,12 +239,13 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param sampledRays
 	 * @return The average color
 	 */
-	public Color calcAverageColor(LinkedList<Ray> sampledRays) {
-		Color totalColor = traceRay(sampledRays.get(0));
+	public Color calcAverageColor(LinkedList<Ray> sampledRays , Ray basicRay) {
+		Color totalColor1 = traceRay(basicRay);
 		for (Ray ray : sampledRays) {
-			totalColor.add(traceRay(ray));
+			totalColor1 = totalColor1.add(traceRay(ray));
 		}
-		return totalColor.scale(1 / sampledRays.size());
+		Color totalColor2 = totalColor1.scale((1 / (Double.valueOf(sampledRays.size() + 1))));
+		return totalColor2;
 	}
 
 }
