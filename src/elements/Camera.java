@@ -163,23 +163,24 @@ public class Camera {
 	 * @param nY
 	 * @param j
 	 * @param i
-	 * @return Linked List of rays
+	 * @return Linked List of the sampled rays
 	 */
 	public LinkedList<Ray> constructSampledRays(int nX, int nY, int j, int i) {
 		LinkedList<Ray> result = new LinkedList<Ray>();
 		Point3D pCenter = findCenterOfPixel(nX, nY, j, i);
-		double Ry = this.height / nY;
+		double Ry = this.height / nY; 
 		double Rx = this.width / nX;
 		double randX;
 		double randY;
 		Point3D sPoint;
-		Ray ray;
+		Ray sRay;
+		// The loop finds random rays at the needed amount in the margins of the pixel
 		for (int k = 0; k < amountOfSampledRays; k++) {
-			randX = random(-Rx / 2, Rx / 2);
-			randY = random(-Ry / 2, Ry / 2);
-			sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ());
-			ray = new Ray(sPoint.subtract(this.p0), this.p0);
-			result.add(ray);
+			randX = random(-Rx / 2, Rx / 2); // Random x value of the new point on the view plane
+			randY = random(-Ry / 2, Ry / 2); // Random y value of the new point on the view plane
+			sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ()); // Creates the new sampled point
+			sRay = new Ray(sPoint.subtract(this.p0), this.p0); // Creates the sampled ray 
+			result.add(sRay); // Add the ray to the list of sampled rays
 		}
 		return result;
 	}
