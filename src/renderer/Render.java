@@ -74,8 +74,7 @@ public class Render {
 				//Color temeColor = rayTracerBasic.traceRay(basicRay);
 				//imageWriter.writePixel(j, i, temeColor); // Traces
 				// the color of the ray and writes it
-				// to the image
-				
+				// to the image				
 			}
 		}
 

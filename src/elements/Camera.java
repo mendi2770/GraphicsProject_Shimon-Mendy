@@ -22,6 +22,15 @@ public class Camera {
 	private double width;
 	private double height;
 	private double distance;
+	private int amountOfSampledRays = 0;
+
+	/**
+	 * @param amountOfSampledRays the amountOfSampledRays to set
+	 */
+	public Camera setAmountOfSampledRays(int amountOfSampledRays) {
+		this.amountOfSampledRays = amountOfSampledRays;
+		return this;
+	}
 
 	/**
 	 * @return the p0
@@ -161,11 +170,15 @@ public class Camera {
 		Point3D pCenter = findCenterOfPixel(nX, nY, j, i);
 		double Ry = this.height / nY;
 		double Rx = this.width / nX;
-		for (int k = 0; k < 50; k++) {
-			double randX = random(-Rx / 2, Rx / 2);
-			double randY = random(-Ry / 2, Ry / 2);
-			Point3D sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ());
-			Ray ray = new Ray(sPoint.subtract(this.p0), this.p0);
+		double randX;
+		double randY;
+		Point3D sPoint;
+		Ray ray;
+		for (int k = 0; k < amountOfSampledRays; k++) {
+			randX = random(-Rx / 2, Rx / 2);
+			randY = random(-Ry / 2, Ry / 2);
+			sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ());
+			ray = new Ray(sPoint.subtract(this.p0), this.p0);
 			result.add(ray);
 		}
 		return result;

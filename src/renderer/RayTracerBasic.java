@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-import elements.AmbientLight;
 import elements.LightSource;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
@@ -19,14 +18,6 @@ import static primitives.Util.*;
  */
 public class RayTracerBasic extends RayTracerBase {
 
-
-	/**
-	 * @param sc Ctor using super class constructor
-	 */
-	public RayTracerBasic(Scene sc) {
-		super(sc);
-	}
-	
 	/**
 	 * Head of rays movement const
 	 */
@@ -39,36 +30,17 @@ public class RayTracerBasic extends RayTracerBase {
 	private static final int MAX_CALC_COLOR_LEVEL = 10;
 	private static final double MIN_CALC_COLOR_K = 0.001;
 
+
 	/**
-	 * Checks if there is no shade between a point and a light source
-	 * 
-	 * @param ls
-	 * @param l
-	 * @param n
-	 * @param geoPoint
-	 * @return Double value if the transparency check was successful
+	 * @param sc Ctor using super class constructor
 	 */
-	private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
-		Vector lightDirection = l.scale(-1); // from point to light source
-
-		Ray lightRay = new Ray(lightDirection, geoPoint.point, n);
-
-		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-		if (intersections == null)
-			return 1.0;
-
-		double lightDistance = ls.getDistance(geoPoint.point);
-		double ktr = 1.0;
-		for (GeoPoint geop : intersections) {
-			if (alignZero(geop.point.distance(geoPoint.point) - lightDistance) <= 0) {
-				ktr *= geop.geometry.getMaterial().getkT();
-				if (ktr < MIN_CALC_COLOR_K)
-					return 0.0;
-			}
-		}
-		return ktr;
+	public RayTracerBasic(Scene sc) {
+		super(sc);
 	}
+	
 
+
+	
 
 	/**
 	 * Implementation for the abstract method traceRay
@@ -163,6 +135,37 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
+	 * Checks if there is no shade between a point and a light source
+	 * 
+	 * @param ls
+	 * @param l
+	 * @param n
+	 * @param geoPoint
+	 * @return Double value if the transparency check was successful
+	 */
+	private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
+		Vector lightDirection = l.scale(-1); // from point to light source
+
+		Ray lightRay = new Ray(lightDirection, geoPoint.point, n);
+
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+		if (intersections == null)
+			return 1.0;
+
+		double lightDistance = ls.getDistance(geoPoint.point);
+		double ktr = 1.0;
+		for (GeoPoint geop : intersections) {
+			if (alignZero(geop.point.distance(geoPoint.point) - lightDistance) <= 0) {
+				ktr *= geop.geometry.getMaterial().getkT();
+				if (ktr < MIN_CALC_COLOR_K)
+					return 0.0;
+			}
+		}
+		return ktr;
+	}
+
+	
+	/**
 	 * Calculate the reflection ray
 	 * 
 	 * @param n
@@ -240,12 +243,11 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @return The average color
 	 */
 	public Color calcAverageColor(LinkedList<Ray> sampledRays , Ray basicRay) {
-		Color totalColor1 = traceRay(basicRay);
+		Color totalColor = traceRay(basicRay);
 		for (Ray ray : sampledRays) {
-			totalColor1 = totalColor1.add(traceRay(ray));
+			totalColor = totalColor.add(traceRay(ray));
 		}
-		Color totalColor2 = totalColor1.scale((1 / (Double.valueOf(sampledRays.size() + 1))));
-		return totalColor2;
+		return totalColor.scale((1 / (Double.valueOf(sampledRays.size() + 1)))); // Calculates the average color
 	}
 
 }
