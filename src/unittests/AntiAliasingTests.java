@@ -20,8 +20,16 @@ import renderer.RayTracerBasic;
 import renderer.Render;
 import scene.Scene;
 
-public class AntiAliasingTests {
-	
+/**
+ * @author 97253
+ *Test classs for Anti-aliasing improvment
+ */
+
+public class AntiAliasingTests {	
+	/**
+	 * Produce a picture of a pyramid lighted
+	 * using Anti-aliasing improvment
+	 */ 
 	private Scene scene = new Scene("Test scene");
 	@Test
 	public void test() {
@@ -63,7 +71,9 @@ public class AntiAliasingTests {
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(30, 30, 100), new Vector(0, 0, -1), 1, 0, 0) //
 				.setkL(4E-5).setkQ(2E-7));
+		
 		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(60, 60, 200), 1, 0.0005, 0.0005));
+		
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(120, 120, 300), new Vector(0, 0, -1), 1, 0, 0) //
 				.setkL(4E-5).setkQ(2E-7));
 
