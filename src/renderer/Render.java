@@ -63,21 +63,29 @@ public class Render {
 		int nY = this.imageWriter.getNy();
 		int nX = this.imageWriter.getNx();
 		Ray basicRay;
-		LinkedList<Ray> sampledRays = new LinkedList<>();
-		for (int j = 0; j < nY; j++) {
-			for (int i = 0; i < nX; i++) {
-				basicRay = (camera.constructRayThroughPixel(nX, nY, j, i)); // For each pixel calls
-																		// "constructRayThroughPixel" function
-				sampledRays = camera.constructSampledRays(nX, nY, j, i);
-				Color averageColor = rayTracerBasic.calcAverageColor(sampledRays, basicRay);
-				imageWriter.writePixel(j, i, averageColor);
-				//Color temeColor = rayTracerBasic.traceRay(basicRay);
-				//imageWriter.writePixel(j, i, temeColor); // Traces
-				// the color of the ray and writes it
-				// to the image				
+		
+		//In case the amount of rays go through pixel are only one ray (the basic ray)
+		if (camera.getAmountOfSampledRays() == 0) {
+			for (int j = 0; j < nY; j++) {
+				for (int i = 0; i < nX; i++) {
+					basicRay = camera.constructRayThroughPixel(nX, nY, j, i); // For each pixel calls
+																				// "constructRayThroughPixel" function
+					imageWriter.writePixel(j, i, rayTracerBasic.traceRay(basicRay)); // Traces the color of the ray and
+																						// writes itto the image
+				}
+			}
+		}		
+		//In case the amount of rays go through pixel are more than one ray (sampled rays)
+		else {
+			LinkedList<Ray> rays = new LinkedList<>();
+			for (int j = 0; j < nY; j++) {
+				for (int i = 0; i < nX; i++) {
+					rays = camera.constructSampledRays(nX, nY, j, i);
+					imageWriter.writePixel(j, i, rayTracerBasic.calcAverageColor(rays)); // Traces the color of the 
+																						//rays and writes it to the image
+				}
 			}
 		}
-
 	}
 
 	/**

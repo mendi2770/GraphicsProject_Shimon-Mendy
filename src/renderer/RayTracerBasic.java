@@ -30,16 +30,13 @@ public class RayTracerBasic extends RayTracerBase {
 	private static final int MAX_CALC_COLOR_LEVEL = 10;
 	private static final double MIN_CALC_COLOR_K = 0.001;
 
-
+	
 	/**
 	 * @param sc Ctor using super class constructor
 	 */
 	public RayTracerBasic(Scene sc) {
 		super(sc);
 	}
-	
-
-
 	
 
 	/**
@@ -239,15 +236,15 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
-	 * @param sampledRays
-	 * @return The average color
+	 * @param rays
+	 * @return The average color of the rays
 	 */
-	public Color calcAverageColor(LinkedList<Ray> sampledRays , Ray basicRay) {
-		Color totalColor = traceRay(basicRay);
-		for (Ray ray : sampledRays) {
+	public Color calcAverageColor(LinkedList<Ray> rays) {
+		Color totalColor = Color.BLACK;
+		for (Ray ray : rays) {
 			totalColor = totalColor.add(traceRay(ray));
 		}
-		return totalColor.scale((1 / (Double.valueOf(sampledRays.size() + 1)))); // Calculates the average color
+		return totalColor.scale((1 / (Double.valueOf(rays.size())))); // Calculates the average color
 	}
 
 }
