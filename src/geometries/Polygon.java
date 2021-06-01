@@ -1,5 +1,6 @@
 package geometries;
 
+import java.time.chrono.MinguoChronology;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import static primitives.Util.*;
  * @author Dan
  */
 public class Polygon extends Geometry {
+
 	/**
 	 * List of polygon's vertices
 	 */
@@ -89,41 +91,72 @@ public class Polygon extends Geometry {
 		return plane.getNormal();
 	}
 
-	
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) {		Vector v1;
-	Vector v2;
-	Vector n;
-	double t;
-	List<GeoPoint> resultPoints = plane.findGeoIntersections(ray);
-	if (resultPoints == null) // In case there is no intersection with the plane return null
-		return null;
-	boolean positive = true;
-	boolean negtive = true;
-	for (int i = 0; i < vertices.size() ; i++) {
-		if (i == vertices.size() - 1) {
-			v1 = vertices.get(i).subtract(ray.getP0());
-			v2 = vertices.get(0).subtract(ray.getP0());
-			n = v1.crossProduct(v2).normalize();
-			t = alignZero(n.dotProduct(ray.getDir()));
-		} else {
-			v1 = vertices.get(i).subtract(ray.getP0());
-			v2 = vertices.get(i + 1).subtract(ray.getP0());
-			n = v1.crossProduct(v2).normalize();
-			t = alignZero(n.dotProduct(ray.getDir()));
-		}
-		if (t == 0)
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		Vector v1;
+		Vector v2;
+		Vector n;
+		double t;
+		List<GeoPoint> resultPoints = plane.findGeoIntersections(ray);
+		if (resultPoints == null) // In case there is no intersection with the plane return null
 			return null;
-		if (t * 1 < 0)
-			positive = false;
-		else if (t * -1 < 0)
-			negtive = false;
+		boolean positive = true;
+		boolean negtive = true;
+		for (int i = 0; i < vertices.size(); i++) {
+			if (i == vertices.size() - 1) {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(0).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			} else {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(i + 1).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			}
+			if (t == 0)
+				return null;
+			if (t * 1 < 0)
+				positive = false;
+			else if (t * -1 < 0)
+				negtive = false;
+		}
+		if (negtive || positive) {
+			LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
+			result.add(new GeoPoint(this, resultPoints.get(0).point));
+			return result;
+		}
+		return null;
 	}
-	if (negtive || positive) {
-		LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
-		result.add(new GeoPoint(this, resultPoints.get(0).point));
-		return result;
-	}
-	return null;
+
+	@Override
+	public Box createBox() {
+
+		double maxX = vertices.get(0).getX();
+		double maxY = vertices.get(0).getY();
+		double maxZ = vertices.get(0).getZ();
+		double minX = maxX;
+		double minY = maxY;
+		double minZ = maxZ;
+		for (int i = 1; i < vertices.size(); i++) {
+			if (maxX < vertices.get(i).getX()) 
+				maxX = vertices.get(i).getX();
+			
+			if (maxY < vertices.get(i).getY()) 
+				maxY = vertices.get(i).getY();	
+			
+			if (maxZ < vertices.get(i).getZ()) 
+				maxZ = vertices.get(i).getZ();	
+			
+			if (minX > vertices.get(i).getX()) 
+				minX = vertices.get(i).getX();	
+			
+			if (minY > vertices.get(i).getY()) 
+				minY = vertices.get(i).getY();	
+			
+			if (minZ > vertices.get(i).getZ()) 
+				minZ = vertices.get(i).getZ();	
+		}
+		return new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
 }
