@@ -5,7 +5,7 @@ package primitives;
 
 /**
  * @author 97253
- *
+ * Box class for every shape
  */
 public class Box {
 
