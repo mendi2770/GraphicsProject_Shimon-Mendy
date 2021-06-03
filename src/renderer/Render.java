@@ -29,7 +29,7 @@ public class Render {
 
 	private int threadsCount = 0;
 	private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
-	private boolean print = false; // printing progress percentage
+	private boolean print = true; // printing progress percentage
 	
 
 	/**
@@ -269,6 +269,7 @@ public class Render {
 					castRay(nX, nY, pixel.col, pixel.row);
 			});
 		}
+		
 		// Start threads
 		for (Thread thread : threads)
 			thread.start();
@@ -306,8 +307,8 @@ public class Render {
 		
 		// Calls the multi thread to start:
 		if (threadsCount == 0)
-			for (int j = 0; j < nY; ++j)
-				for (int i = 0; i < nX; ++i)
+			for (int i = 0; i < nY; ++i)
+				for (int j = 0; j < nX; ++j)
 					castRay(nX, nY, j, i);
 		else
 			renderImageThreaded();
