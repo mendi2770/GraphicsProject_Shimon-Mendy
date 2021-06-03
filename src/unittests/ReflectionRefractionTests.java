@@ -29,7 +29,7 @@ public class ReflectionRefractionTests {
 	@Test
 	public void twoSpheres() {
 		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setViewPlaneSize(150, 150).setDistance(1000);
+				.setViewPlaneSize(150, 150).setDistance(1000).setAmountOfSampledRays(0);
 
 		scene.geometries.add( //
 				new Sphere(new Point3D(0, 0, -50), 50) //
@@ -45,7 +45,8 @@ public class ReflectionRefractionTests {
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene));
+				.setRayTracerBasic(new RayTracerBasic(scene))
+				.setMultithreading(1);
 		render.renderImage();
 		render.writeToImage();
 	}

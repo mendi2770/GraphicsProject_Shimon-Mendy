@@ -306,8 +306,8 @@ public class Render {
 		
 		// Calls the multi thread to start:
 		if (threadsCount == 0)
-			for (int i = 0; i < nY; ++i)
-				for (int j = 0; j < nX; ++j)
+			for (int j = 0; j < nY; ++j)
+				for (int i = 0; i < nX; ++i)
 					castRay(nX, nY, j, i);
 		else
 			renderImageThreaded();
