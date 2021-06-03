@@ -29,7 +29,7 @@ public class AntiAliasingTests {
 	/**
 	 * Produce a picture of a pyramid lighted
 	 * using Anti-aliasing improvment
-	 */ 
+	 **/ 
 	private Scene scene = new Scene("Test scene");
 	@Test
 	public void test() {
