@@ -13,6 +13,12 @@ import geometries.Intersectable.GeoPoint;
 
 public class Tube extends Geometry {
 
+	@Override
+	public Box createBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	protected Ray axisRay;
 	protected double radius;
 

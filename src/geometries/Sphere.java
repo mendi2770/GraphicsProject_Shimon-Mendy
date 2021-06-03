@@ -13,6 +13,8 @@ public class Sphere extends Geometry {
 	private Point3D center;
 	private double radius;
 
+	
+	
 	/**
 	 * @param center
 	 * @param radius
@@ -93,5 +95,11 @@ public class Sphere extends Geometry {
 			return result;
 		}
 		return null; // In case there are no intersections pointss
+	}
+	
+	@Override
+	public Box createBox() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
