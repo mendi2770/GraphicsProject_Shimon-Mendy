@@ -315,7 +315,7 @@ public class Render {
 	}
 
 	/**
-	 * Method for coloring only the grid lines
+	 * Method for coloring only the grid lines.
 	 * 
 	 * @param interval
 	 * @param color
