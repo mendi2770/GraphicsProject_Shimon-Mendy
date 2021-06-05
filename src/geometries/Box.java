@@ -1,7 +1,7 @@
 /**
  * 
  */
-package primitives;
+package geometries;
 
 /**
  * @author 97253
