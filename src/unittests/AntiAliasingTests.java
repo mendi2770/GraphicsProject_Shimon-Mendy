@@ -28,14 +28,14 @@ import scene.Scene;
 public class AntiAliasingTests {	
 	/**
 	 * Produce a picture of a pyramid lighted
-	 * using Anti-aliasing improvment
+	 * using Anti-aliasing improvement
 	 **/ 
 	private Scene scene = new Scene("Test scene");
 	@Test
 	public void test() {
 		Camera camera = new Camera(new Point3D(-140, 20, 35), new Vector(1, -0.15, -0.25), new Vector(1, 0, 4))//
 				.setViewPlaneSize(200, 200).setDistance(1000)
-				.setAmountOfSampledRays(0); // Turn on/off the test by changing the amount
+				.setAmountOfSampledRays(150); // Turn on/off the test by changing the amount
 
 		scene.setAmbientLight(new Color(java.awt.Color.WHITE), 0.15);
 
