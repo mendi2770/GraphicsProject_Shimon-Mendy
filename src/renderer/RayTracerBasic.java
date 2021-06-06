@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import elements.LightSource;
+import geometries.Geometries;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
 import scene.Scene;
@@ -245,6 +246,10 @@ public class RayTracerBasic extends RayTracerBase {
 			totalColor = totalColor.add(traceRay(ray));
 		}
 		return totalColor.scale((1 / (Double.valueOf(rays.size())))); // Calculates the average color
+	}
+
+	public boolean findBoxIntersectionOfScene(Ray ray) {
+		return false;
 	}
 
 }

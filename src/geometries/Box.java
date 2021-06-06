@@ -6,8 +6,7 @@ package geometries;
 import primitives.Ray;
 
 /**
- * @author 97253
- * Box class for every shape
+ * @author 97253 Box class for every shape
  */
 public class Box {
 
@@ -17,7 +16,7 @@ public class Box {
 	public double minX;
 	public double minY;
 	public double minZ;
-	
+
 	/**
 	 * 
 	 */
@@ -41,19 +40,18 @@ public class Box {
 		this.minY = minY;
 		this.minZ = minZ;
 	}
-	
-	public boolean IsRayHitBox(Ray ray)
-	{
+
+	public boolean IsRayHitBox(Ray ray) {
 		// Ray coordinates:
 		double rDx = ray.getDir().getHead().getX();
 		double rDy = ray.getDir().getHead().getY();
 		double rDz = ray.getDir().getHead().getZ();
-		
+
 		// Ray head point coordinates:
 		double rOx = ray.getP0().getX();
 		double rOy = ray.getP0().getY();
 		double rOz = ray.getP0().getZ();
-		
+
 		// In case the ray is parallel to one of the dimensions
 		// there is no intersection with the box:
 		if (rDx == 0 && rOx < minX || rOx > maxX)
@@ -62,43 +60,71 @@ public class Box {
 			return false;
 		if (rDz == 0 && rOz < minZ || rOz > maxZ)
 			return false;
-		
-		
+
 		// Intersection distance t1 and t2 for each dimension:
 		double temp;
-		double t1, t2;
-		double t1x = (minX - rOx) / rDx;
-		double t2x = (maxX - rOx) / rDx;
-		if (t1x > t2x)
-		{
-			temp = t1x;
-			t1x = t2x;
-			t2x = temp;
-		}
-			
-		
-		double t1y = (minY - rOy) / rDy;
-		double t2y = (maxY - rOy) / rDy;
-		if (t1y > t2y)
-		{
-			temp = t1y;
-			t1y = t2y;
-			t2y = temp;
-		}
-		
-		double t1z = (minZ - rOz) / rDz;
-		double t2z = (maxZ - rOz) / rDz;
-		if (t1z > t2z)
-		{
-			temp = t1z;
-			t1z = t2z;
-			t2z = temp;
-		}
+		double t1 = 0, t2 = 0, tStart = 0, tEnd = 0;
+		for (int i = 0; i < 3; i++) {
+			if (i == 0) { 				// check dimension x
+				t1 = (minX - rOx) / rDx;
+				t2 = (maxX - rOx) / rDx;
+				tStart = t1;
+				tEnd = t2;
+			}
+			if (i == 1) { 				// check dimension y
+				t1 = (minY - rOy) / rDy;
+				t2 = (maxY - rOy) / rDy;
+			}
+			if (i == 2) { 				// check dimension z
+				t1 = (minZ - rOz) / rDz;
+				t2 = (maxZ - rOz) / rDz;
+			}
+			if (t1 > t2) {
+				temp = t1;
+				t1 = t2;
+				t2 = temp;
+			}
+			if (t1 > tStart)
+				tStart = t1;
 
-		
-		
-		return false;
+			if (t2 < tEnd)
+				tEnd = t2;
+		}
+		if (tStart > tEnd) 	// Box is missed
+			return false;
+		if (tEnd < 0)		// Box is behind
+			return false;
+		else				// closest intersection at tStart or tEnd
+			return true;
+
+//		double t1x = (minX - rOx) / rDx;
+//		double t2x = (maxX - rOx) / rDx;
+//		if (t1x > t2x)
+//		{
+//			temp = t1x;
+//			t1x = t2x;
+//			t2x = temp;
+//		}
+//			
+//		
+//		double t1y = (minY - rOy) / rDy;
+//		double t2y = (maxY - rOy) / rDy;
+//		if (t1y > t2y)
+//		{
+//			temp = t1y;
+//			t1y = t2y;
+//			t2y = temp;
+//		}
+//		
+//		double t1z = (minZ - rOz) / rDz;
+//		double t2z = (maxZ - rOz) / rDz;
+//		if (t1z > t2z)
+//		{
+//			temp = t1z;
+//			t1z = t2z;
+//			t2z = temp;
+//		}
+
 	}
-	
-	
+
 }
