@@ -66,6 +66,7 @@ public class Box {
 		
 		// Intersection distance t1 and t2 for each dimension:
 		double temp;
+		double t1, t2;
 		double t1x = (minX - rOx) / rDx;
 		double t2x = (maxX - rOx) / rDx;
 		if (t1x > t2x)
