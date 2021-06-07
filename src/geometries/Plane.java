@@ -20,7 +20,7 @@ public class Plane extends Geometry {
 	 * @param y
 	 * @param z
 	 */
-	
+
 	public Plane(Point3D x, Point3D y, Point3D z) {
 
 		if (x.equals(y) || y.equals(z) || z.equals(x))
@@ -77,6 +77,7 @@ public class Plane extends Geometry {
 	}
 
 	double pInfiniteDouble = Double.POSITIVE_INFINITY;
+
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		if (isBoxOn && !box.IsRayHitBox(ray))
@@ -96,10 +97,23 @@ public class Plane extends Geometry {
 
 	@Override
 	protected void createBox() {
-		// TODO Auto-generated method stub
-		
-		
 		double pInfinite = Double.POSITIVE_INFINITY;
 		double nInfinite = Double.NEGATIVE_INFINITY;
+		Vector nX = new Vector(new Point3D(1, 0, 0));
+		Vector nY = new Vector(new Point3D(0, 1, 0));
+		Vector nZ = new Vector(new Point3D(0, 0, 1));
+
+		if (nX.equals(normal) || nX.scale(-1).equals(normal)) {
+			box = new Box(q0.getX(), pInfinite, pInfinite, q0.getX(), nInfinite, nInfinite);
+		}
+		else if (nY.equals(normal) || nY.scale(-1).equals(normal)) {
+			box = new Box(pInfinite, q0.getY(), pInfinite, nInfinite, q0.getY(), nInfinite);
+		}
+
+		else if (nZ.equals(normal) || nZ.scale(-1).equals(normal)) {
+			box = new Box(pInfinite, pInfinite, q0.getZ(), nInfinite, nInfinite, q0.getZ());
+		}
+		else 
+			box = new Box(pInfinite, pInfinite, pInfinite, nInfinite, nInfinite, nInfinite);
 	}
 }
