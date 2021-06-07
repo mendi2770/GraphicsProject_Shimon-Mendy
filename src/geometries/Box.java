@@ -41,7 +41,7 @@ public class Box {
 		this.minZ = minZ;
 	}
 
-	public boolean IsRayHitBox(Ray ray) {
+	public boolean IsRayHitBox(Ray ray) {		
 		// Ray coordinates:
 		double rDx = ray.getDir().getHead().getX();
 		double rDy = ray.getDir().getHead().getY();
