@@ -54,6 +54,8 @@ public class Sphere extends Geometry {
 	
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (isBoxOn && !box.IsRayHitBox(ray))
+			return null;
 		// We used "alignZero" in this function to make the calculation accurate
 		double r = this.radius;
 		// Special case: if point q0 == center, that mean that all we need to calculate
@@ -99,7 +101,15 @@ public class Sphere extends Geometry {
 	
 	@Override
 	protected void createBox() {
-		// TODO Auto-generated method stub
 		
+		double maxX = radius + center.getX();
+		double maxY = radius + center.getY();
+		double maxZ = radius + center.getZ();
+		
+		double minX = radius - center.getX();
+		double minY = radius - center.getY();
+		double minZ = radius - center.getZ();
+		
+		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
 }

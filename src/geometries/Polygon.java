@@ -94,6 +94,8 @@ public class Polygon extends Geometry {
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (isBoxOn && !box.IsRayHitBox(ray))
+			return null;
 		Vector v1;
 		Vector v2;
 		Vector n;
@@ -139,23 +141,23 @@ public class Polygon extends Geometry {
 		double minY = maxY;
 		double minZ = maxZ;
 		for (int i = 1; i < vertices.size(); i++) {
-			if (maxX < vertices.get(i).getX()) 
+			if (maxX < vertices.get(i).getX())
 				maxX = vertices.get(i).getX();
-			
-			if (maxY < vertices.get(i).getY()) 
-				maxY = vertices.get(i).getY();	
-			
-			if (maxZ < vertices.get(i).getZ()) 
-				maxZ = vertices.get(i).getZ();	
-			
-			if (minX > vertices.get(i).getX()) 
-				minX = vertices.get(i).getX();	
-			
-			if (minY > vertices.get(i).getY()) 
-				minY = vertices.get(i).getY();	
-			
-			if (minZ > vertices.get(i).getZ()) 
-				minZ = vertices.get(i).getZ();	
+
+			if (maxY < vertices.get(i).getY())
+				maxY = vertices.get(i).getY();
+
+			if (maxZ < vertices.get(i).getZ())
+				maxZ = vertices.get(i).getZ();
+
+			if (minX > vertices.get(i).getX())
+				minX = vertices.get(i).getX();
+
+			if (minY > vertices.get(i).getY())
+				minY = vertices.get(i).getY();
+
+			if (minZ > vertices.get(i).getZ())
+				minZ = vertices.get(i).getZ();
 		}
 		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}

@@ -76,9 +76,11 @@ public class Plane extends Geometry {
 		return "q0: " + q0.toString() + " normal: " + normal.toString();
 	}
 
-	
+	double pInfiniteDouble = Double.POSITIVE_INFINITY;
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (isBoxOn && !box.IsRayHitBox(ray))
+			return null;
 		// In case there are zeroes in denominator and numerator
 		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
 				|| isZero(this.normal.dotProduct(q0.subtract(ray.getP0()))))
@@ -96,5 +98,8 @@ public class Plane extends Geometry {
 	protected void createBox() {
 		// TODO Auto-generated method stub
 		
+		
+		double pInfinite = Double.POSITIVE_INFINITY;
+		double nInfinite = Double.NEGATIVE_INFINITY;
 	}
 }
