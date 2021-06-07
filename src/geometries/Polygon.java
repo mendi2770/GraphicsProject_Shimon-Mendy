@@ -1,6 +1,5 @@
 package geometries;
 
-import java.time.chrono.MinguoChronology;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -84,6 +83,7 @@ public class Polygon extends Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
+		createBox();
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	public Box createBox() {
+	protected void createBox() {
 
 		double maxX = vertices.get(0).getX();
 		double maxY = vertices.get(0).getY();
@@ -157,6 +157,6 @@ public class Polygon extends Geometry {
 			if (minZ > vertices.get(i).getZ()) 
 				minZ = vertices.get(i).getZ();	
 		}
-		return new Box(maxX, maxY, maxZ, minX, minY, minZ);
+		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
 }

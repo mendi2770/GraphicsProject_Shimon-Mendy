@@ -9,8 +9,20 @@ public abstract class Geometry implements Intersectable {
 	
 	protected Color emission = Color.BLACK;
 	private Material material = new Material();
-	public Box box = new Box();
 	
+	public Box box = new Box();	
+	public boolean isBoxOn = true; // For the on/off feature 
+	
+	
+	/**
+	 * @param isBoxOn the isBoxOn to set
+	 */
+	public Geometry setBoxOn(boolean isBoxOn) {
+		this.isBoxOn = isBoxOn;
+		return this;
+	}
+
+
 	/**
 	 * @return the material
 	 */
@@ -82,7 +94,7 @@ public abstract class Geometry implements Intersectable {
 		return box;
 	}
 	
-	public abstract Box createBox();
+	protected abstract void createBox();
 	
 	
 }

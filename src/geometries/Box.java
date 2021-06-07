@@ -97,34 +97,6 @@ public class Box {
 		else				// closest intersection at tStart or tEnd
 			return true;
 
-//		double t1x = (minX - rOx) / rDx;
-//		double t2x = (maxX - rOx) / rDx;
-//		if (t1x > t2x)
-//		{
-//			temp = t1x;
-//			t1x = t2x;
-//			t2x = temp;
-//		}
-//			
-//		
-//		double t1y = (minY - rOy) / rDy;
-//		double t2y = (maxY - rOy) / rDy;
-//		if (t1y > t2y)
-//		{
-//			temp = t1y;
-//			t1y = t2y;
-//			t2y = temp;
-//		}
-//		
-//		double t1z = (minZ - rOz) / rDz;
-//		double t2z = (maxZ - rOz) / rDz;
-//		if (t1z > t2z)
-//		{
-//			temp = t1z;
-//			t1z = t2z;
-//			t2z = temp;
-//		}
-
 	}
 
 }

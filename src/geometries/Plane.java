@@ -91,10 +91,10 @@ public class Plane extends Geometry {
 		result.add(p);
 		return result;
 	}
-	
+
 	@Override
-	public Box createBox() {
+	protected void createBox() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 }

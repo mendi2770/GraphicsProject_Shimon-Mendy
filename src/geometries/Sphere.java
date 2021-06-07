@@ -98,8 +98,8 @@ public class Sphere extends Geometry {
 	}
 	
 	@Override
-	public Box createBox() {
+	protected void createBox() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 }
