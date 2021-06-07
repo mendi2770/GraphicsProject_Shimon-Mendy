@@ -80,7 +80,7 @@ public class Plane extends Geometry {
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
-		if (isBoxOn && !box.IsRayHitBox(ray))
+		if (box != null && !box.IsRayHitBox(ray))
 			return null;
 		// In case there are zeroes in denominator and numerator
 		if (ray.getP0().equals(q0) || isZero(this.normal.dotProduct(ray.getDir()))
@@ -96,7 +96,7 @@ public class Plane extends Geometry {
 	}
 
 	@Override
-	protected void createBox() {
+	public Plane setBox() {
 		double pInfinite = Double.POSITIVE_INFINITY;
 		double nInfinite = Double.NEGATIVE_INFINITY;
 		Vector nX = new Vector(new Point3D(1, 0, 0));
@@ -115,5 +115,6 @@ public class Plane extends Geometry {
 		}
 		else 
 			box = new Box(pInfinite, pInfinite, pInfinite, nInfinite, nInfinite, nInfinite);
+		return this;
 	}
 }

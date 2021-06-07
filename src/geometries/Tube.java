@@ -61,9 +61,9 @@ public class Tube extends Geometry {
 	}
 	
 	@Override
-	protected void createBox() {
+	public Tube setBox() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 	/*************** Admin *****************/

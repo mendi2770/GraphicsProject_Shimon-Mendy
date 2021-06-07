@@ -14,14 +14,11 @@ public class Triangle extends Polygon {
 
 	public Triangle(Point3D a, Point3D b, Point3D c) {
 		super(a, b, c);
-		
-		if (this.isBoxOn)
-			super.createBox();
 	}
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
-		if (isBoxOn && !box.IsRayHitBox(ray))
+		if (box != null && !box.IsRayHitBox(ray))
 			return null;
 		List<GeoPoint> resultPoint = plane.findGeoIntersections(ray);
 		if (resultPoint == null) // In case there is no intersection with the plane return null

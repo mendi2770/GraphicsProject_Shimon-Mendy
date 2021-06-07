@@ -57,8 +57,6 @@ public class Polygon extends Geometry {
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
 		
-		if (this.isBoxOn)
-			createBox();
 		Vector n = plane.getNormal();
 
 		// Subtracting any subsequent points will throw an IllegalArgumentException
@@ -96,7 +94,7 @@ public class Polygon extends Geometry {
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
-		if (isBoxOn && !box.IsRayHitBox(ray))
+		if (box != null && !box.IsRayHitBox(ray))
 			return null;
 		Vector v1;
 		Vector v2;
@@ -135,7 +133,7 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	protected void createBox() {
+	public Polygon setBox() {
 		double maxX = vertices.get(0).getX();
 		double maxY = vertices.get(0).getY();
 		double maxZ = vertices.get(0).getZ();
@@ -162,5 +160,6 @@ public class Polygon extends Geometry {
 				minZ = vertices.get(i).getZ();
 		}
 		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
+		return this;
 	}
 }

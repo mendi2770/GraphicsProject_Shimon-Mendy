@@ -20,8 +20,6 @@ public class Sphere extends Geometry {
 	public Sphere(Point3D center, double radius) {
 		this.center = center;
 		this.radius = radius;
-		if (isBoxOn)
-			createBox();
 	}
 
 	/**
@@ -53,7 +51,7 @@ public class Sphere extends Geometry {
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
-		if (isBoxOn && !box.IsRayHitBox(ray))
+		if (box != null && !box.IsRayHitBox(ray))
 			return null;
 		// We used "alignZero" in this function to make the calculation accurate
 		double r = this.radius;
@@ -97,7 +95,7 @@ public class Sphere extends Geometry {
 	}
 
 	@Override
-	protected void createBox() {
+	public Sphere setBox() {
 		
 		double maxX = center.getX() + radius;
 		double maxY = center.getY() + radius;
@@ -108,5 +106,7 @@ public class Sphere extends Geometry {
 		double minZ = center.getZ() - radius;
 
 		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
+		
+		return this;		
 	}
 }
