@@ -247,9 +247,4 @@ public class RayTracerBasic extends RayTracerBase {
 		}
 		return totalColor.scale((1 / (Double.valueOf(rays.size())))); // Calculates the average color
 	}
-
-	public boolean findBoxIntersectionOfScene(Ray ray) {
-		return false;
-	}
-
 }
