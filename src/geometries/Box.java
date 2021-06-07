@@ -54,11 +54,11 @@ public class Box {
 
 		// In case the ray is parallel to one of the dimensions
 		// there is no intersection with the box:
-		if (rDx == 0 && rOx < minX || rOx > maxX)
+		if (rDx == 0 && (rOx < minX || rOx > maxX))
 			return false;
-		if (rDy == 0 && rOy < minY || rOy > maxY)
+		if (rDy == 0 && (rOy < minY || rOy > maxY))
 			return false;
-		if (rDz == 0 && rOz < minZ || rOz > maxZ)
+		if (rDz == 0 && (rOz < minZ || rOz > maxZ))
 			return false;
 
 		// Intersection distance t1 and t2 for each dimension:
@@ -68,8 +68,6 @@ public class Box {
 			if (i == 0) { 				// check dimension x
 				t1 = (minX - rOx) / rDx;
 				t2 = (maxX - rOx) / rDx;
-				tStart = t1;
-				tEnd = t2;
 			}
 			if (i == 1) { 				// check dimension y
 				t1 = (minY - rOy) / rDy;
@@ -84,6 +82,8 @@ public class Box {
 				t1 = t2;
 				t2 = temp;
 			}
+			tStart = t1;
+			tEnd = t2;
 			if (t1 > tStart)
 				tStart = t1;
 
@@ -92,8 +92,8 @@ public class Box {
 		}
 		if (tStart > tEnd) 	// Box is missed
 			return false;
-		if (tEnd < 0)		// Box is behind
-			return false;
+		else if (tEnd < 0)		// Box is behind
+			return true;
 		else				// closest intersection at tStart or tEnd
 			return true;
 

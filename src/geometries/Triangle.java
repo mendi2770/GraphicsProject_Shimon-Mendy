@@ -13,13 +13,16 @@ import geometries.Intersectable.GeoPoint;
 public class Triangle extends Polygon {
 
 	public Triangle(Point3D a, Point3D b, Point3D c) {
-
 		super(a, b, c);
+		
+		if (this.isBoxOn)
+			super.createBox();
 	}
-	
+
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
-
+		if (isBoxOn && !box.IsRayHitBox(ray))
+			return null;
 		List<GeoPoint> resultPoint = plane.findGeoIntersections(ray);
 		if (resultPoint == null) // In case there is no intersection with the plane return null
 			return null;
@@ -36,12 +39,12 @@ public class Triangle extends Polygon {
 		if (t1 == 0 || t2 == 0 || t3 == 0) // In case one or more of the scalars equals zero
 			return null; // that mean the point is not inside the triangle
 
-		if (t1 > 0 && t2 > 0 && t3 > 0 || t1 < 0 && t2 < 0 && t3 < 0) { // In case the all scalars are in the same sign, the point is in the triangle
+		if (t1 > 0 && t2 > 0 && t3 > 0 || t1 < 0 && t2 < 0 && t3 < 0) { // In case the all scalars are in the same sign,
+																		// the point is in the triangle
 			LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
 			result.add(new GeoPoint(this, resultPoint.get(0).point));
 			return result;
-		} 
-		else
-			return null;	//If the scalars are in a different sign
+		} else
+			return null; // If the scalars are in a different sign
 	}
 }

@@ -13,8 +13,6 @@ public class Sphere extends Geometry {
 	private Point3D center;
 	private double radius;
 
-	
-	
 	/**
 	 * @param center
 	 * @param radius
@@ -22,6 +20,8 @@ public class Sphere extends Geometry {
 	public Sphere(Point3D center, double radius) {
 		this.center = center;
 		this.radius = radius;
+		if (isBoxOn)
+			createBox();
 	}
 
 	/**
@@ -51,7 +51,6 @@ public class Sphere extends Geometry {
 		return "center: " + center.toString() + " radius: " + String.valueOf(this.radius);
 	}
 
-	
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		if (isBoxOn && !box.IsRayHitBox(ray))
@@ -66,7 +65,7 @@ public class Sphere extends Geometry {
 			result.add(new GeoPoint(this, p1));
 			return result;
 		}
-		
+
 		Vector u = center.subtract(ray.getP0());
 		double tm = u.dotProduct(ray.getDir());
 		double d = Math.sqrt(alignZero(u.lengthSquared() - tm * tm));
@@ -75,7 +74,7 @@ public class Sphere extends Geometry {
 		double th = Math.sqrt(r * r - d * d);
 		double t1 = tm + th;
 		double t2 = tm - th;
-		
+
 		if (alignZero(t1) > 0 && alignZero(t2) > 0) { // In case there are two intersection points
 			Point3D p1 = ray.getPoint(t1);
 			Point3D p2 = ray.getPoint(t2);
@@ -83,14 +82,12 @@ public class Sphere extends Geometry {
 			result.add(new GeoPoint(this, p1));
 			result.add(new GeoPoint(this, p2));
 			return result;
-		} 
-		else if (alignZero(t1) > 0 && alignZero(t2) <= 0) { // In case there is only one intersection point
+		} else if (alignZero(t1) > 0 && alignZero(t2) <= 0) { // In case there is only one intersection point
 			Point3D p1 = ray.getPoint(t1);
 			LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
 			result.add(new GeoPoint(this, p1));
 			return result;
-		} 
-		else if (alignZero(t1) <= 0 && alignZero(t2) > 0) { // In case there is only one intersection point
+		} else if (alignZero(t1) <= 0 && alignZero(t2) > 0) { // In case there is only one intersection point
 			Point3D p2 = ray.getPoint(t2);
 			LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
 			result.add(new GeoPoint(this, p2));
@@ -98,18 +95,18 @@ public class Sphere extends Geometry {
 		}
 		return null; // In case there are no intersections pointss
 	}
-	
+
 	@Override
 	protected void createBox() {
 		
-		double maxX = radius + center.getX();
-		double maxY = radius + center.getY();
-		double maxZ = radius + center.getZ();
-		
-		double minX = radius - center.getX();
-		double minY = radius - center.getY();
-		double minZ = radius - center.getZ();
-		
+		double maxX = center.getX() + radius;
+		double maxY = center.getY() + radius;
+		double maxZ = center.getZ() + radius;
+
+		double minX = center.getX() - radius;
+		double minY = center.getY() - radius;
+		double minZ = center.getZ() - radius;
+
 		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
 }

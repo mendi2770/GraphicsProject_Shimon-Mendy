@@ -22,7 +22,6 @@ public abstract class Geometry implements Intersectable {
 		return this;
 	}
 
-
 	/**
 	 * @return the material
 	 */
