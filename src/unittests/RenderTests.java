@@ -17,7 +17,7 @@ public class RenderTests {
 	private Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 			.setDistance(100) //
 			.setViewPlaneSize(500, 500)
-			.setAmountOfSampledRays(0);
+			.setAmountOfSampledRays(7);
 
 	/**
 	 * Produce a scene with basic 3D model and render it into a jpeg image with a
@@ -29,14 +29,14 @@ public class RenderTests {
 				.setAmbientLight(new Color(255, 191, 191), 1) //
 				.setBackground(new Color(75, 127, 90));
 
-		scene.geometries.add(new Sphere(new Point3D(0, 0, -100), 50),
-				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)), // up
+		scene.geometries.add(new Sphere(new Point3D(0, 0, -100), 50).setBox(),
+				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)).setBox(), // up
 																													// left
-				new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100), new Point3D(100, 100, -100)), // up
+				new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100), new Point3D(100, 100, -100)).setBox(), // up
 																													// right
-				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100), new Point3D(-100, -100, -100)), // down
+				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100), new Point3D(-100, -100, -100)).setBox(), // down
 																														// left
-				new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100))); // down
+				new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100)).setBox()); // down
 																													// right
 
 		ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);

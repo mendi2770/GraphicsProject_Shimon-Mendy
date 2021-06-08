@@ -168,13 +168,13 @@ public class Render {
 					// The CBR condition - Checks if the basic ray hits any box in the geometries.
 					// If true, only then it will construct super samples
 					// Else, it will write the pixel as black
-					if (rayTracerBasic.scene.geometries.isRayIntersectsAnyBox(camera.constructRayThroughPixel(nX, nY, pixel.col, pixel.row))) 
-					{
+					//if (rayTracerBasic.scene.geometries.isRayIntersectsAnyBox(camera.constructRayThroughPixel(nX, nY, pixel.col, pixel.row))) 
+					//{
 						LinkedList<Ray> rays = camera.constructSampledRays(nX, nY, pixel.col, pixel.row);
 						imageWriter.writePixel(pixel.col, pixel.row, rayTracerBasic.calcAverageColor(rays));
-					}
-					else 
-						imageWriter.writePixel(pixel.col, pixel.row, Color.BLACK);			
+					//}
+					//else 
+						//imageWriter.writePixel(pixel.col, pixel.row, Color.BLACK);			
 				}
 			});
 		}
