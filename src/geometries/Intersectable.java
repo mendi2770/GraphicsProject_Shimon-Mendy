@@ -9,12 +9,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.graalvm.compiler.nodes.NodeView.Default;
+
 /**
  * @author shimo
  *
  */
 public interface Intersectable {
 
+	
 	/**
 	 * The class GeoPoint contains Geometry and Point3D
 	 * @author shimo
@@ -59,6 +62,5 @@ public interface Intersectable {
 		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList()); 
 		}
 	
-	List<GeoPoint> findGeoIntersections(Ray ray);
-
+	List<GeoPoint> findGeoIntersections(Ray ray);	
 }

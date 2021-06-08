@@ -9,7 +9,6 @@ public abstract class Geometry implements Intersectable {
 	
 	protected Color emission = Color.BLACK;
 	private Material material = new Material();
-	
 	public Box box = new Box();	
 
 	/**
@@ -76,12 +75,6 @@ public abstract class Geometry implements Intersectable {
 	public abstract Vector getNormal(Point3D point);
 
 
-	/**
-	 * @return the box
-	 */
-	public Box getBox() {
-		return box;
-	}
 	
 	public abstract Geometry setBox();
 	

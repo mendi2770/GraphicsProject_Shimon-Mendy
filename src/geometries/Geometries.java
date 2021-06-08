@@ -64,6 +64,17 @@ public class Geometries implements Intersectable {
 		return result;
 	}
 
+	public boolean isRayIntersectsAnyBox(Ray ray) {
+		if (intersectables.isEmpty())		// In case the collection is empty
+			return false;
+
+		for (Intersectable geom : intersectables)	// The loop checks intersections for each shape
+		{
+			if (geom.IsRayHitBox(ray)) // If the ray hits any of the box - return true
+				return true;
+		}
+		return false; // The ray has been checked on each box, and there was no intersection
+	}
 	
 
 }
