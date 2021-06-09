@@ -8,6 +8,8 @@ import static primitives.Util.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+
 /**
  * @author shimo
  *
