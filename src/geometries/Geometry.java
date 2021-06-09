@@ -74,6 +74,8 @@ public abstract class Geometry implements Intersectable {
 	 */
 	public abstract Vector getNormal(Point3D point);
 
+
+	
 	public abstract Geometry setBox();
 	
 	
