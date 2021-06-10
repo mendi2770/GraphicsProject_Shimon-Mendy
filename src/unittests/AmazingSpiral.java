@@ -15,24 +15,44 @@ import java.lang.Math;
  * @author Dan
  */
 public class AmazingSpiral {
-	private final Camera camera = new Camera(new Point3D(0, 0, -500), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
-			.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(0);
+	private final Camera camera = new Camera(new Point3D(0, 0, -100), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
+			.setDistance(1000).setViewPlaneSize(200, 200);
 	private final Scene scene = new Scene("Test scene");
 
 	private static final Color color = new Color(200, 0, 0);
 	private static final Material mat = new Material().setKd(0.5).setKs(0.5).setnShininess(60);
-
+	private static final double radius = 0.7;
 
 	/**
 	 * Produce a scene with a 3D model and render it into a png image
 	 */
 	@Test
 	public void teapot1() {
-		
-		for (int i = 0; i < 50; i++)
-		scene.geometries.add( 
-				new Sphere(new Point3D(i, Math.sin(i), 0.00001 * i), 0.2).setEmission(color).setMaterial(mat) //
-		);
+		Point3D A;
+		Point3D B;
+		Point3D C;
+		Point3D D;
+		Point3D Aminus;
+		Point3D Bminus;
+		Point3D Cminus;
+		Point3D Dminus;
+		int j = 0;
+		for (int i = -25; i < 25; i++)			
+		{
+				A = new Point3D(i, Math.sqrt(25 - i * i), j);
+				B = new Point3D(i + 1, Math.sqrt(25 - i * i - 2*i - 1), j);
+				C = new Point3D(i, Math.sqrt(20 - i * i), j - 1);
+				D = new Point3D(i + 1, Math.sqrt(20 - i * i - 2*i - 1), j - 1);
+				Aminus = new Point3D(i, Math.sqrt(25 - i * i), j);
+				Bminus = new Point3D(i + 1, Math.sqrt(25 - i * i - 2*i - 1), j);
+				Cminus = new Point3D(i, Math.sqrt(20 - i * i), j - 1);
+				D = new Point3D(i + 1, Math.sqrt(20 - i * i - 2*i - 1), j - 1);
+				scene.geometries.add(						
+						new Triangle(A, B, C).setEmission(color)
+								.setMaterial(mat),
+					    new Triangle(B, C, D).setEmission(color)
+								.setMaterial(mat));
+		}
 		
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
