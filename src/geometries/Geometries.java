@@ -13,9 +13,9 @@ import primitives.Ray;
  * @author shimo
  *
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
-	private List<Intersectable> intersectables;
+	public List<Intersectable> intersectables;
 	
 	/**
 	 * Empty ctor
@@ -63,16 +63,39 @@ public class Geometries implements Intersectable {
 		}
 		return result;
 	}
+	
+	/**
+	 * Create big box that will contain all of the geometries
+	 */
+	@Override
+	public void setBox() {
+		double maxX = intersectables.get(0).box.maxX;
+		double maxY = intersectables.get(0).box.maxY;
+		double maxZ = intersectables.get(0).box.maxZ;
+		double minX = maxX;
+		double minY = maxY;
+		double minZ = maxZ;
+		
+		for(Intersectable geo : intersectables) {
+			
+			if (maxX < geo.box.maxX)
+				maxX = geo.box.maxX;
 
-//	public boolean isRayIntersectsAnyBox(Ray ray) {
-//		if (intersectables.isEmpty())		// In case the collection is empty
-//			return false;
-//
-//		for (Intersectable geom : intersectables)	// The loop checks intersections for each shape
-//		{
-//			if (geom.IsRayHitBox(ray)) // If the ray hits any of the box - return true
-//				return true;
-//		}
-//		return false; // The ray has been checked on each box, and there was no intersection
-//	}
+			if (maxY < geo.box.maxY)
+				maxY = geo.box.maxY;
+
+			if (maxZ < geo.box.maxZ)
+				maxZ = geo.box.maxZ;
+
+			if (minX > geo.box.minX)
+				minX = geo.box.minX;
+
+			if (minY > geo.box.minY)
+				minY = geo.box.minY;
+
+			if (minZ > geo.box.minZ)
+				minZ = geo.box.minZ;
+		}
+		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
+	}
 }

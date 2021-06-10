@@ -133,7 +133,7 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	public Polygon setBox() {
+	public void setBox() {
 		double maxX = vertices.get(0).getX();
 		double maxY = vertices.get(0).getY();
 		double maxZ = vertices.get(0).getZ();
@@ -160,6 +160,5 @@ public class Polygon extends Geometry {
 				minZ = vertices.get(i).getZ();
 		}
 		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
-		return this;
 	}
 }

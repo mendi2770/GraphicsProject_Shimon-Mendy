@@ -9,6 +9,7 @@ import java.util.List;
 
 import elements.LightSource;
 import geometries.Geometries;
+import geometries.Intersectable;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
 import scene.Scene;
@@ -39,6 +40,17 @@ public class RayTracerBasic extends RayTracerBase {
 		super(sc);
 	}
 	
+	/**
+	 * Function that creates boxes for each geometry (for on/off switch)
+	 * @return This
+	 */
+	public RayTracerBasic turnAllBoxesOn() {
+		
+		for(Intersectable geo :scene.geometries.intersectables) {
+			geo.setBox();
+		}
+		return this;
+	}
 
 	/**
 	 * Implementation for the abstract method traceRay
@@ -247,4 +259,5 @@ public class RayTracerBasic extends RayTracerBase {
 		}
 		return totalColor.scale((1 / (Double.valueOf(rays.size())))); // Calculates the average color
 	}
+	
 }

@@ -95,7 +95,7 @@ public class Sphere extends Geometry {
 	}
 
 	@Override
-	public Sphere setBox() {
+	public void setBox() {
 		
 		double maxX = center.getX() + radius;
 		double maxY = center.getY() + radius;
@@ -105,8 +105,6 @@ public class Sphere extends Geometry {
 		double minY = center.getY() - radius;
 		double minZ = center.getZ() - radius;
 
-		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
-		
-		return this;		
+		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);	
 	}
 }

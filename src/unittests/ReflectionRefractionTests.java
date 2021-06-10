@@ -176,10 +176,12 @@ public class ReflectionRefractionTests {
 				.setkL(4E-5).setkQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadowPyramid", 600, 600);
-		Render render = new Render() //
+		Render render = new Render() 
+				.setMultithreading(3)//
+				.setDebugPrint()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene));
+				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn());
 
 		render.renderImage();
 		render.writeToImage();

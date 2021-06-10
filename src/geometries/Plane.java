@@ -96,7 +96,7 @@ public class Plane extends Geometry {
 	}
 
 	@Override
-	public Plane setBox() {
+	public void setBox() {
 		double pInfinite = Double.POSITIVE_INFINITY;
 		double nInfinite = Double.NEGATIVE_INFINITY;
 		Vector nX = new Vector(new Point3D(1, 0, 0));
@@ -115,6 +115,5 @@ public class Plane extends Geometry {
 		}
 		else 
 			box = new Box(pInfinite, pInfinite, pInfinite, nInfinite, nInfinite, nInfinite);
-		return this;
 	}
 }

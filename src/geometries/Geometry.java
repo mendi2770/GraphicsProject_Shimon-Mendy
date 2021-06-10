@@ -5,11 +5,11 @@ import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
 
-public abstract class Geometry implements Intersectable {
+public abstract class Geometry extends Intersectable {
 	
 	protected Color emission = Color.BLACK;
 	private Material material = new Material();
-	public Box box = new Box();	
+
 
 	/**
 	 * @return the material
@@ -72,8 +72,5 @@ public abstract class Geometry implements Intersectable {
 	 * @param point
 	 * @return the normal vector of the shape
 	 */
-	public abstract Vector getNormal(Point3D point);
-	
-	public abstract Geometry setBox();
-	
+	public abstract Vector getNormal(Point3D point);	
 }

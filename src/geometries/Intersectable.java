@@ -14,8 +14,9 @@ import java.util.stream.Collectors;
  * @author shimo
  *
  */
-public interface Intersectable {
+public abstract class Intersectable {
 
+	public Box box;	
 	
 	/**
 	 * The class GeoPoint contains Geometry and Point3D
@@ -56,10 +57,13 @@ public interface Intersectable {
 	 * @param ray
 	 * @return List<Point3D> - list of intersections
 	 */
-	default List<Point3D> findIntersections(Ray ray) { 
+	public List<Point3D> findIntersections(Ray ray) { 
 		List<GeoPoint> geoList = findGeoIntersections(ray); 
 		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList()); 
 		}
+
+	abstract List<GeoPoint> findGeoIntersections(Ray ray);	
 	
-	List<GeoPoint> findGeoIntersections(Ray ray);	
+	public abstract void setBox();
+
 }

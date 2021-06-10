@@ -93,7 +93,7 @@ public class Box {
 		if (tStart > tEnd) 	// Box is missed
 			return false;
 		else if (tEnd < 0)		// Box is behind
-			return true;
+			return false;
 		else				// closest intersection at tStart or tEnd
 			return true;
 
