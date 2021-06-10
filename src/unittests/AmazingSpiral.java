@@ -28,27 +28,42 @@ public class AmazingSpiral {
 	 */
 	@Test
 	public void goblet() {
+		Point3D a;
+		Point3D b;
+		Point3D c;
+		Point3D d;
+		Point3D aMin;
+		Point3D bMin;
+		Point3D cMin;
+		Point3D dMin;
 		for (int j = 0; j > -5; j--) {
 			for (double i = -5; i < 5;) {
-				scene.geometries.add(
-						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-						new Sphere(new Point3D(i, Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
-								.setMaterial(mat),
-						new Sphere(new Point3D(i, -Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
-								.setMaterial(mat),
-						new Sphere(new Point3D(i, Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
-								.setMaterial(mat),
-						new Sphere(new Point3D(i, -Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
-								.setMaterial(mat));
+				a = new Point3D(i, Math.sqrt(25 + j*5 - i * i), j);
+				c = new Point3D(i, Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
+				aMin = new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j);
+				cMin = new Point3D(i, -Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
+//				scene.geometries.add(
+//						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+//						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+//						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+//						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat));
 				if (i < -1)
 					i = i - 1 / i;
 				else if (i > 1)
 					i = i + 1 / i;
 				else
 					i = i + 0.6;
+				b = new Point3D(i, Math.sqrt(25 + j*5 - i * i), j);
+				d = new Point3D(i, Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
+				bMin = new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j);
+				dMin = new Point3D(i, -Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
+				
+				scene.geometries.add(
+						new Triangle(a, b, c).setEmission(color).setMaterial(mat),
+						new Triangle(c, d, b).setEmission(color).setMaterial(mat),
+						new Triangle(aMin, bMin, cMin).setEmission(color).setMaterial(mat),
+						new Triangle(cMin, dMin, bMin).setEmission(color).setMaterial(mat));
+					
 			}
 		}
 
