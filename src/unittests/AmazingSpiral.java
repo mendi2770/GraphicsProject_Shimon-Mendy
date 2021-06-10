@@ -32,6 +32,7 @@ public class AmazingSpiral {
 
 		// Head of the goblet:
 		Point3D center = new Point3D(0, 0, 0);
+		Point3D newPoint;
 		double angle = 0.261; // 15 degree
 		Vector toMoveVector;
 		double oldX = -5;
@@ -48,7 +49,8 @@ public class AmazingSpiral {
 				newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
 				newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
 				toMoveVector = new Vector(newX, newY, j);
-				scene.geometries.add(new Sphere(center.add(toMoveVector), radius).setEmission(color).setMaterial(mat));
+				newPoint = center.add(toMoveVector);
+				scene.geometries.add(new Sphere(newPoint, radius).setEmission(color).setMaterial(mat));
 				oldX = newX;
 				oldY = newY;
 			}
