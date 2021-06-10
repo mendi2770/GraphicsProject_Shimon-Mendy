@@ -27,33 +27,31 @@ public class AmazingSpiral {
 	 * Produce a scene with a 3D model and render it into a png image
 	 */
 	@Test
-	public void teapot1() {
-		Point3D A;
-		Point3D B;
-		Point3D C;
-		Point3D D;
-		Point3D Aminus;
-		Point3D Bminus;
-		Point3D Cminus;
-		Point3D Dminus;
-		int j = 0;
-		for (int i = -25; i < 25; i++)			
-		{
-				A = new Point3D(i, Math.sqrt(25 - i * i), j);
-				B = new Point3D(i + 1, Math.sqrt(25 - i * i - 2*i - 1), j);
-				C = new Point3D(i, Math.sqrt(20 - i * i), j - 1);
-				D = new Point3D(i + 1, Math.sqrt(20 - i * i - 2*i - 1), j - 1);
-				Aminus = new Point3D(i, Math.sqrt(25 - i * i), j);
-				Bminus = new Point3D(i + 1, Math.sqrt(25 - i * i - 2*i - 1), j);
-				Cminus = new Point3D(i, Math.sqrt(20 - i * i), j - 1);
-				D = new Point3D(i + 1, Math.sqrt(20 - i * i - 2*i - 1), j - 1);
-				scene.geometries.add(						
-						new Triangle(A, B, C).setEmission(color)
+	public void goblet() {
+		for (int j = 0; j > -5; j--) {
+			for (double i = -5; i < 5;) {
+				scene.geometries.add(
+						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
+						new Sphere(new Point3D(i, Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
 								.setMaterial(mat),
-					    new Triangle(B, C, D).setEmission(color)
+						new Sphere(new Point3D(i, -Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
+								.setMaterial(mat),
+						new Sphere(new Point3D(i, Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
+								.setMaterial(mat),
+						new Sphere(new Point3D(i, -Math.sqrt(20 + j*5 - i * i), j - 1), 0.2).setEmission(color)
 								.setMaterial(mat));
+				if (i < -1)
+					i = i - 1 / i;
+				else if (i > 1)
+					i = i + 1 / i;
+				else
+					i = i + 0.6;
+			}
 		}
-		
+
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
 
