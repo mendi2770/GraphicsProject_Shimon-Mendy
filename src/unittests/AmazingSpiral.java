@@ -24,7 +24,6 @@ public class AmazingSpiral {
 	private static final Color color = new Color(200, 0, 0);
 	private static final Material mat = new Material().setKd(0.5).setKs(0.5).setnShininess(60);
 	private static final double radius = 0.7;
-
 	/**
 	 * Produce a scene with a 3D model and render it into a png image
 	 */
@@ -43,6 +42,7 @@ public class AmazingSpiral {
 		int totalRotations = 24; // 15 degree * 24 = 360
 		for (int j = 0; j > -5; j--) // Depth level
 		{
+			
 			scene.geometries.add(new Sphere(new Point3D(oldX, oldY, j), radius).setEmission(color).setMaterial(mat));
 			for (double i = 0; i < totalRotations; i = i + 1) { // Number of angle rotations
 				newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
@@ -54,6 +54,7 @@ public class AmazingSpiral {
 			}
 			oldX++;
 			radius = radius * 0.8;
+			center = new Point3D(0, 0, j);
 		}
 
 		// Lights and rendering
