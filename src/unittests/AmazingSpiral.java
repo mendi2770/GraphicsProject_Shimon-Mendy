@@ -30,28 +30,32 @@ public class AmazingSpiral {
 	 */
 	@Test
 	public void goblet() {
-		
+
 		// Head of the goblet:
 		Point3D center = new Point3D(0, 0, 0);
-		double angle = 0.261; // 10 degree
+		double angle = 0.261; // 15 degree
 		Vector toMoveVector;
 		double oldX = -5;
 		double oldY = 0;
-		scene.geometries.add(
-				new Sphere(new Point3D(oldX, oldY, 0), 0.2).setEmission(color).setMaterial(mat));
-		for (double i = 0; i < 25; i = i + 1)
+		double newX;
+		double newY;
+		double radius = 0.2;
+		int totalRotations = 24; // 15 degree * 24 = 360
+		for (int j = 0; j > -5; j--) // Depth level
 		{
-			double newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
-			double newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
-			toMoveVector = new Vector(newX, newY, 0);
-			scene.geometries.add(
-				new Sphere(center.add(toMoveVector), 0.2).setEmission(color).setMaterial(mat));
-			oldX = newX;
-			oldY = newY;
+			scene.geometries.add(new Sphere(new Point3D(oldX, oldY, j), radius).setEmission(color).setMaterial(mat));
+			for (double i = 0; i < totalRotations; i = i + 1) { // Number of angle rotations
+				newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
+				newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
+				toMoveVector = new Vector(newX, newY, j);
+				scene.geometries.add(new Sphere(center.add(toMoveVector), radius).setEmission(color).setMaterial(mat));
+				oldX = newX;
+				oldY = newY;
+			}
+			oldX++;
+			radius = radius * 0.8;
 		}
 
-		
-		
 		// Lights and rendering
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
