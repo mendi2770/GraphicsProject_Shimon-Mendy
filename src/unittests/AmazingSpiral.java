@@ -2,6 +2,8 @@ package unittests;
 
 import org.junit.Test;
 
+import com.sun.source.doctree.SinceTree;
+
 import elements.*;
 import geometries.*;
 import primitives.*;
@@ -28,45 +30,29 @@ public class AmazingSpiral {
 	 */
 	@Test
 	public void goblet() {
-		Point3D a;
-		Point3D b;
-		Point3D c;
-		Point3D d;
-		Point3D aMin;
-		Point3D bMin;
-		Point3D cMin;
-		Point3D dMin;
-		for (int j = 0; j > -5; j--) {
-			for (double i = -5; i < 5;) {
-				a = new Point3D(i, Math.sqrt(25 + j*5 - i * i), j);
-				c = new Point3D(i, Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
-				aMin = new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j);
-				cMin = new Point3D(i, -Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
-//				scene.geometries.add(
-//						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-//						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-//						new Sphere(new Point3D(i, Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat),
-//						new Sphere(new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j), 0.2).setEmission(color).setMaterial(mat));
-				if (i < -1)
-					i = i - 1 / i;
-				else if (i > 1)
-					i = i + 1 / i;
-				else
-					i = i + 0.6;
-				b = new Point3D(i, Math.sqrt(25 + j*5 - i * i), j);
-				d = new Point3D(i, Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
-				bMin = new Point3D(i, -Math.sqrt(25 + j*5 - i * i), j);
-				dMin = new Point3D(i, -Math.sqrt(25 + (j - 1)*5 - i * i), j - 1);
-				
-				scene.geometries.add(
-						new Triangle(a, b, c).setEmission(color).setMaterial(mat),
-						new Triangle(c, d, b).setEmission(color).setMaterial(mat),
-						new Triangle(aMin, bMin, cMin).setEmission(color).setMaterial(mat),
-						new Triangle(cMin, dMin, bMin).setEmission(color).setMaterial(mat));
-					
-			}
+		
+		// Head of the goblet:
+		Point3D center = new Point3D(0, 0, 0);
+		double angle = 0.261; // 10 degree
+		Vector toMoveVector;
+		double oldX = -5;
+		double oldY = 0;
+		scene.geometries.add(
+				new Sphere(new Point3D(oldX, oldY, 0), 0.2).setEmission(color).setMaterial(mat));
+		for (double i = 0; i < 25; i = i + 1)
+		{
+			double newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
+			double newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
+			toMoveVector = new Vector(newX, newY, 0);
+			scene.geometries.add(
+				new Sphere(center.add(toMoveVector), 0.2).setEmission(color).setMaterial(mat));
+			oldX = newX;
+			oldY = newY;
 		}
 
+		
+		
+		// Lights and rendering
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
 
