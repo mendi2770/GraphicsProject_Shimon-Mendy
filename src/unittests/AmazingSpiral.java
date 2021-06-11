@@ -19,7 +19,7 @@ import java.lang.Math;
 public class AmazingSpiral {
 //	private final Camera camera = new Camera(new Point3D(0, 0, -200), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
 //			.setDistance(1000).setViewPlaneSize(200, 200);
-	private final Camera camera = new Camera(new Point3D(-200, 0, 0), new Vector(1, 0, 0), new Vector(0, 1, 0)) //
+	private final Camera camera = new Camera(new Point3D(-200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
 			.setDistance(1000).setViewPlaneSize(200, 200);
 	private final Scene scene = new Scene("Test scene");
 
@@ -34,21 +34,22 @@ public class AmazingSpiral {
 	@Test
 	public void goblet() {
 
+
+
+		/////////////// Head of the goblet /////////////////////
 		double angle = 0.261; // 15 degree
 		int totalRotations = 26; // 15 degree * 24 = 360 and two to close the gap
 		Vector toMoveVector;
-		double oldX = -5;
+		double oldX = -7;
 		double oldY = 0;
 		double newX;
 		double newY;
 		int headDepthLevel = -7;
 		int legDepthLevel = -12;
-		int bottomDepthLevel = -15;
+		int bottomDepthLevel = -16;
 
 		Point3D a;
 		Point3D b;
-
-		/////////////// Head of the goblet /////////////////////
 		Point3D[] pntsLevel1 = new Point3D[totalRotations];
 		Point3D[] pntsLevel2 = new Point3D[totalRotations];
 		for (int j = 0; j > headDepthLevel; j--) // Depth level
@@ -83,13 +84,13 @@ public class AmazingSpiral {
 					{
 					scene.geometries.add(
 					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color2)
+					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
 							.setMaterial(mat));
 					}
 					else
 					{
 					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color2).setMaterial(mat),
+					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
 					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
 							.setMaterial(mat));
 					}
@@ -135,11 +136,10 @@ public class AmazingSpiral {
 		totalRotations = 26; // 15 degree * 24 = 360 and two to close the gap
 		pntsLevel1 = new Point3D[totalRotations];
 		pntsLevel2 = new Point3D[totalRotations];
-		oldX = -1;
-		oldY = 0;
-		for (int j = 0; j > bottomDepthLevel; j--) // Depth level
+		
+		for (int j = legDepthLevel; j > bottomDepthLevel; j--) // Depth level
 		{
-			oldX = bottomDepthLevel - j;
+			oldX = j + 11;
 			oldY = 0;
 
 			// Obtaining the points:
@@ -163,19 +163,19 @@ public class AmazingSpiral {
 			}
 
 			// Creating the triangles:
-			if (j < 0) {
+			if (j < legDepthLevel) {
 				for (int i = 0; i < totalRotations - 1; i++) {
 					if (j%2 == 0)
 					{
 					scene.geometries.add(
 					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color2)
+					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
 							.setMaterial(mat));
 					}
 					else
 					{
 					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color2).setMaterial(mat),
+					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
 					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
 							.setMaterial(mat));
 					}
