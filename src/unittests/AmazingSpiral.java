@@ -17,15 +17,31 @@ import java.lang.Math;
  * @author Dan
  */
 public class AmazingSpiral {
-//	private final Camera camera = new Camera(new Point3D(0, 0, -200), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
+
+	// Camera from up:
+//	private final Camera camera = new Camera(new Point3D(0, 0, 200), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 //			.setDistance(1000).setViewPlaneSize(200, 200);
+//	
+
+	// Camera from x asix:
+//	private final Camera camera = new Camera(new Point3D(200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
+//			.setDistance(1000).setViewPlaneSize(200, 200);
+	
+// Camera from -x axis:
 	private final Camera camera = new Camera(new Point3D(-200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
 			.setDistance(1000).setViewPlaneSize(200, 200);
+	
+// Camera from +z, -x with angle axis:
+//		private final Camera camera = new Camera(new Point3D(-200, 0, 200), new Vector(1, 0, -1), new Vector(0, 1, 0)) //
+//				.setDistance(1000).setViewPlaneSize(200, 200);
+	
 	private final Scene scene = new Scene("Test scene");
 
 	private static final Color color = new Color(200, 0, 0); // Red
 	private static final Color color2 = new Color(255, 215, 0); // Gold
-	private static final Material mat = new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkR(0.4);
+	private static final Color colorTable = new Color(135, 206, 235); // ceeb
+	private static final Material mat = new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkR(0.5);
+	private static final Material matTable = new Material().setKd(0.5).setKs(0.5).setnShininess(50).setkR(0.3);
 	private static final double radius = 0.2;
 
 	/**
@@ -33,10 +49,6 @@ public class AmazingSpiral {
 	 */
 	@Test
 	public void goblet() {
-
-
-
-		/////////////// Head of the goblet /////////////////////
 		double angle = 0.261; // 15 degree
 		int totalRotations = 26; // 15 degree * 24 = 360 and two to close the gap
 		Vector toMoveVector;
@@ -44,6 +56,7 @@ public class AmazingSpiral {
 		double oldY = 0;
 		double newX;
 		double newY;
+		int gobletMaxLevel = 10;
 		int headDepthLevel = -7;
 		int legDepthLevel = -12;
 		int bottomDepthLevel = -16;
@@ -52,11 +65,68 @@ public class AmazingSpiral {
 		Point3D b;
 		Point3D[] pntsLevel1 = new Point3D[totalRotations];
 		Point3D[] pntsLevel2 = new Point3D[totalRotations];
+		/////////////// head of the goblet /////////////////////
+		for (int j = 0; j < gobletMaxLevel; j++) // Depth level
+		{
+			oldX = oldX - j * 0.2;
+			oldY = 0;
+//			if (j % 2 != 0) {
+//				oldY = Math.sin(0.5 * angle) * oldX;
+//				oldX = Math.cos(0.5 * angle) * oldX - Math.sin(0.5 * angle) * oldY;
+//			}
+			// Obtaining the points:
+			for (int i = 0; i < totalRotations; i = i + 1) { // Number of angle rotations
+
+				// Vector rotation and new point creation:
+				newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
+				newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
+				toMoveVector = new Vector(newX, newY, 0);
+				a = new Point3D(0, 0, j).add(toMoveVector);
+
+				// Adding the new point to the appropriate array:
+				if (j % 2 == 0)
+					pntsLevel1[i] = a;
+				else
+					pntsLevel2[i] = a;
+
+				// Updating to the newest point on the circle:
+				oldX = newX;
+				oldY = newY;
+			}
+
+			// Creating the triangles:
+			if (j > 0) {
+				for (int i = 0; i < totalRotations - 1; i++) {
+					if (j % 2 == 0) {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
+					} else {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
+					}
+
+				}
+			}
+		}
+
+		
+		
+		/////////////// belly of the goblet /////////////////////
+
 		for (int j = 0; j > headDepthLevel; j--) // Depth level
 		{
 			oldX = headDepthLevel - j;
 			oldY = 0;
-
+//			if (j % 2 != 0) { // The triangles will be seen
+//				oldY = Math.sin(0.5 * angle) * oldX;
+//				oldX = Math.cos(0.5 * angle) * oldX - Math.sin(0.5 * angle) * oldY;
+//			}
 			// Obtaining the points:
 			for (int i = 0; i < totalRotations; i = i + 1) { // Number of angle rotations
 
@@ -80,21 +150,20 @@ public class AmazingSpiral {
 			// Creating the triangles:
 			if (j < 0) {
 				for (int i = 0; i < totalRotations - 1; i++) {
-					if (j%2 == 0)
-					{
-					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
-							.setMaterial(mat));
+					if (j % 2 == 0) {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
+					} else {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
 					}
-					else
-					{
-					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
-							.setMaterial(mat));
-					}
-						
+
 				}
 			}
 		}
@@ -126,18 +195,18 @@ public class AmazingSpiral {
 
 		// Creating the Polygons:
 		for (int i = 0; i < totalRotations - 1; i++) {
-			scene.geometries.add(
-					new Polygon(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1], pntsLevel2[i]).setEmission(color).setMaterial(mat));
+			scene.geometries.add(new Polygon(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1], pntsLevel2[i])
+					.setEmission(color).setMaterial(mat));
 		}
 
 		/////////////// Bottom of the goblet /////////////////////
 
 		angle = 0.261; // 15 degree
-		totalRotations = 26; // 15 degree * 24 = 360 and two to close the gap
+		totalRotations = 25; // 15 degree * 24 = 360 and two to close the gap
 		pntsLevel1 = new Point3D[totalRotations];
 		pntsLevel2 = new Point3D[totalRotations];
-		
-		for (int j = legDepthLevel; j > bottomDepthLevel; j--) // Depth level
+
+		for (int j = legDepthLevel; j >= bottomDepthLevel; j--) // Depth level
 		{
 			oldX = j + 11;
 			oldY = 0;
@@ -165,27 +234,59 @@ public class AmazingSpiral {
 			// Creating the triangles:
 			if (j < legDepthLevel) {
 				for (int i = 0; i < totalRotations - 1; i++) {
-					if (j%2 == 0)
-					{
-					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
-							.setMaterial(mat));
+					if (j % 2 == 0) {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
+					} else {
+						scene.geometries.add(
+								new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat),
+								new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
+										.setMaterial(mat));
 					}
-					else
-					{
-					scene.geometries.add(
-					new Triangle(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1]).setEmission(color).setMaterial(mat),
-					new Triangle(pntsLevel1[i], pntsLevel2[i], pntsLevel2[i + 1]).setEmission(color)
-							.setMaterial(mat));
-					}
-						
+
 				}
+				if (j == bottomDepthLevel) // Closing the leg bottom
+					scene.geometries.add(new Polygon(pntsLevel1).setEmission(color)
+							.setMaterial(mat));
+					
 			}
 		}
-		
+
+		/////////////// Table /////////////////////
+		double tableThickness = 2;
+		double tableSize = 20; // Half size - the number is the x,y of the coordinates
+		scene.geometries.add(
+				// Up:
+				new Polygon(new Point3D(-tableSize, -tableSize, bottomDepthLevel), new Point3D(tableSize, -tableSize, bottomDepthLevel),
+						new Point3D(tableSize, tableSize, bottomDepthLevel), new Point3D(-tableSize, tableSize, bottomDepthLevel))
+								.setEmission(colorTable).setMaterial(matTable),
+				// Down:
+				new Polygon(new Point3D(-tableSize, -tableSize, bottomDepthLevel - tableThickness), new Point3D(tableSize, -tableSize, bottomDepthLevel - tableThickness),
+						new Point3D(tableSize, tableSize, bottomDepthLevel - tableThickness), new Point3D(-tableSize, tableSize, bottomDepthLevel - tableThickness))
+								.setEmission(colorTable).setMaterial(matTable),
+				// -y side:
+				new Polygon(new Point3D(-tableSize, -tableSize, bottomDepthLevel), new Point3D(tableSize, -tableSize, bottomDepthLevel),
+						new Point3D(tableSize, -tableSize, bottomDepthLevel - tableThickness), new Point3D(-tableSize, -tableSize, bottomDepthLevel - tableThickness))
+								.setEmission(colorTable).setMaterial(matTable),
+				// +y side:
+				new Polygon(new Point3D(tableSize, tableSize, bottomDepthLevel), new Point3D(-tableSize, tableSize, bottomDepthLevel),
+						new Point3D(-tableSize, tableSize, bottomDepthLevel - tableThickness), new Point3D(tableSize, tableSize, bottomDepthLevel - tableThickness))
+								.setEmission(colorTable).setMaterial(matTable),
+				// -x side
+				new Polygon(new Point3D(-tableSize, -tableSize, bottomDepthLevel), new Point3D(-tableSize, tableSize, bottomDepthLevel),
+						new Point3D(-tableSize, tableSize, bottomDepthLevel - tableThickness), new Point3D(-tableSize, -tableSize, bottomDepthLevel - tableThickness))
+								.setEmission(colorTable).setMaterial(matTable),
+				// +x side
+				new Polygon(new Point3D(tableSize, -tableSize, bottomDepthLevel), new Point3D(tableSize, tableSize, bottomDepthLevel),
+						new Point3D(tableSize, tableSize, bottomDepthLevel - tableThickness), new Point3D(tableSize, -tableSize, bottomDepthLevel - tableThickness))
+								.setEmission(colorTable).setMaterial(matTable));
+
 		// Lights and rendering
-		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100), 1, 0.0005, 0.0005) //
+		scene.lights.add(new PointLight(new Color(250, 500, 500), new Point3D(100, 100, 100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
 
 		ImageWriter imageWriter = new ImageWriter("AmazingSpiral", 800, 800);
@@ -195,7 +296,7 @@ public class AmazingSpiral {
 				.setRayTracerBasic(new RayTracerBasic(scene)) //
 				.setMultithreading(3).setDebugPrint();
 		render.renderImage();
-		render.printGrid(50, new Color(java.awt.Color.YELLOW));
+		//render.printGrid(50, new Color(java.awt.Color.YELLOW));
 		render.writeToImage();
 	}
 
