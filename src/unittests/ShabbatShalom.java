@@ -20,7 +20,7 @@ public class ShabbatShalom {
 // Camera from +z, -x with angle axis:
 	private final Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35),
 			new Vector(1, 0, 1 / 0.35)) //
-					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(0);
+					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(100);
 
 	private final Scene scene = new Scene("Test scene");
 
