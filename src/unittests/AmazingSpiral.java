@@ -9,6 +9,9 @@ import geometries.*;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
+
+import static org.junit.Assert.assertArrayEquals;
+
 import java.lang.Math;
 
 /**
@@ -33,7 +36,7 @@ public class AmazingSpiral {
 
 // Camera from +z, -x with angle axis:
 	private final Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35), new Vector(1, 0, 1/0.35)) //
-			.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(100);
+			.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(0);
 
 	private final Scene scene = new Scene("Test scene");
 
@@ -47,7 +50,7 @@ public class AmazingSpiral {
 	private static final Material matCandle = new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkR(0.2);
 	private static final Material mat = new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkR(0.5);
 	private static final Material matTable = new Material().setKd(0.5).setKs(0.5).setnShininess(50).setkR(0.1);
-	private static final Material matMirror = new Material().setKd(0.5).setKs(0.5).setnShininess(50).setkR(1);
+	private static final Material matMirror = new Material().setKd(0.5).setKs(0.5).setnShininess(10).setkR(1).setkT(0);
 	//private static final Color colorWine = new Color(14, 47, 55); // wine: 14, 47, 55
 	private static final Color colorWine = new Color(114, 47, 55); // purple
 	private static final Material matWine = new Material().setKd(0.5).setKs(0.5).setnShininess(60).setkT(0.3); // Transperant
@@ -75,7 +78,7 @@ public class AmazingSpiral {
 		Point3D[] pntsLevel1 = new Point3D[totalRotations];
 		Point3D[] pntsLevel2 = new Point3D[totalRotations];
 		Point3D[] pntsWineLevel = new Point3D[totalRotations - 1];
-		/////////////// head of the goblet ///////////////////// - 550 triangles and 1 polygon (for the wine)
+		/////////////// head of the goblet ///////////////////// - 450 triangles and polygon
 		Geometries gobletPolygons = new Geometries();
 		for (int j = 0; j < gobletMaxLevel; j++) // Depth level
 		{
@@ -163,7 +166,7 @@ public class AmazingSpiral {
 
 		scene.geometries.add(gobletPolygons);
 		
-		/////////////// Leg of the goblet ///////////////////// 605 Polygons
+		/////////////// Leg of the goblet ///////////////////// 121 Polygons
 		int legDepthLevel = -12;
 		gobletPolygons = new Geometries();
 		angle = 0.05235; // 3 degree
@@ -197,7 +200,7 @@ public class AmazingSpiral {
 		
 		scene.geometries.add(gobletPolygons);
 
-		/////////////// Bottom of the goblet ///////////////////// - 200 triangles
+		/////////////// Bottom of the goblet ///////////////////// - 201 triangles
 		int bottomDepthLevel = -16;
 		gobletPolygons = new Geometries();
 		angle = 0.261; // 15 degree
@@ -251,7 +254,7 @@ public class AmazingSpiral {
 		}
 		scene.geometries.add(gobletPolygons);
 		
-		/////////////// Table ///////////////////// - 8 polygons
+		/////////////// Table ///////////////////// - 7 polygons
 		// Decorating circles:
 		angle = 0.261; // 15 degree
 		totalRotations = 24; // 15 degree * 24 = 360
@@ -321,9 +324,9 @@ public class AmazingSpiral {
 		/////////////// Candles ///////////////////// - 4 spheres, 10 polygons
 		Point3D candleA = new Point3D(25, -10, 8);
 		Point3D candleB = new Point3D(25, 10, 8);
-		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA.add(new Vector(0, 0, 1)), 1, 0.8, 0.8) //
+		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA.add(new Vector(0, 0, 1)), 1, 0.001, 0.001) //
 				.setkQ(0.000001));
-		scene.lights.add(new PointLight(new Color(255, 69, 0), candleB.add(new Vector(0, 0, 1)), 1, 0.8, 0.8) //
+		scene.lights.add(new PointLight(new Color(255, 69, 0), candleB.add(new Vector(0, 0, 1)), 1, 0.001, 0.001) //
 				.setkQ(0.000001));
 		scene.geometries.add(
 				new Geometries(
@@ -370,19 +373,25 @@ public class AmazingSpiral {
 		);
 		
 		/////////////// Mirror background /////////////////////
-//		angle = 0.5235; // 30 degree
-//		totalRotations = 6; //  degree * 120 = 180 
+		scene.geometries.add(new Polygon(new Point3D(tableSize,tableSize,bottomDepthLevel),
+		new Point3D(tableSize,-tableSize,bottomDepthLevel), 
+		new Point3D(tableSize * 2,-tableSize,10),
+		new Point3D(tableSize * 2,tableSize,10))
+		.setEmission(Color.BLACK).setMaterial(matMirror));
+		
+//		angle =  1.5707; // 15 degree
+//		totalRotations = 3; //  degree * 120 = 180 
 //		pntsLevel1 = new Point3D[totalRotations];
 //		pntsLevel2 = new Point3D[totalRotations];
-//		oldX = tableSize;
-//		oldY = -tableSize;
+//		oldX = -tableSize;
+//		oldY = 0;
 //		// Obtaining the points:
 //		for (int i = 0; i < totalRotations; i++) { // Number of angle rotations
 //													// Vector rotation and new point creation:
 //			newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
 //			newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
 //			toMoveVector = new Vector(newX, newY, 0);
-//			a = new Point3D(0, 0, 10).add(toMoveVector);
+//			a = new Point3D(0, 0, 20).add(toMoveVector);
 //			b = new Point3D(0, 0, bottomDepthLevel).add(toMoveVector);
 //			// Adding the new point to the appropriate array:
 //			pntsLevel1[i] = a;
@@ -392,22 +401,24 @@ public class AmazingSpiral {
 //			oldX = newX;
 //			oldY = newY;
 //		}
-//
-//		// Creating the Polygons:s
+//		
+//		Geometries mirrors = new Geometries();
+//		// Creating the Polygons:
 //		for (int i = 0; i < totalRotations - 1; i++) {
-//			scene.geometries.add(new Polygon(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1], pntsLevel2[i])
-//					.setEmission(colorSilver).setMaterial(matMirror));
+//			mirrors.add(new Polygon(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1], pntsLevel2[i])
+//					.setEmission(Color.BLACK).setMaterial(matMirror));
 //		}
+//		scene.geometries.add(mirrors);
 		
 		// Lights and rendering
 		scene.lights.add(new PointLight(new Color(250, 255, 250), new Point3D(100, 100, 100), 1, 0.0005, 0.0005) //
 				.setkQ(0.000001));
-		scene.lights.add(new PointLight(new Color(255, 255, 0), new Point3D(-350, 0, -12), 1, 0.01, 0.01) //
+		scene.lights.add(new PointLight(new Color(255, 255, 0), new Point3D(-350, 0, -12), 1, 0.06, 0.06) //
 				.setkQ(0.000001));
 		
 		//scene.lights.add(new SpotLight(new Color(255, 255, 224), new Point3D(100, -100, 100), new Vector(-1, -1, 1), 1, 0.0005, 0.0005).setkQ(0.000001));
 		ImageWriter imageWriter = new ImageWriter("TheGoblet", 800, 800);
-		int amountOfGeometries = scene.geometries.intersectables.size();
+		
 		Render render = new Render() //
 				.setCamera(camera) //
 				.setImageWriter(imageWriter) //
