@@ -324,9 +324,9 @@ public class AmazingSpiral {
 		/////////////// Candles ///////////////////// - 4 spheres, 10 polygons
 		Point3D candleA = new Point3D(25, -10, 8);
 		Point3D candleB = new Point3D(25, 10, 8);
-		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA.add(new Vector(0, 0, 1)), 1, 0.001, 0.001) //
+		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA.add(new Vector(0, 0, 1)), 1, 0.01, 0.01) //
 				.setkQ(0.000001));
-		scene.lights.add(new PointLight(new Color(255, 69, 0), candleB.add(new Vector(0, 0, 1)), 1, 0.001, 0.001) //
+		scene.lights.add(new PointLight(new Color(255, 69, 0), candleB.add(new Vector(0, 0, 1)), 1, 0.01, 0.01) //
 				.setkQ(0.000001));
 		scene.geometries.add(
 				new Geometries(
