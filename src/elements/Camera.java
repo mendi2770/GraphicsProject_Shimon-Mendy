@@ -149,7 +149,7 @@ public class Camera {
 
 		if (nX % 2 == 0 || nY % 2 == 0) { // In case the number of columns or rows is even, it moves the Pceneter to the
 											// (0,0) pixel
-			pCenter = new Point3D(pCenter.getX() - Rx / 2, pCenter.getY() - Ry / 2, pCenter.getZ());
+			pCenter = new Point3D(pCenter.x.coord - Rx / 2, pCenter.y.coord - Ry / 2, pCenter.z.coord);
 		}
 		// Pixel[i,j] center
 		double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
@@ -186,7 +186,7 @@ public class Camera {
 		for (int k = 0; k < amountOfSampledRays; k++) {
 			randX = random(-Rx / 2, Rx / 2); // Random x value of the new point on the view plane
 			randY = random(-Ry / 2, Ry / 2); // Random y value of the new point on the view plane
-			sPoint = new Point3D(pCenter.getX() + randX, pCenter.getY() + randY, pCenter.getZ()); // Creates the new sampled point
+			sPoint = new Point3D(pCenter.x.coord + randX, pCenter.y.coord + randY, pCenter.z.coord); // Creates the new sampled point
 			sRay = new Ray(sPoint.subtract(this.p0), this.p0); // Creates the sampled ray 
 			result.add(sRay); // Add the ray to the list of sampled rays
 		}

@@ -42,6 +42,10 @@ public class Geometries extends Intersectable {
 	
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		
+		if (box != null && !box.IsRayHitBox(ray))
+			return null;
+		
 		if (intersectables.isEmpty())		// In case the collection is empty
 			return null;
 		
@@ -64,14 +68,23 @@ public class Geometries extends Intersectable {
 		return result;
 	}
 	
+	public void setGeometriesBoxes() {
+		for(Intersectable geo :intersectables) {
+			geo.setBox();
+		}
+	}
+	
 	/**
 	 * Create big box that will contain all of the geometries
 	 */
 	@Override
 	public void setBox() {
-		double maxX = intersectables.get(0).box.maxX;
-		double maxY = intersectables.get(0).box.maxY;
-		double maxZ = intersectables.get(0).box.maxZ;
+		
+		setGeometriesBoxes();
+		Intersectable intersecI = intersectables.get(0);
+		double maxX = intersecI.box.maxX;
+		double maxY = intersecI.box.maxY;
+		double maxZ = intersecI.box.maxZ;
 		double minX = maxX;
 		double minY = maxY;
 		double minZ = maxZ;

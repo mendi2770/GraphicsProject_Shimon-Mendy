@@ -30,7 +30,7 @@ public class Plane extends Geometry {
 		Vector v2 = x.subtract(z);
 		Vector cross = v1.crossProduct(v2);
 
-		if (cross.getHead().equals(Point3D.ZERO))
+		if (cross.head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("The points are on the same line");
 
 		normal = cross.normalize();
@@ -95,6 +95,9 @@ public class Plane extends Geometry {
 		return result;
 	}
 
+	/**
+	 * create box for a plan
+	 */
 	@Override
 	public void setBox() {
 		double pInfinite = Double.POSITIVE_INFINITY;
@@ -104,14 +107,14 @@ public class Plane extends Geometry {
 		Vector nZ = new Vector(new Point3D(0, 0, 1));
 
 		if (nX.equals(normal) || nX.scale(-1).equals(normal)) {
-			box = new Box(q0.getX(), pInfinite, pInfinite, q0.getX(), nInfinite, nInfinite);
+			box = new Box(q0.x.coord, pInfinite, pInfinite, q0.x.coord, nInfinite, nInfinite);
 		}
 		else if (nY.equals(normal) || nY.scale(-1).equals(normal)) {
-			box = new Box(pInfinite, q0.getY(), pInfinite, nInfinite, q0.getY(), nInfinite);
+			box = new Box(pInfinite, q0.y.coord, pInfinite, nInfinite, q0.y.coord, nInfinite);
 		}
 
 		else if (nZ.equals(normal) || nZ.scale(-1).equals(normal)) {
-			box = new Box(pInfinite, pInfinite, q0.getZ(), nInfinite, nInfinite, q0.getZ());
+			box = new Box(pInfinite, pInfinite, q0.z.coord, nInfinite, nInfinite, q0.z.coord);
 		}
 		else 
 			box = new Box(pInfinite, pInfinite, pInfinite, nInfinite, nInfinite, nInfinite);

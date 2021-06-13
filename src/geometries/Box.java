@@ -3,7 +3,9 @@
  */
 package geometries;
 
+import primitives.Point3D;
 import primitives.Ray;
+import primitives.Vector;
 
 /**
  * @author 97253 Box class for every shape
@@ -16,13 +18,6 @@ public class Box {
 	public double minX;
 	public double minY;
 	public double minZ;
-
-	/**
-	 * 
-	 */
-	public Box() {
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @param maxX
@@ -41,16 +36,18 @@ public class Box {
 		this.minZ = minZ;
 	}
 
-	public boolean IsRayHitBox(Ray ray) {		
+	public boolean IsRayHitBox(Ray ray) {
+		Vector dirRay = ray.getDir();
+		Point3D rayP0= ray.getP0();
 		// Ray coordinates:
-		double rDx = ray.getDir().getHead().getX();
-		double rDy = ray.getDir().getHead().getY();
-		double rDz = ray.getDir().getHead().getZ();
+		double rDx = dirRay.head.x.coord;
+		double rDy = dirRay.head.y.coord;
+		double rDz = dirRay.head.z.coord;
 
 		// Ray head point coordinates:
-		double rOx = ray.getP0().getX();
-		double rOy = ray.getP0().getY();
-		double rOz = ray.getP0().getZ();
+		double rOx = rayP0.x.coord;
+		double rOy = rayP0.y.coord;
+		double rOz = rayP0.z.coord;
 
 		// In case the ray is parallel to one of the dimensions
 		// there is no intersection with the box:
@@ -63,17 +60,17 @@ public class Box {
 
 		// Intersection distance t1 and t2 for each dimension:
 		double temp;
-		double t1 = 0, t2 = 0, tStart = 0, tEnd = 0;
+		double t1 = 0, t2 = 0, tStart = Double.NEGATIVE_INFINITY, tEnd = Double.POSITIVE_INFINITY;
 		for (int i = 0; i < 3; i++) {
-			if (i == 0) { 				// check dimension x
+			if (i == 0) { // check dimension x
 				t1 = (minX - rOx) / rDx;
 				t2 = (maxX - rOx) / rDx;
 			}
-			if (i == 1) { 				// check dimension y
+			if (i == 1) { // check dimension y
 				t1 = (minY - rOy) / rDy;
 				t2 = (maxY - rOy) / rDy;
 			}
-			if (i == 2) { 				// check dimension z
+			if (i == 2) { // check dimension z
 				t1 = (minZ - rOz) / rDz;
 				t2 = (maxZ - rOz) / rDz;
 			}
@@ -82,21 +79,18 @@ public class Box {
 				t1 = t2;
 				t2 = temp;
 			}
-			tStart = t1;
-			tEnd = t2;
 			if (t1 > tStart)
 				tStart = t1;
 
 			if (t2 < tEnd)
 				tEnd = t2;
 		}
-		if (tStart > tEnd) 	// Box is missed
+		if (tStart > tEnd) // Box is missed
 			return false;
-		else if (tEnd < 0)		// Box is behind
+		else if (tEnd < 0) // Box is behind
 			return false;
-		else				// closest intersection at tStart or tEnd
+		else // closest intersection at tStart or tEnd
 			return true;
-
 	}
 
 }

@@ -132,32 +132,38 @@ public class Polygon extends Geometry {
 		return null;
 	}
 
+	/**
+	 * Set box for polygon
+	 */
 	@Override
-	public void setBox() {
-		double maxX = vertices.get(0).getX();
-		double maxY = vertices.get(0).getY();
-		double maxZ = vertices.get(0).getZ();
+	public void setBox() {	
+		Point3D pointI;
+		Point3D point = vertices.get(0);
+		double maxX = point.x.coord;
+		double maxY = point.y.coord;
+		double maxZ = point.z.coord;
 		double minX = maxX;
 		double minY = maxY;
 		double minZ = maxZ;
-		for (int i = 1; i < vertices.size(); i++) {
-			if (maxX < vertices.get(i).getX())
-				maxX = vertices.get(i).getX();
+		for (int i = 1; i < vertices.size(); i++) {	//loop for that find the max and min in all of the
+			pointI = vertices.get(i);										//coordinate of the polygon
+			if (maxX < pointI.x.coord)
+				maxX = pointI.x.coord;
 
-			if (maxY < vertices.get(i).getY())
-				maxY = vertices.get(i).getY();
+			if (maxY < pointI.y.coord)
+				maxY = pointI.y.coord;
 
-			if (maxZ < vertices.get(i).getZ())
-				maxZ = vertices.get(i).getZ();
+			if (maxZ < pointI.z.coord)
+				maxZ = pointI.z.coord;
 
-			if (minX > vertices.get(i).getX())
-				minX = vertices.get(i).getX();
+			if (minX > pointI.x.coord)
+				minX = pointI.x.coord;
 
-			if (minY > vertices.get(i).getY())
-				minY = vertices.get(i).getY();
+			if (minY > pointI.y.coord)
+				minY = pointI.y.coord;
 
-			if (minZ > vertices.get(i).getZ())
-				minZ = vertices.get(i).getZ();
+			if (minZ > pointI.z.coord)
+				minZ = pointI.z.coord;
 		}
 		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
