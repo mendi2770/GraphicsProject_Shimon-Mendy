@@ -7,7 +7,7 @@ public class Vector {
 	/**
 	 * Vector's head point
 	 */
-	private Point3D head;
+	public Point3D head;
 
 
 	/**
@@ -35,13 +35,6 @@ public class Vector {
 		if (p.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("The numbers cannot be zeroes.");
 		head = p;
-	}
-
-	/**
-	 * @return the head
-	 */
-	public Point3D getHead() {
-		return head;
 	}
 
 	/**

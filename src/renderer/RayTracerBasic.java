@@ -44,11 +44,8 @@ public class RayTracerBasic extends RayTracerBase {
 	 * Function that creates boxes for each geometry (for on/off switch)
 	 * @return This
 	 */
-	public RayTracerBasic turnAllBoxesOn() {
-		
-		for(Intersectable geo :scene.geometries.intersectables) {
-			geo.setBox();
-		}
+	public RayTracerBasic turnAllBoxesOn() {	
+		scene.geometries.setBox();
 		return this;
 	}
 

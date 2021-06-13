@@ -145,7 +145,7 @@ public class VectorTests {
 	public void testNormalize() {
 
 		Vector v = new Vector(1, 2, 3);
-		Vector vCopy = new Vector(v.getHead());
+		Vector vCopy = new Vector(v.head);
 		Vector vCopyNormalize = vCopy.normalize();
 		// ============ Equivalence Partitions Tests ==============
 		// TC01: normalize() creates a new vector (but it shouldn't)

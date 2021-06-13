@@ -97,13 +97,13 @@ public class Sphere extends Geometry {
 	@Override
 	public void setBox() {
 		
-		double maxX = center.getX() + radius;
-		double maxY = center.getY() + radius;
-		double maxZ = center.getZ() + radius;
+		double maxX = center.x.coord + radius;
+		double maxY = center.y.coord + radius;
+		double maxZ = center.z.coord + radius;
 
-		double minX = center.getX() - radius;
-		double minY = center.getY() - radius;
-		double minZ = center.getZ() - radius;
+		double minX = center.x.coord - radius;
+		double minY = center.y.coord - radius;
+		double minZ = center.z.coord - radius;
 
 		this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);	
 	}
