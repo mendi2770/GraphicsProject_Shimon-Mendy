@@ -19,7 +19,7 @@ import java.lang.Math;
  * 
  * @author Dan
  */
-public class AmazingSpiral {
+public class ShabbatShalom {
 
 	// Camera from up:
 //	private final Camera camera = new Camera(new Point3D(0, 0, 200), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
