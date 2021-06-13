@@ -11,7 +11,7 @@ import scene.Scene;
 import java.lang.Math;
 
 /**
- * Test rendering an image
+ * Test rendering an images
  * 
  * @author Dan
  */
