@@ -183,7 +183,8 @@ public class ReflectionRefractionTests {
 				.setDebugPrint()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn());
+				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn())
+				.setMultithreading(3).setDebugPrint();
 
 		render.renderImage();
 		render.writeToImage();
