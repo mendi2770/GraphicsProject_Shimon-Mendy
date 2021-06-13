@@ -57,7 +57,6 @@ public class RayTracerBasic extends RayTracerBase {
 		GeoPoint closestPoint = findClosestIntersection(ray);
 		return closestPoint == null ? Color.BLACK : calcColor(closestPoint, ray);
 	}
-
 	/**
 	 * Help method to original "calcColor" function
 	 * 

@@ -45,7 +45,7 @@ public class Box {
 		double rDy = dirRay.head.y.coord;
 		double rDz = dirRay.head.z.coord;
 
-		// Ray head point coordinates:
+		//Ray head point coordinates:
 		double rOx = rayP0.x.coord;
 		double rOy = rayP0.y.coord;
 		double rOz = rayP0.z.coord;
