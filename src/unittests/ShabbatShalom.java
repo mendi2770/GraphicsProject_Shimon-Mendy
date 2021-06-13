@@ -2,7 +2,6 @@ package unittests;
 
 import org.junit.Test;
 
-import com.sun.source.doctree.SinceTree;
 
 import elements.*;
 import geometries.*;
@@ -10,7 +9,7 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
-import static org.junit.Assert.assertArrayEquals;
+
 
 import java.lang.Math;
 
