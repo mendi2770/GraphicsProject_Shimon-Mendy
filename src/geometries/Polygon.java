@@ -139,6 +139,8 @@ public class Polygon extends Geometry {
 	public void setBox() {	
 		Point3D pointI;
 		Point3D point = vertices.get(0);
+		
+		//initialize max and min in the first element of vertices list
 		double maxX = point.x.coord;
 		double maxY = point.y.coord;
 		double maxZ = point.z.coord;

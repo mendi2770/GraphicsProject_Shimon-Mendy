@@ -64,6 +64,9 @@ public abstract class Intersectable {
 
 	abstract List<GeoPoint> findGeoIntersections(Ray ray);	
 	
+	/**
+	 * Abstract method for creating box for each geometry
+	 */
 	public abstract void setBox();
 
 }

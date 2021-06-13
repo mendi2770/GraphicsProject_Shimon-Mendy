@@ -171,7 +171,8 @@ public class ShadowTests {
 		Render render = new Render(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitialLight2", 400, 400)) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene));
+				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn())
+				.setMultithreading(3).setDebugPrint();
 		render.renderImage();
 		render.writeToImage();
 	}
