@@ -102,10 +102,13 @@ public class Plane extends Geometry {
 	public void setBox() {
 		double pInfinite = Double.POSITIVE_INFINITY;
 		double nInfinite = Double.NEGATIVE_INFINITY;
-		Vector nX = new Vector(new Point3D(1, 0, 0));
+		//Initializing axis vectors
+		Vector nX = new Vector(new Point3D(1, 0, 0)); 
 		Vector nY = new Vector(new Point3D(0, 1, 0));
 		Vector nZ = new Vector(new Point3D(0, 0, 1));
-
+		
+		//In case on of the axis is vertical to the plan,
+		//so the max and min point of this axis is the q0 in the point
 		if (nX.equals(normal) || nX.scale(-1).equals(normal)) {
 			box = new Box(q0.x.coord, pInfinite, pInfinite, q0.x.coord, nInfinite, nInfinite);
 		}

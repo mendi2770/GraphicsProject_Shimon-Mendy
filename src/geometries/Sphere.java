@@ -94,9 +94,12 @@ public class Sphere extends Geometry {
 		return null; // In case there are no intersections pointss
 	}
 
+	/**
+	 * Create bix for sphere
+	 */
 	@Override
 	public void setBox() {
-		
+		//Get the max and min for sphere box
 		double maxX = center.x.coord + radius;
 		double maxY = center.y.coord + radius;
 		double maxZ = center.z.coord + radius;

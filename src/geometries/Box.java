@@ -12,6 +12,7 @@ import primitives.Vector;
  */
 public class Box {
 
+	//Max and min for every geometry box
 	public double maxX;
 	public double maxY;
 	public double maxZ;
@@ -89,7 +90,7 @@ public class Box {
 			return false;
 		else if (tEnd < 0) // Box is behind
 			return false;
-		else // closest intersection at tStart or tEnd
+		else 			  // closest intersection at tStart or tEnd
 			return true;
 	}
 

@@ -67,7 +67,9 @@ public class Geometries extends Intersectable {
 		}
 		return result;
 	}
-	
+	/**
+	 * Function that create box for each geometry
+	 */
 	public void setGeometriesBoxes() {
 		for(Intersectable geo :intersectables) {
 			geo.setBox();
@@ -80,7 +82,8 @@ public class Geometries extends Intersectable {
 	@Override
 	public void setBox() {
 		
-		setGeometriesBoxes();
+		setGeometriesBoxes(); //Create box for each geometry
+		
 		Intersectable intersecI = intersectables.get(0);
 		double maxX = intersecI.box.maxX;
 		double maxY = intersecI.box.maxY;
@@ -89,7 +92,8 @@ public class Geometries extends Intersectable {
 		double minY = maxY;
 		double minZ = maxZ;
 		
-		for(Intersectable geo : intersectables) {
+		for(Intersectable geo : intersectables) {	//For each geometry find the max and min of is box,
+													//and create the geometries box
 			
 			if (maxX < geo.box.maxX)
 				maxX = geo.box.maxX;
