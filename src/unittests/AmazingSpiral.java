@@ -425,7 +425,7 @@ public class AmazingSpiral {
 				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn()) //
 				.setMultithreading(3).setDebugPrint();
 		render.renderImage();
-		// render.printGrid(50, new Color(java.awt.Color.YELLOW));
+		// render.printGrid(50, new Color(java.awt.Color.YELLOW));s
 		render.writeToImage();
 	}
 
