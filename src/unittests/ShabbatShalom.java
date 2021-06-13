@@ -425,7 +425,7 @@ ImageWriter imageWriter = new ImageWriter("TheGoblet", 800, 800);
 // Camera rotations:
 
 //
-//Render render = new Render(); //
+//Render render = new Render(); //s
 //		
 //
 //angle = 0.261; // 15 degree
