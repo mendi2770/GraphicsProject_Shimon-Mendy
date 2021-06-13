@@ -18,9 +18,9 @@ import java.lang.Math;
 public class ShabbatShalom {
 
 // Camera from +z, -x with angle axis:
-	private final Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35),
+	private Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35),
 			new Vector(1, 0, 1 / 0.35)) //
-					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(0);
+					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(100);
 
 	private final Scene scene = new Scene("Test scene");
 
@@ -357,9 +357,14 @@ public class ShabbatShalom {
 				new Vector(-1, -1, -1), 1, 0.05, 0.05));
 		scene.lights.add(new SpotLight(new Color(255, 69, 0), new Point3D(tableSize, -tableSize, 200),
 				new Vector(-1, 1, -1), 1, 0.05, 0.05));
-		// scene.lights.add(new SpotLight(new Color(255, 255, 224), new Point3D(100,
-		// -100, 100), new Vector(-1, -1, 1), 1, 0.0005, 0.0005).setkQ(0.000001));
-		ImageWriter imageWriter = new ImageWriter("TheGoblet", 800, 800);
+
+
+
+		
+		
+		
+		
+ImageWriter imageWriter = new ImageWriter("TheGoblet", 800, 800);
 
 		Render render = new Render() //
 				.setCamera(camera) //
@@ -416,3 +421,39 @@ public class ShabbatShalom {
 //			.setEmission(Color.BLACK).setMaterial(matMirror));
 //}
 //scene.geometries.add(mirrors);
+
+// Camera rotations:
+
+//
+//Render render = new Render(); //
+//		
+//
+//angle = 0.261; // 15 degree
+//totalRotations = 2; // 15 degree * 24 = 360
+//oldX = -250;
+//oldY = 0;
+//ImageWriter imageWriter;
+//Vector vToVector;
+//Vector vUpVector;
+//center = new Point3D(0, 0, 92);
+//	for (double i = 0; i < totalRotations; i++) { // Number of angle rotations
+//		newX = Math.cos(angle) * oldX - Math.sin(angle) * oldY;
+//		newY = Math.sin(angle) * oldX + Math.cos(angle) * oldY;
+//		toMoveVector = new Vector(newX, newY, 0);
+//		newPoint = center.add(toMoveVector);
+//		imageWriter = new ImageWriter(String.valueOf(i), 800, 800);
+//		camera.setP0(newPoint);
+//		vToVector = new Point3D(0, 0, 0).subtract(newPoint);
+//		camera.setvTo(vToVector);
+//		vUpVector = new Vector(new Point3D(1 / vToVector.head.x.coord, -1 / vToVector.head.y.coord, 0));
+//		camera.setvUp(vUpVector);
+//		render.setImageWriter(imageWriter);
+//		render.setCamera(camera);
+//		render.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn() //
+//		render.setMultithreading(3).setDebugPrint();
+//		render.renderImage();
+//		// render.printGrid(50, new Color(java.awt.Color.YELLOW));s
+//		render.writeToImage();
+//		oldX = newX;
+//		oldY = newY;
+//	}
