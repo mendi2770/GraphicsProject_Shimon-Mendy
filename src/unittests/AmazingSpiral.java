@@ -346,7 +346,7 @@ public class AmazingSpiral {
 //			oldY = newY;
 //		}
 //
-//		// Creating the Polygons:
+//		// Creating the Polygons:s
 //		for (int i = 0; i < totalRotations - 1; i++) {
 //			scene.geometries.add(new Polygon(pntsLevel1[i], pntsLevel1[i + 1], pntsLevel2[i + 1], pntsLevel2[i])
 //					.setEmission(colorSilver).setMaterial(matMirror));
