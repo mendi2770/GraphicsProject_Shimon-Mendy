@@ -329,37 +329,49 @@ public class AmazingSpiral {
 								.setMaterial(matTable));
 
 		/////////////// Candles /////////////////////
-		Point3D candleA = new Point3D(20, -10, 8);
-		Point3D candleB = new Point3D(20, 10, 8);
-		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA, 1, 0.1, 0.1) //
+		Point3D candleA = new Point3D(25, -10, 8);
+		Point3D candleB = new Point3D(25, 10, 8);
+		scene.lights.add(new PointLight(new Color(255, 69, 0), candleA, 1, 0.0001, 0.0001) //
 				.setkQ(0.000001));
 		scene.lights.add(new PointLight(new Color(255, 69, 0), candleB, 1, 0.8, 0.8) //
 				.setkQ(0.000001));
 		scene.geometries.add(new Sphere(candleA, 1).setEmission(colorCandle).setMaterial(matCandle),
 				new Sphere(candleB, 1).setEmission(colorCandle).setMaterial(matCandle),
+				new Sphere(candleA, 3).setEmission(colorCandle).setMaterial(matCandle),
+				new Sphere(candleB, 3).setEmission(colorCandle).setMaterial(matCandle),
 				// Minus Y candle:
-				new Polygon(new Point3D(22, 12, 7), new Point3D(22, 8, 7),
-						new Point3D(18, 8, 7), new Point3D(18, 12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, 15, bottomDepthLevel), new Point3D(25, 5, bottomDepthLevel),
-						new Point3D(22, 8, 7), new Point3D(22, 12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(15, 15, bottomDepthLevel), new Point3D(15, 5, bottomDepthLevel),
-						new Point3D(18, 8, 7), new Point3D(18, 12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, 15, bottomDepthLevel), new Point3D(15, 15, bottomDepthLevel),
-						new Point3D(18, 12, 7), new Point3D(22, 12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, 5, bottomDepthLevel), new Point3D(15, 5, bottomDepthLevel),
-						new Point3D(18, 8, 7), new Point3D(22, 8, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(27, 12, 7), new Point3D(27, 8, 7),
+						new Point3D(23, 8, 7), new Point3D(23, 12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, 15, bottomDepthLevel), new Point3D(30, 5, bottomDepthLevel),
+						new Point3D(27, 8, 7), new Point3D(27, 12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(20, 15, bottomDepthLevel), new Point3D(20, 5, bottomDepthLevel),
+						new Point3D(23, 8, 7), new Point3D(23, 12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, 15, bottomDepthLevel), new Point3D(20, 15, bottomDepthLevel),
+						new Point3D(23, 12, 7), new Point3D(27, 12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, 5, bottomDepthLevel), new Point3D(20, 5, bottomDepthLevel),
+						new Point3D(23, 8, 7), new Point3D(27, 8, 7)).setEmission(color).setMaterial(mat),
 				
 				// Plus Y candle:
-				new Polygon(new Point3D(22, -12, 7), new Point3D(22, -8, 7),
-						new Point3D(18, -8, 7), new Point3D(18, -12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, -15, bottomDepthLevel), new Point3D(25, -5, bottomDepthLevel),
-						new Point3D(22, -8, 7), new Point3D(22, -12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(15, -15, bottomDepthLevel), new Point3D(15, -5, bottomDepthLevel),
-						new Point3D(18, -8, 7), new Point3D(18, -12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, -15, bottomDepthLevel), new Point3D(15, -15, bottomDepthLevel),
-						new Point3D(18, -12, 7), new Point3D(22, -12, 7)).setEmission(color).setMaterial(mat),
-				new Polygon(new Point3D(25, -5, bottomDepthLevel), new Point3D(15, -5, bottomDepthLevel),
-						new Point3D(18, -8, 7), new Point3D(22, -8, 7)).setEmission(color).setMaterial(mat)
+				new Polygon(
+						new Point3D(27, -12, 7), new Point3D(27, -8, 7),
+						new Point3D(23, -8, 7), new Point3D(23, -12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, -15, bottomDepthLevel), new Point3D(30, -5, bottomDepthLevel),
+						new Point3D(27, -8, 7), new Point3D(27, -12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(20, -15, bottomDepthLevel), new Point3D(20, -5, bottomDepthLevel),
+						new Point3D(23, -8, 7), new Point3D(23, -12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, -15, bottomDepthLevel), new Point3D(20, -15, bottomDepthLevel),
+						new Point3D(23, -12, 7), new Point3D(27, -12, 7)).setEmission(color).setMaterial(mat),
+				new Polygon(
+						new Point3D(30, -5, bottomDepthLevel), new Point3D(20, -5, bottomDepthLevel),
+						new Point3D(23, -8, 7), new Point3D(27, -8, 7)).setEmission(color).setMaterial(mat)
 
 		);
 		
