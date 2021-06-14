@@ -17,10 +17,33 @@ import java.lang.Math;
  */
 public class ShabbatShalom {
 
-// Camera from +z, -x with angle axis:
-	private Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35),
-			new Vector(1, 0, 1 / 0.35)) //
-					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(100);
+	
+
+
+
+	
+	
+	// Camera from up:
+//	private final Camera camera = new Camera(new Point3D(0, 0, 500), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+//			.setDistance(1000).setViewPlaneSize(200, 200);
+	
+
+	// Camera from x asix:
+	//private final Camera camera = new Camera(new Point3D(200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
+//			.setDistance(1000).setViewPlaneSize(200, 200);
+
+	// Camera from y asix:
+//	private final Camera camera = new Camera(new Point3D(0, 500, 0), new Vector(0, -1, 0), new Vector(0, 0, 1)) //
+//			.setDistance(1000).setViewPlaneSize(200, 200);
+//	
+	//Camera from -x axis:
+//	private final Camera camera = new Camera(new Point3D(-200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
+//			.setDistance(1000).setViewPlaneSize(200, 200);
+
+	 //Camera from +z, -x with angle axis:
+//		private Camera camera = new Camera(new Point3D(-250, 0, 92), new Vector(1, 0, -0.35),
+//				new Vector(1, 0, 1 / 0.35)) //
+//						.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(100);
 
 	private final Scene scene = new Scene("Test scene");
 
@@ -46,6 +69,17 @@ public class ShabbatShalom {
 	 */
 	@Test
 	public void goblet() {
+		// Camera GIF project:
+//		String title = "1";
+//		double x = -27.12;
+//		double y = 248.52;
+//		double xVector = 0.101;
+//		double yVector = -0.93;
+
+		
+		
+		
+		
 		double angle = 0.261; // 15 degree
 		int totalRotations = 26; // 15 degree * 24 = 360 and two to close the gap
 		Vector toMoveVector;
@@ -360,36 +394,46 @@ public class ShabbatShalom {
 
 
 
+		Double CameraAngle = 0.0349; // 2 degree
+		int cameraRotations = 90; // 2 degree * 90 = 180
+		Point3D[] cameraPoints = new Point3D[cameraRotations];
+		Vector[] vectorsNormalized = new Vector[cameraRotations];
+		Vector cameraV;
+		double oldXcamera = -1;
+		double oldYcamera = 300;
+		double newXcamera;
+		double newYcamera;
+		Point3D centerCamera = new Point3D(0, 0, 92);
+		for (int i = 0; i < cameraRotations; i++) { // Number of angle rotations
+			newXcamera = Math.cos(CameraAngle) *  oldXcamera - Math.sin(CameraAngle) * oldYcamera;
+			newYcamera = Math.sin(CameraAngle) *  oldXcamera + Math.cos(CameraAngle) * oldYcamera;
+			cameraV = new Vector(newXcamera, newYcamera, 0);
+			cameraPoints[i] = centerCamera.add(cameraV);
+			vectorsNormalized[i] = new Point3D(0, 0, 0).subtract(cameraPoints[i]).normalize();
+			oldXcamera = newXcamera;
+			oldYcamera = newYcamera;
+		}
 		
-		
-		
-		
-ImageWriter imageWriter = new ImageWriter("TheGoblet", 800, 800);
+		for (int i = 0; i < cameraRotations; i++)
+		{
+			final Camera camera = new Camera(cameraPoints[i], vectorsNormalized[i], new Vector(-1/vectorsNormalized[i].head.x.coord, 1/vectorsNormalized[i].head.y.coord,0)) //
+					.setDistance(1000).setViewPlaneSize(200, 200);
+					ImageWriter imageWriter = new ImageWriter(String.valueOf(i), 800, 800);
 
-		Render render = new Render() //
-				.setCamera(camera) //
-				.setImageWriter(imageWriter) //
-				.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn()) //
-				.setMultithreading(3).setDebugPrint();
-		render.renderImage();
-		// render.printGrid(50, new Color(java.awt.Color.YELLOW));s
-		render.writeToImage();
+					Render render = new Render() //
+							.setCamera(camera) //
+							.setImageWriter(imageWriter) //
+							.setRayTracerBasic(new RayTracerBasic(scene).turnAllBoxesOn()) //
+							.setMultithreading(3).setDebugPrint();
+					render.renderImage();
+					// render.printGrid(50, new Color(java.awt.Color.YELLOW));s
+					render.writeToImage();
+		}
+
+
 	}
 
 }
-
-// Camera from up:
-//private final Camera camera = new Camera(new Point3D(0, 0, 200), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-//		.setDistance(1000).setViewPlaneSize(200, 200);
-//
-
-// Camera from x asix:
-//private final Camera camera = new Camera(new Point3D(200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
-//		.setDistance(1000).setViewPlaneSize(200, 200);
-
-//Camera from -x axis:
-//private final Camera camera = new Camera(new Point3D(-200, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
-//		.setDistance(1000).setViewPlaneSize(200, 200);
 
 //angle =  1.5707; // 15 degree
 //totalRotations = 3; //  degree * 120 = 180 
