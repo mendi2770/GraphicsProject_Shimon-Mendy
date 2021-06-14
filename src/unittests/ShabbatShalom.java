@@ -394,7 +394,7 @@ public class ShabbatShalom {
 
 
 
-		Double CameraAngle = 0.0349; // 2 degree
+		Double CameraAngle = 0.0349; // 2 degrees
 		int cameraRotations = 180; // 2 degree * 90 = 360
 		Point3D[] cameraPoints = new Point3D[cameraRotations];
 		Vector[] vectorsNormalized = new Vector[cameraRotations];
