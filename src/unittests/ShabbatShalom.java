@@ -395,7 +395,7 @@ public class ShabbatShalom {
 
 
 		Double CameraAngle = 0.0349; // 2 degree
-		int cameraRotations = 90; // 2 degree * 90 = 180
+		int cameraRotations = 180; // 2 degree * 90 = 360
 		Point3D[] cameraPoints = new Point3D[cameraRotations];
 		Vector[] vectorsNormalized = new Vector[cameraRotations];
 		Vector cameraV;
@@ -417,7 +417,7 @@ public class ShabbatShalom {
 		for (int i = 0; i < cameraRotations; i++)
 		{
 			final Camera camera = new Camera(cameraPoints[i], vectorsNormalized[i], new Vector(-1/vectorsNormalized[i].head.x.coord, 1/vectorsNormalized[i].head.y.coord,0)) //
-					.setDistance(1000).setViewPlaneSize(200, 200);
+					.setDistance(1000).setViewPlaneSize(200, 200).setAmountOfSampledRays(0);
 					ImageWriter imageWriter = new ImageWriter(String.valueOf(i), 800, 800);
 
 					Render render = new Render() //
