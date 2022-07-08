@@ -5,7 +5,7 @@ import static primitives.Util.isZero;
 public class Point3D {
 
 	/**
-	 * A Zero point3D
+	 * A Zero point3D, and Mendi is SHOSHKE!!!
 	 */
 	final static public Point3D ZERO = new Point3D(0, 0, 0);
 
